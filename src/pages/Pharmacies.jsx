@@ -58,19 +58,10 @@ const PharmacyCard = ({ pharmacy, distance, isDuty }) => {
 
             <div className="flex flex-col gap-1">
                 <h3 className="font-bold text-deep-charcoal leading-tight">{pharmacy.name}</h3>
-                {pharmacy.pharmacist && (
-                    <p className="text-[11px] text-gray-400 font-medium">{pharmacy.pharmacist}</p>
-                )}
                 <div className="flex items-center gap-1.5 text-gray-500 text-xs mt-0.5">
                     <MapPin className="w-3.5 h-3.5 text-dakar-emerald flex-shrink-0" />
                     <span className="line-clamp-1">{pharmacy.address}</span>
                 </div>
-                {pharmacy.phone && (
-                    <div className="flex items-center gap-1.5 text-gray-500 text-xs">
-                        <Phone className="w-3.5 h-3.5 text-dakar-emerald flex-shrink-0" />
-                        <span>{pharmacy.phone}</span>
-                    </div>
-                )}
             </div>
 
             <div className="grid grid-cols-2 gap-2 mt-auto">
