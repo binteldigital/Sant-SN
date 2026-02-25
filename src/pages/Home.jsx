@@ -15,13 +15,6 @@ const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const { location, calculateDistance } = useGeolocation();
 
-    const specialties = [
-        { name: 'Cardiologie', icon: '❤️' },
-        { name: 'Pédiatrie', icon: '👶' },
-        { name: 'Gynécologie', icon: '👩‍⚕️' },
-        { name: 'Urgences', icon: '🚨' },
-    ];
-
     // Filtered hospitals based on search
     const filteredHospitals = useMemo(() => {
         if (!searchQuery) return [];
@@ -133,23 +126,6 @@ const Home = () => {
                                 <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-purple-100">🚑</div>
                                 <span className="text-[10px] font-bold text-gray-600">Ambulance</span>
                             </div>
-                        </div>
-                    </div>
-
-                    {/* Specialities */}
-                    <div className="py-4">
-                        <div className="px-6 flex justify-between items-center mb-4">
-                            <h2 className="font-bold text-deep-charcoal">Nos Spécialités</h2>
-                        </div>
-                        <div className="flex gap-4 overflow-x-auto px-6 pb-2 no-scrollbar">
-                            {specialties.map((spec, i) => (
-                                <div key={i} className="flex flex-col items-center gap-2 min-w-[80px]">
-                                    <div className="w-16 h-16 bg-soft-gray rounded-2xl flex items-center justify-center text-2xl shadow-sm border border-gray-50 active:scale-90 transition-transform cursor-pointer">
-                                        {spec.icon}
-                                    </div>
-                                    <span className="text-[11px] font-medium text-gray-600">{spec.name}</span>
-                                </div>
-                            ))}
                         </div>
                     </div>
 

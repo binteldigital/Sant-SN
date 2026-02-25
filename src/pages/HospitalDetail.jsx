@@ -161,6 +161,28 @@ const HospitalDetail = () => {
                 </button>
             </div>
 
+            {/* Specialities Section */}
+            {hospital.specialties && hospital.specialties.length > 0 && (
+                <div className="px-6 py-4">
+                    <div className="flex items-center gap-2 mb-3">
+                        <div className="p-1.5 bg-rose-100 rounded-lg">
+                            <Heart className="w-4 h-4 text-rose-500" />
+                        </div>
+                        <h2 className="font-bold text-deep-charcoal text-lg">Spécialités</h2>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                        {hospital.specialties.map((spec, index) => (
+                            <span
+                                key={index}
+                                className="px-3 py-1.5 bg-rose-50 text-rose-600 text-xs font-bold rounded-xl border border-rose-100 shadow-sm transition-transform active:scale-95"
+                            >
+                                {spec}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             {/* Description Section */}
             <div className="px-6 py-4">
                 <div className="flex items-center gap-2 mb-3">
