@@ -21,7 +21,62 @@ const Profile = () => {
     const navigate = useNavigate();
     const { user, updateProfile, logout } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
-    const [formData, setFormData] = useState(user);
+    const [formData, setFormData] = useState(user || {});
+
+    // Si l'utilisateur n'est pas connecté, afficher un écran d'inscription
+    if (!user) {
+        return (
+            <div className="flex flex-col min-h-screen bg-white pb-24">
+                <header className="px-6 pt-8 pb-4 flex items-center gap-4">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="w-10 h-10 rounded-xl bg-soft-gray flex items-center justify-center active:scale-95 transition-all"
+                    >
+                        <ChevronLeft className="w-6 h-6 text-deep-charcoal" />
+                    </button>
+                    <h1 className="text-xl font-bold text-deep-charcoal">Mon Profil</h1>
+                </header>
+
+                <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
+                    <div className="w-24 h-24 rounded-[36px] bg-emerald-50 flex items-center justify-center mb-6 border-2 border-emerald-100">
+                        <User className="w-12 h-12 text-dakar-emerald" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-deep-charcoal mb-2">Bienvenue sur Sunu Santé</h2>
+                    <p className="text-sm text-gray-400 mb-8 max-w-[280px]">
+                        Créez votre compte pour accéder à votre profil santé, prendre des rendez-vous et gérer votre dossier médical.
+                    </p>
+                    <Link
+                        to="/register"
+                        className="w-full max-w-[300px] h-14 bg-dakar-emerald text-white rounded-2xl flex items-center justify-center gap-2 font-bold shadow-xl shadow-emerald-200 active:scale-95 transition-transform mb-4"
+                    >
+                        Créer un compte
+                    </Link>
+                    <Link
+                        to="/login"
+                        className="w-full max-w-[300px] h-14 bg-soft-gray text-deep-charcoal rounded-2xl flex items-center justify-center gap-2 font-bold active:scale-95 transition-transform"
+                    >
+                        J'ai déjà un compte
+                    </Link>
+                </div>
+
+                {/* Bottom Tabs */}
+                <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center py-2 px-6 safe-area-inset-bottom max-w-[440px] mx-auto z-50">
+                    <Link to="/" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                        <HomeIcon className="w-6 h-6" />
+                        <span className="text-[10px] font-medium">Accueil</span>
+                    </Link>
+                    <Link to="/dashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                        <CalendarIcon className="w-6 h-6" />
+                        <span className="text-[10px] font-medium">Mes RDV</span>
+                    </Link>
+                    <Link to="/profile" className="flex flex-col items-center gap-1 text-dakar-emerald">
+                        <UserIcon className="w-6 h-6" />
+                        <span className="text-[10px] font-bold">Profil</span>
+                    </Link>
+                </nav>
+            </div>
+        );
+    }
 
     const handleSave = () => {
         updateProfile(formData);

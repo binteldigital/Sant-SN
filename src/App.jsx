@@ -26,13 +26,15 @@ function App() {
                     <Routes>
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-                        <Route path="/hospital/:id" element={<ProtectedRoute><HospitalDetail /></ProtectedRoute>} />
+                        {/* Pages accessibles sans compte */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/hospital/:id" element={<HospitalDetail />} />
+                        <Route path="/hospitals" element={<Hospitals />} />
+                        <Route path="/pharmacies" element={<Pharmacies />} />
+                        <Route path="/profile" element={<Profile />} />
+                        {/* Pages nécessitant un compte */}
                         <Route path="/booking/:hospitalId" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
                         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-                        <Route path="/hospitals" element={<ProtectedRoute><Hospitals /></ProtectedRoute>} />
-                        <Route path="/pharmacies" element={<ProtectedRoute><Pharmacies /></ProtectedRoute>} />
                     </Routes>
                 </div>
             </Router>
