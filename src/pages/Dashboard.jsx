@@ -1,9 +1,11 @@
 import React from 'react';
 import { Bell, MapPin, Calendar, Clock, ChevronRight, Map, ClipboardList, Settings, Heart, Home as HomeIcon, User, Trash2 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [appointments, setAppointments] = React.useState([]);
 
     React.useEffect(() => {
@@ -57,6 +59,51 @@ const Dashboard = () => {
         const hospitalId = rdv?.hospital?.toLowerCase().replace(/ /g, '-') || 'hopital-principal';
         navigate(`/booking/${hospitalId}`);
     };
+
+    // Écran non connecté
+    if (!user) {
+        return (
+            <div className="flex flex-col min-h-screen bg-white pb-24">
+                <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
+                    <div className="w-24 h-24 rounded-[36px] bg-emerald-50 flex items-center justify-center mb-6 border-2 border-emerald-100">
+                        <Calendar className="w-12 h-12 text-dakar-emerald" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-deep-charcoal mb-2">Mes rendez-vous</h2>
+                    <p className="text-sm text-gray-400 mb-8 max-w-[280px]">
+                        Connectez-vous pour accéder à vos rendez-vous médicaux et gérer votre agenda santé.
+                    </p>
+                    <Link
+                        to="/register"
+                        className="w-full max-w-[300px] h-14 bg-dakar-emerald text-white rounded-2xl flex items-center justify-center gap-2 font-bold shadow-xl shadow-emerald-200 active:scale-95 transition-transform mb-4"
+                    >
+                        Créer un compte
+                    </Link>
+                    <Link
+                        to="/login"
+                        className="w-full max-w-[300px] h-14 bg-soft-gray text-deep-charcoal rounded-2xl flex items-center justify-center gap-2 font-bold active:scale-95 transition-transform"
+                    >
+                        J'ai déjà un compte
+                    </Link>
+                </div>
+
+                {/* Bottom Tabs */}
+                <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center py-2 px-6 safe-area-inset-bottom max-w-[440px] mx-auto z-50">
+                    <Link to="/" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                        <HomeIcon className="w-6 h-6" />
+                        <span className="text-[10px] font-medium">Accueil</span>
+                    </Link>
+                    <Link to="/dashboard" className="flex flex-col items-center gap-1 text-dakar-emerald">
+                        <Calendar className="w-6 h-6" />
+                        <span className="text-[10px] font-bold">Mes RDV</span>
+                    </Link>
+                    <Link to="/profile" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                        <User className="w-6 h-6" />
+                        <span className="text-[10px] font-medium">Profil</span>
+                    </Link>
+                </nav>
+            </div>
+        );
+    }
 
     const history = [
         { title: 'Consultation Dermatologie', hospital: 'Clinique du Cap', date: '10 Jan 2026', status: 'Terminé' },

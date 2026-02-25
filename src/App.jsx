@@ -34,7 +34,7 @@ function App() {
                         <Route path="/profile" element={<Profile />} />
                         {/* Pages nécessitant un compte */}
                         <Route path="/booking/:hospitalId" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
-                        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                     </Routes>
                 </div>
             </Router>

@@ -7,19 +7,28 @@ const Login = () => {
     const navigate = useNavigate();
     const { login } = useAuth();
     const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // In a real app, we would verify credentials. 
-        // For now, we try to load the user from localStorage.
-        const savedUser = localStorage.getItem('sunu_sante_user');
-        if (savedUser) {
-            login(JSON.parse(savedUser));
-            navigate('/');
-        } else {
-            alert("Compte non trouvé. Veuillez vous inscrire.");
-            navigate('/register');
+        setError('');
+        const savedUser = localStorage.getItem('sunu_sante_account');
+        if (!savedUser) {
+            setError("Aucun compte trouvé. Veuillez vous inscrire.");
+            return;
         }
+        const user = JSON.parse(savedUser);
+        if (user.phone !== phone) {
+            setError("Numéro de téléphone incorrect.");
+            return;
+        }
+        if (user.password !== password) {
+            setError("Mot de passe incorrect.");
+            return;
+        }
+        login(user);
+        navigate('/');
     };
 
     return (
@@ -45,12 +54,19 @@ const Login = () => {
 
                 <div className="relative group">
                     <input
+                        required
                         type="password"
                         placeholder="Mot de passe"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="w-full pl-12 pr-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
                     />
                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dakar-emerald transition-colors" />
                 </div>
+
+                {error && (
+                    <p className="text-red-500 text-sm text-center font-medium">{error}</p>
+                )}
 
                 <button
                     type="submit"

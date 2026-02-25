@@ -6,6 +6,7 @@ import {
     Calendar,
     MapPin,
     Phone,
+    Lock,
     Droplets,
     Activity,
     ChevronRight
@@ -24,6 +25,8 @@ const Register = () => {
         bloodGroup: 'O+',
         residence: '',
         phone: '',
+        password: '',
+        confirmPassword: '',
         chronicDiseases: ''
     });
 
@@ -34,7 +37,16 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        register(formData);
+        if (formData.password.length < 4) {
+            alert('Le mot de passe doit contenir au moins 4 caractères.');
+            return;
+        }
+        if (formData.password !== formData.confirmPassword) {
+            alert('Les mots de passe ne correspondent pas.');
+            return;
+        }
+        const { confirmPassword, ...dataToSave } = formData;
+        register(dataToSave);
         navigate('/');
     };
 
@@ -149,6 +161,34 @@ const Register = () => {
                         onChange={handleChange}
                         className="w-full px-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
                     />
+                </div>
+
+                <div className="space-y-4">
+                    <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Sécurité</h2>
+                    <div className="relative group">
+                        <input
+                            required
+                            type="password"
+                            name="password"
+                            placeholder="Créer un mot de passe"
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="w-full pl-12 pr-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
+                        />
+                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dakar-emerald transition-colors" />
+                    </div>
+                    <div className="relative group">
+                        <input
+                            required
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirmer le mot de passe"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            className="w-full pl-12 pr-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
+                        />
+                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dakar-emerald transition-colors" />
+                    </div>
                 </div>
 
                 <div className="space-y-4">

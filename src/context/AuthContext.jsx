@@ -7,13 +7,13 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Load user from localStorage on mount
-        const savedUser = localStorage.getItem('sunu_sante_user');
-        if (savedUser) {
+        // Restore session if still active
+        const session = localStorage.getItem('sunu_sante_user');
+        if (session) {
             try {
-                setUser(JSON.parse(savedUser));
+                setUser(JSON.parse(session));
             } catch (e) {
-                console.error("Failed to parse user data", e);
+                console.error("Failed to parse user session", e);
             }
         }
         setLoading(false);
@@ -26,11 +26,15 @@ export const AuthProvider = ({ children }) => {
 
     const register = (userData) => {
         setUser(userData);
+        // sunu_sante_user  = session active (effacée au logout)
         localStorage.setItem('sunu_sante_user', JSON.stringify(userData));
+        // sunu_sante_account = credentials persistants (jamais effacés)
+        localStorage.setItem('sunu_sante_account', JSON.stringify(userData));
     };
 
     const logout = () => {
         setUser(null);
+        // On efface uniquement la session, pas le compte
         localStorage.removeItem('sunu_sante_user');
     };
 

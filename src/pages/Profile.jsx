@@ -86,7 +86,7 @@ const Profile = () => {
     const handleLogout = () => {
         if (window.confirm("Voulez-vous vraiment vous déconnecter ?")) {
             logout();
-            navigate('/register');
+            navigate('/');
         }
     };
 
