@@ -4,6 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { hospitals } from '../data/hospitals';
 import { useGeolocation } from '../hooks/useGeolocation';
 
+const typeImages = {
+    'Hôpital Public': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=400&q=80',
+    'Hôpital Militaire': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=400&q=80',
+    'Clinique Privée': 'https://images.unsplash.com/photo-1538108197022-38d6df025a17?auto=format&fit=crop&w=400&q=80',
+    'Dispensaire': 'https://images.unsplash.com/photo-1576091160550-217359f4ecf8?auto=format&fit=crop&w=400&q=80',
+};
+
 const typeIcons = {
     'Hôpital Public': '🟢',
     'Hôpital Militaire': '🔷',
@@ -101,10 +108,16 @@ const Hospitals = () => {
 
                 {filteredHospitals.map(hospital => (
                     <Link to={`/hospital/${hospital.id}`} key={hospital.id} className="block group">
-                        <div className="bg-white border border-gray-100 p-4 rounded-3xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] flex gap-4">
-                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 flex-shrink-0 flex items-center justify-center text-2xl">
-                                {typeIcons[hospital.type] || '🏥'}
+                        <div className="bg-white border border-gray-100 p-3 rounded-3xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] flex gap-4 overflow-hidden relative">
+                            {/* Image Thumbnail */}
+                            <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50 flex items-center justify-center">
+                                <img
+                                    src={typeImages[hospital.type] || typeImages['Hôpital Public']}
+                                    alt={hospital.type}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
                             </div>
+
                             <div className="flex-1 min-w-0 flex flex-col justify-center">
                                 <div className="flex justify-between items-start mb-0.5">
                                     <span className="text-[9px] font-bold text-dakar-emerald uppercase">{hospital.type}</span>

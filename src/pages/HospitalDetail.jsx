@@ -4,8 +4,15 @@ import { ChevronLeft, MapPin, Clock, Phone, Globe, Navigation, Share2, Info, Mai
 import { hospitals } from '../data/hospitals';
 import { useGeolocation } from '../hooks/useGeolocation';
 
+const typeImages = {
+    'Hôpital Public': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=800&q=80',
+    'Hôpital Militaire': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80',
+    'Clinique Privée': 'https://images.unsplash.com/photo-1538108197022-38d6df025a17?auto=format&fit=crop&w=800&q=80',
+    'Dispensaire': 'https://images.unsplash.com/photo-1576091160550-217359f4ecf8?auto=format&fit=crop&w=800&q=80',
+};
+
 const typeColors = {
-    'Hôpital Public': { bg: 'from-emerald-500 to-teal-600', icon: '🟢', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+    'Hôpital Public': { bg: 'from-emerald-600 to-teal-700', icon: '🟢', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
     'Hôpital Militaire': { bg: 'from-blue-600 to-indigo-700', icon: '🔷', badge: 'bg-blue-50 text-blue-700 border-blue-200' },
     'Clinique Privée': { bg: 'from-rose-500 to-red-600', icon: '🔴', badge: 'bg-red-50 text-red-700 border-red-200' },
     'Dispensaire': { bg: 'from-amber-500 to-orange-600', icon: '🟠', badge: 'bg-orange-50 text-orange-700 border-orange-200' },
@@ -71,14 +78,16 @@ const HospitalDetail = () => {
 
     return (
         <div className="flex flex-col min-h-screen bg-white pb-24 max-w-[440px] mx-auto">
-            {/* Hero Header — Gradient instead of image */}
-            <div className={`relative h-56 bg-gradient-to-br ${colors.bg} overflow-hidden`}>
-                {/* Decorative pattern */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-6 right-6 w-32 h-32 border-4 border-white rounded-full"></div>
-                    <div className="absolute bottom-10 left-10 w-20 h-20 border-4 border-white rounded-full"></div>
-                    <div className="absolute top-20 left-1/2 w-16 h-16 border-4 border-white rounded-full"></div>
-                </div>
+            {/* Hero Header With Category Image */}
+            <div className={`relative h-64 bg-gradient-to-br ${colors.bg} overflow-hidden`}>
+                <img
+                    src={typeImages[hospital.type] || typeImages['Hôpital Public']}
+                    alt={hospital.type}
+                    className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay scale-110"
+                />
+
+                {/* Decorative pattern/overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
                 <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center text-white z-10">
                     <button onClick={() => navigate(-1)} className="p-2.5 rounded-2xl bg-black/20 backdrop-blur-md border border-white/10 shadow-lg active:scale-90 transition-all">
@@ -89,11 +98,10 @@ const HospitalDetail = () => {
                     </button>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="text-4xl mb-3">{colors.icon}</div>
-                    <h1 className="text-xl font-bold text-white leading-tight drop-shadow-sm">{hospital.name}</h1>
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                    <h1 className="text-2xl font-bold text-white leading-tight drop-shadow-md">{hospital.name}</h1>
                     <div className="flex items-center gap-2 mt-2">
-                        <span className="text-xs text-white/90 font-bold bg-white/15 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10">
+                        <span className="text-[10px] text-white font-bold bg-white/20 px-3 py-1 rounded-full backdrop-blur-md border border-white/20 uppercase tracking-wider">
                             {hospital.category}
                         </span>
                     </div>

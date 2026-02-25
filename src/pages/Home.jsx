@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import { hospitals } from '../data/hospitals';
 import { useGeolocation } from '../hooks/useGeolocation';
 
+const typeImages = {
+    'Hôpital Public': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=400&q=80',
+    'Hôpital Militaire': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=400&q=80',
+    'Clinique Privée': 'https://images.unsplash.com/photo-1538108197022-38d6df025a17?auto=format&fit=crop&w=400&q=80',
+    'Dispensaire': 'https://images.unsplash.com/photo-1576091160550-217359f4ecf8?auto=format&fit=crop&w=400&q=80',
+};
+
 const typeIcons = {
     'Hôpital Public': '🟢',
     'Hôpital Militaire': '🔷',
@@ -174,28 +181,36 @@ const Home = () => {
 
 const HospitalCard = ({ hospital, showDistance }) => (
     <Link to={`/hospital/${hospital.id}`} className="block group">
-        <div className="bg-white border border-gray-100 p-4 rounded-3xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] overflow-hidden relative">
-            <div className="flex justify-between items-start mb-2">
-                <div className="flex items-center gap-1.5">
-                    <span className="text-sm">{typeIcons[hospital.type] || '🏥'}</span>
-                    <span className="bg-emerald-50 text-dakar-emerald text-[10px] font-bold px-2 py-1 rounded-md uppercase border border-emerald-100">
-                        {hospital.type}
-                    </span>
-                </div>
-                <div className="text-right">
+        <div className="bg-white border border-gray-100 p-3 rounded-3xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] overflow-hidden relative flex gap-4">
+            {/* Image Thumbnail */}
+            <div className="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50">
+                <img
+                    src={typeImages[hospital.type] || typeImages['Hôpital Public']}
+                    alt={hospital.type}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+            </div>
+
+            <div className="flex-1 flex flex-col">
+                <div className="flex justify-between items-start mb-1.5">
+                    <div className="flex items-center gap-1.5">
+                        <span className="bg-emerald-50 text-dakar-emerald text-[9px] font-bold px-2 py-0.5 rounded-md uppercase border border-emerald-100">
+                            {hospital.type}
+                        </span>
+                    </div>
                     {showDistance && hospital.distance && (
                         <span className="text-[10px] font-bold text-dakar-emerald">à {hospital.distance.toFixed(1)} km</span>
                     )}
                 </div>
-            </div>
-            <h3 className="font-bold text-deep-charcoal group-hover:text-dakar-emerald transition-colors leading-tight text-sm">{hospital.name}</h3>
-            <div className="flex items-center gap-1 mt-1 text-gray-400">
-                <MapPin className="w-3 h-3" />
-                <span className="text-xs truncate">{hospital.location} — {hospital.district}</span>
-            </div>
-            <div className="mt-3 flex justify-between items-center">
-                <span className="text-[9px] bg-soft-gray px-2 py-0.5 rounded-full text-gray-500 font-medium whitespace-nowrap">{hospital.category}</span>
-                <button className="text-[11px] font-bold text-white bg-dakar-emerald px-4 py-2 rounded-xl shadow-sm shadow-emerald-100 active:scale-95 transition-transform">Réserver</button>
+                <h3 className="font-bold text-deep-charcoal group-hover:text-dakar-emerald transition-colors leading-tight text-sm line-clamp-1">{hospital.name}</h3>
+                <div className="flex items-center gap-1 mt-1 text-gray-400">
+                    <MapPin className="w-3 h-3" />
+                    <span className="text-[10px] truncate">{hospital.location} — {hospital.district}</span>
+                </div>
+                <div className="mt-auto pt-2 flex justify-between items-center">
+                    <span className="text-[9px] bg-soft-gray px-2 py-0.5 rounded-full text-gray-500 font-medium whitespace-nowrap">{hospital.category}</span>
+                    <button className="text-[10px] font-bold text-white bg-dakar-emerald px-3 py-1.5 rounded-xl shadow-sm shadow-emerald-100 active:scale-95 transition-transform">Réserver</button>
+                </div>
             </div>
         </div>
     </Link>
