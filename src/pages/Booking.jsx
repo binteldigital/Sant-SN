@@ -7,15 +7,16 @@ const Booking = () => {
     const { hospitalId } = useParams();
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
-    const [selectedDoctor, setSelectedDoctor] = useState(null);
+    const services = [
+        { id: 1, name: 'Cardiologie', icon: '❤️', description: 'Consultation spécialisée du cœur' },
+        { id: 2, name: 'Pédiatrie', icon: '👶', description: 'Soins pour enfants et nourrissons' },
+        { id: 3, name: 'Gynécologie', icon: '👩‍⚕️', description: 'Santé de la femme et maternité' },
+        { id: 4, name: 'Urgences', icon: '🚨', description: 'Prise en charge immédiate 24/7' },
+    ];
+
+    const [selectedService, setSelectedService] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
-
-    const doctors = [
-        { id: 1, name: 'Dr. Amadou Fall', specialty: 'Cardiologue Senior', availability: 'Aujourd\'hui', rating: 4.9 },
-        { id: 2, name: 'Dr. Mariama Diallo', specialty: 'Pédiatre', availability: 'Demain', rating: 4.8 },
-        { id: 3, name: 'Dr. Idrissa Sy', specialty: 'Généraliste', availability: '24 Féb', rating: 4.7 },
-    ];
 
     const dates = [
         { label: 'Dim', day: '21', full: '21 Féb' },
@@ -35,7 +36,7 @@ const Booking = () => {
                 </div>
                 <h1 className="text-2xl font-bold text-deep-charcoal mb-2">Rendez-vous Confirmé !</h1>
                 <p className="text-gray-500 mb-8 max-w-xs">
-                    Votre consultation avec {selectedDoctor?.name} a été enregistrée pour le {selectedDate?.full} à {selectedTime}.
+                    Votre consultation en {selectedService?.name} a été enregistrée pour le {selectedDate?.full} à {selectedTime}.
                 </p>
                 <div className="w-full bg-soft-gray p-4 rounded-2xl mb-8 border border-gray-100 italic">
                     <p className="text-xs text-gray-500 mb-1">Un SMS de confirmation a été envoyé au :</p>
@@ -80,40 +81,26 @@ const Booking = () => {
                         className="px-6 py-4"
                     >
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-lg font-bold text-deep-charcoal">Choisir un médecin</h2>
-                            <button className="p-2 bg-soft-gray rounded-xl">
-                                <Filter className="w-4 h-4 text-gray-500" />
-                            </button>
+                            <h2 className="text-lg font-bold text-deep-charcoal">Choisir un service</h2>
                         </div>
 
                         <div className="space-y-4">
-                            {doctors.map(doc => (
+                            {services.map(service => (
                                 <div
-                                    key={doc.id}
-                                    onClick={() => setSelectedDoctor(doc)}
-                                    className={`p-4 rounded-3xl border-2 transition-all cursor-pointer ${selectedDoctor?.id === doc.id ? 'border-dakar-emerald bg-emerald-50/30' : 'border-gray-50 bg-white hover:border-gray-100'}`}
+                                    key={service.id}
+                                    onClick={() => setSelectedService(service)}
+                                    className={`p-4 rounded-3xl border-2 transition-all cursor-pointer ${selectedService?.id === service.id ? 'border-dakar-emerald bg-emerald-50/30' : 'border-gray-50 bg-white hover:border-gray-100'}`}
                                 >
                                     <div className="flex items-center gap-4">
-                                        <div className="w-16 h-16 bg-gray-200 rounded-2xl overflow-hidden relative">
-                                            <div className="absolute inset-0 bg-dakar-emerald/10 flex items-center justify-center font-bold text-dakar-emerald text-xl">
-                                                {doc.name.split(' ')[1][0]}
-                                            </div>
+                                        <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl border border-gray-50">
+                                            {service.icon}
                                         </div>
                                         <div className="flex-1">
-                                            <h3 className="font-bold text-deep-charcoal">{doc.name}</h3>
-                                            <p className="text-xs text-gray-500 font-medium mb-2">{doc.specialty}</p>
-                                            <div className="flex items-center gap-3">
-                                                <div className="flex items-center gap-1">
-                                                    <Star className="w-3 h-3 text-yellow-500 fill-yellow-500" />
-                                                    <span className="text-[10px] font-bold text-deep-charcoal">{doc.rating}</span>
-                                                </div>
-                                                <span className="text-[10px] bg-blue-50 text-safe-blue px-2 py-0.5 rounded-full font-bold">
-                                                    {doc.availability}
-                                                </span>
-                                            </div>
+                                            <h3 className="font-bold text-deep-charcoal">{service.name}</h3>
+                                            <p className="text-xs text-gray-400 font-medium">{service.description}</p>
                                         </div>
-                                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${selectedDoctor?.id === doc.id ? 'border-dakar-emerald bg-dakar-emerald' : 'border-gray-200'}`}>
-                                            {selectedDoctor?.id === doc.id && <div className="w-2 h-2 rounded-full bg-white"></div>}
+                                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${selectedService?.id === service.id ? 'border-dakar-emerald bg-dakar-emerald' : 'border-gray-200'}`}>
+                                            {selectedService?.id === service.id && <div className="w-2 h-2 rounded-full bg-white"></div>}
                                         </div>
                                     </div>
                                 </div>
@@ -166,9 +153,9 @@ const Booking = () => {
             <div className="fixed bottom-0 left-0 right-0 p-6 bg-white/80 backdrop-blur-lg border-t border-gray-100 max-w-[440px] mx-auto z-20">
                 {step === 1 ? (
                     <button
-                        disabled={!selectedDoctor}
+                        disabled={!selectedService}
                         onClick={() => setStep(2)}
-                        className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${selectedDoctor ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
+                        className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${selectedService ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
                     >
                         Choisir Heure
                     </button>
@@ -176,9 +163,11 @@ const Booking = () => {
                     <div className="space-y-4">
                         <div className="flex justify-between items-center px-2">
                             <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-soft-gray flex items-center justify-center text-[10px] font-bold">AF</div>
+                                <div className="w-8 h-8 rounded-full bg-soft-gray flex items-center justify-center text-[10px] font-bold">
+                                    {selectedService?.icon}
+                                </div>
                                 <div className="text-xs">
-                                    <p className="font-bold text-deep-charcoal">Dr. Fall</p>
+                                    <p className="font-bold text-deep-charcoal">{selectedService?.name}</p>
                                     <p className="text-gray-400">{selectedDate?.full || 'Non choisi'} à {selectedTime || '--:--'}</p>
                                 </div>
                             </div>
@@ -186,7 +175,41 @@ const Booking = () => {
                         </div>
                         <button
                             disabled={!selectedDate || !selectedTime}
-                            onClick={() => setStep(3)}
+                            onClick={() => {
+                                // Mock hospital name lookup based on ID
+                                const hospitals = {
+                                    'hopital-principal': 'Hôpital Principal',
+                                    'clinique-du-cap': 'Clinique du Cap',
+                                    'chnu-fann': 'CHNU de Fann'
+                                };
+
+                                const newAppointment = {
+                                    id: Date.now(), // Unique ID for each appointment
+                                    hospital: hospitals[hospitalId] || 'Hôpital',
+                                    doctor: `Service ${selectedService.name}`,
+                                    specialty: selectedService.name,
+                                    date: selectedDate.full,
+                                    time: selectedTime,
+                                };
+
+                                // Get existing appointments
+                                const savedData = localStorage.getItem('sunu_sante_appointments');
+                                let appointments = [];
+                                if (savedData) {
+                                    try {
+                                        appointments = JSON.parse(savedData);
+                                        if (!Array.isArray(appointments)) appointments = [];
+                                    } catch (e) {
+                                        appointments = [];
+                                    }
+                                }
+
+                                // Add new appointment to the start of the list
+                                appointments.unshift(newAppointment);
+
+                                localStorage.setItem('sunu_sante_appointments', JSON.stringify(appointments));
+                                setStep(3);
+                            }}
                             className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${selectedDate && selectedTime ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
                         >
                             Confirmer rendez-vous
