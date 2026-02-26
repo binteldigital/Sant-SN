@@ -35,7 +35,7 @@ const Register = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.password.length < 4) {
             alert('Le mot de passe doit contenir au moins 4 caractères.');
@@ -45,9 +45,28 @@ const Register = () => {
             alert('Les mots de passe ne correspondent pas.');
             return;
         }
+        
         const { confirmPassword, ...dataToSave } = formData;
-        register(dataToSave);
-        navigate('/');
+        
+        // Format data for API
+        const userData = {
+            full_name: `${dataToSave.firstName} ${dataToSave.lastName}`,
+            email: dataToSave.phone + '@demo.sn', // Using phone as email for now
+            password: dataToSave.password,
+            phone: dataToSave.phone,
+            role: 'patient'
+        };
+        
+        try {
+            const result = await register(userData);
+            if (result.success) {
+                navigate('/');
+            } else {
+                alert(result.error || 'Échec de l\'inscription');
+            }
+        } catch (err) {
+            alert('Erreur de connexion au serveur');
+        }
     };
 
     return (

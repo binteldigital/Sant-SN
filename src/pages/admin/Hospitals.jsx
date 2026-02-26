@@ -8,7 +8,7 @@ import {
     Phone,
     Filter
 } from 'lucide-react';
-import { hospitals as staticHospitals } from '../../data/hospitals';
+import { hospitalsApi } from '../../services/api';
 import HospitalForm from '../../components/admin/HospitalForm';
 
 const Hospitals = () => {
@@ -20,16 +20,44 @@ const Hospitals = () => {
     const [showForm, setShowForm] = useState(false);
     const [editingHospital, setEditingHospital] = useState(null);
     const [deleteConfirm, setDeleteConfirm] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Use static data instead of API
-        setHospitals(staticHospitals.map((h, index) => ({ ...h, id: h.id || index + 1 })));
-        setLoading(false);
+        fetchHospitals();
     }, []);
 
-    const handleDelete = (id) => {
-        setHospitals(hospitals.filter(h => h.id !== id));
-        setDeleteConfirm(null);
+    const fetchHospitals = async () => {
+        try {
+            setLoading(true);
+            const response = await hospitalsApi.getAll();
+            setHospitals(response.data.hospitals || []);
+            
+            // Fetch types if available
+            try {
+                const typesResponse = await hospitalsApi.getTypes();
+                if (typesResponse.data.types) {
+                    setTypes(typesResponse.data.types);
+                }
+            } catch (e) {
+                console.log('Types endpoint not available, using defaults');
+            }
+        } catch (err) {
+            console.error('Failed to fetch hospitals:', err);
+            setError('Failed to load hospitals');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await hospitalsApi.delete(id);
+            setHospitals(hospitals.filter(h => h.id !== id));
+            setDeleteConfirm(null);
+        } catch (err) {
+            console.error('Failed to delete hospital:', err);
+            alert('Failed to delete hospital');
+        }
     };
 
     const handleEdit = (hospital) => {
@@ -37,14 +65,21 @@ const Hospitals = () => {
         setShowForm(true);
     };
 
-    const handleFormSuccess = (newHospital) => {
-        if (editingHospital) {
-            setHospitals(hospitals.map(h => h.id === editingHospital.id ? { ...newHospital, id: h.id } : h));
-        } else {
-            setHospitals([...hospitals, { ...newHospital, id: Date.now() }]);
+    const handleFormSuccess = async (newHospital) => {
+        try {
+            if (editingHospital) {
+                const response = await hospitalsApi.update(editingHospital.id, newHospital);
+                setHospitals(hospitals.map(h => h.id === editingHospital.id ? response.data.hospital : h));
+            } else {
+                const response = await hospitalsApi.create(newHospital);
+                setHospitals([...hospitals, response.data.hospital]);
+            }
+            setShowForm(false);
+            setEditingHospital(null);
+        } catch (err) {
+            console.error('Failed to save hospital:', err);
+            alert('Failed to save hospital');
         }
-        setShowForm(false);
-        setEditingHospital(null);
     };
 
     const filteredHospitals = hospitals.filter(h => {

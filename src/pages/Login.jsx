@@ -10,21 +10,32 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         
-        // Demo login - no database needed
-        const result = login(phone, password);
-        if (result.success) {
-            navigate(result.user.role === 'super_admin' ? '/admin' : '/');
+        try {
+            const result = await login(phone, password);
+            if (result.success) {
+                navigate(result.user.role === 'super_admin' ? '/admin' : '/');
+            } else {
+                setError(result.error || 'Échec de la connexion');
+            }
+        } catch (err) {
+            setError('Erreur de connexion au serveur');
         }
     };
 
-    const handleAdminDemo = () => {
-        const result = loginAsAdmin();
-        if (result.success) {
-            navigate('/admin');
+    const handleAdminDemo = async () => {
+        try {
+            const result = await loginAsAdmin();
+            if (result.success) {
+                navigate('/admin');
+            } else {
+                setError(result.error || 'Échec de la connexion admin');
+            }
+        } catch (err) {
+            setError('Erreur de connexion au serveur');
         }
     };
 

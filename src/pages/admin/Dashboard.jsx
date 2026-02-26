@@ -6,8 +6,7 @@ import {
     Calendar,
     Activity
 } from 'lucide-react';
-import { hospitals } from '../../data/hospitals';
-import { pharmacies } from '../../data/pharmacies';
+import { adminApi } from '../../services/api';
 
 const StatCard = ({ icon: Icon, label, value, color }) => (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
@@ -110,16 +109,61 @@ const UserDistribution = ({ distribution }) => {
 
 const AdminDashboard = () => {
     const [loading, setLoading] = useState(true);
+    const [stats, setStats] = useState({
+        hospitals: 0,
+        pharmacies: 0,
+        users: 0,
+        appointments: 0
+    });
+    const [recentAppointments, setRecentAppointments] = useState([]);
+    const [userDistribution, setUserDistribution] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Simulate loading
-        setTimeout(() => setLoading(false), 500);
+        fetchDashboardData();
     }, []);
+
+    const fetchDashboardData = async () => {
+        try {
+            setLoading(true);
+            const response = await adminApi.getDashboard();
+            const data = response.data;
+            
+            setStats({
+                hospitals: data.stats?.hospitals || 0,
+                pharmacies: data.stats?.pharmacies || 0,
+                users: data.stats?.users || 0,
+                appointments: data.stats?.appointments || 0
+            });
+            
+            setRecentAppointments(data.recentAppointments || []);
+            setUserDistribution(data.userDistribution || []);
+        } catch (err) {
+            console.error('Failed to fetch dashboard data:', err);
+            setError('Failed to load dashboard data');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     if (loading) {
         return (
             <div className="flex items-center justify-center h-64">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+                <p className="text-red-600">{error}</p>
+                <button 
+                    onClick={fetchDashboardData}
+                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                >
+                    Réessayer
+                </button>
             </div>
         );
     }
@@ -137,25 +181,25 @@ const AdminDashboard = () => {
                 <StatCard
                     icon={Building2}
                     label="Hôpitaux"
-                    value={hospitals.length}
+                    value={stats.hospitals}
                     color="bg-blue-500"
                 />
                 <StatCard
                     icon={Pill}
                     label="Pharmacies"
-                    value={pharmacies.length}
+                    value={stats.pharmacies}
                     color="bg-emerald-500"
                 />
                 <StatCard
                     icon={Users}
                     label="Utilisateurs"
-                    value={190}
+                    value={stats.users}
                     color="bg-purple-500"
                 />
                 <StatCard
                     icon={Calendar}
                     label="Rendez-vous"
-                    value={42}
+                    value={stats.appointments}
                     color="bg-orange-500"
                 />
             </div>
@@ -163,10 +207,10 @@ const AdminDashboard = () => {
             {/* Content Grid - Full width on large screens */}
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 <div className="xl:col-span-2">
-                    <RecentAppointments appointments={MOCK_APPOINTMENTS} />
+                    <RecentAppointments appointments={recentAppointments} />
                 </div>
                 <div className="xl:col-span-1">
-                    <UserDistribution distribution={MOCK_USER_DISTRIBUTION} />
+                    <UserDistribution distribution={userDistribution} />
                 </div>
             </div>
 

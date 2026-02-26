@@ -11,7 +11,9 @@
         "server": "node server/index.js",
         "server:dev": "nodemon server/index.js",
         "db:migrate": "node database/migrate-data.js",
-        "dev:full": "concurrently \"npm run server:dev\" \"npm run dev\""
+        "db:seed": "node database/seed-database.js",
+        "dev:full": "concurrently \"npm run server:dev\" \"npm run dev\"",
+        "start": "npm run server"
     },
     "dependencies": {
         "@types/pg": "^8.16.0",
