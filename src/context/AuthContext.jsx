@@ -2,6 +2,16 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
+// Demo admin account - no database needed
+const DEMO_ADMIN = {
+    id: 'admin-demo-001',
+    email: 'admin@sunusante.sn',
+    full_name: 'Administrateur Demo',
+    role: 'super_admin',
+    phone: '+221 77 123 45 67',
+    is_active: true
+};
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -19,22 +29,38 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
     }, []);
 
-    const login = (userData) => {
+    const login = (email, password) => {
+        // Simple demo login - any email/password works for demo
+        // In real app, this would validate against backend
+        const isAdmin = email.includes('admin');
+        const userData = isAdmin ? DEMO_ADMIN : {
+            id: 'user-' + Date.now(),
+            email: email,
+            full_name: email.split('@')[0],
+            role: 'patient',
+            is_active: true
+        };
+        
         setUser(userData);
         localStorage.setItem('sunu_sante_user', JSON.stringify(userData));
+        return { success: true, user: userData };
     };
 
     const register = (userData) => {
-        setUser(userData);
-        // sunu_sante_user  = session active (effacée au logout)
-        localStorage.setItem('sunu_sante_user', JSON.stringify(userData));
-        // sunu_sante_account = credentials persistants (jamais effacés)
-        localStorage.setItem('sunu_sante_account', JSON.stringify(userData));
+        const newUser = {
+            id: 'user-' + Date.now(),
+            ...userData,
+            role: userData.role || 'patient',
+            is_active: true
+        };
+        setUser(newUser);
+        localStorage.setItem('sunu_sante_user', JSON.stringify(newUser));
+        localStorage.setItem('sunu_sante_account', JSON.stringify(newUser));
+        return { success: true, user: newUser };
     };
 
     const logout = () => {
         setUser(null);
-        // On efface uniquement la session, pas le compte
         localStorage.removeItem('sunu_sante_user');
     };
 
@@ -44,8 +70,24 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('sunu_sante_user', JSON.stringify(newUser));
     };
 
+    // Auto-login as admin for testing
+    const loginAsAdmin = () => {
+        setUser(DEMO_ADMIN);
+        localStorage.setItem('sunu_sante_user', JSON.stringify(DEMO_ADMIN));
+        return { success: true, user: DEMO_ADMIN };
+    };
+
     return (
-        <AuthContext.Provider value={{ user, loading, login, register, logout, updateProfile }}>
+        <AuthContext.Provider value={{ 
+            user, 
+            loading, 
+            login, 
+            register, 
+            logout, 
+            updateProfile,
+            loginAsAdmin,
+            DEMO_ADMIN 
+        }}>
             {!loading && children}
         </AuthContext.Provider>
     );

@@ -12,17 +12,15 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
 #root {
   width: 100%;
-  max-width: 440px; /* Force mobile-like constraint on desktop */
+  max-width: 100%;
   margin: 0 auto;
   min-height: 100vh;
   background: white;
-  box-shadow: 0 0 20px rgba(0,0,0,0.05);
   position: relative;
 }

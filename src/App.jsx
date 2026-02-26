@@ -10,10 +10,21 @@ import Login from './pages/Login';
 import Hospitals from './pages/Hospitals';
 import Pharmacies from './pages/Pharmacies';
 
-const ProtectedRoute = ({ children }) => {
+// Admin imports
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminDashboard from './pages/admin/Dashboard';
+import AdminHospitals from './pages/admin/Hospitals';
+import AdminPharmacies from './pages/admin/Pharmacies';
+import AdminUsers from './pages/admin/Users';
+import AdminSettings from './pages/admin/Settings';
+
+const ProtectedRoute = ({ children, requireAdmin = false }) => {
     const { user } = useAuth();
     if (!user) {
-        return <Navigate to="/register" replace />;
+        return <Navigate to="/login" replace />;
+    }
+    if (requireAdmin && !['super_admin', 'hospital_admin', 'support'].includes(user.role)) {
+        return <Navigate to="/" replace />;
     }
     return children;
 };
@@ -35,6 +46,16 @@ function App() {
                         {/* Pages nécessitant un compte */}
                         <Route path="/booking/:hospitalId" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        
+                        {/* Admin Routes */}
+                        <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminLayout /></ProtectedRoute>}>
+                            <Route index element={<AdminDashboard />} />
+                            <Route path="hospitals" element={<AdminHospitals />} />
+                            <Route path="hospitals/new" element={<AdminHospitals />} />
+                            <Route path="pharmacies" element={<AdminPharmacies />} />
+                            <Route path="users" element={<AdminUsers />} />
+                            <Route path="settings" element={<AdminSettings />} />
+                        </Route>
                     </Routes>
                 </div>
             </Router>
