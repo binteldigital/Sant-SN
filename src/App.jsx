@@ -3,7 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Home from './pages/Home';
 import HospitalDetail from './pages/HospitalDetail';
 import Booking from './pages/Booking';
-import Dashboard from './pages/Dashboard';
+import FlashDashboard from './pages/FlashDashboard';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -45,7 +45,8 @@ function App() {
                         <Route path="/profile" element={<Profile />} />
                         {/* Pages nécessitant un compte */}
                         <Route path="/booking/:hospitalId" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
-                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/flashdashboard" element={<FlashDashboard />} />
+                                                <Route path="/dashboard" element={<FlashDashboard />} />
                         
                         {/* Admin Routes */}
                         <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminLayout /></ProtectedRoute>}>

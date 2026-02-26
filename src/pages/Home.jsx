@@ -166,7 +166,7 @@ const Home = () => {
                     <HomeIcon className="w-6 h-6" />
                     <span className="text-[10px] font-bold">Accueil</span>
                 </Link>
-                <Link to="/dashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                     <Calendar className="w-6 h-6" />
                     <span className="text-[10px] font-medium">Mes RDV</span>
                 </Link>

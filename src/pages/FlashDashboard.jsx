@@ -3,7 +3,7 @@ import { Bell, MapPin, Calendar, Clock, ChevronRight, Map, ClipboardList, Settin
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const Dashboard = () => {
+const FlashDashboard = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
     const [appointments, setAppointments] = React.useState([]);
@@ -92,7 +92,7 @@ const Dashboard = () => {
                         <HomeIcon className="w-6 h-6" />
                         <span className="text-[10px] font-medium">Accueil</span>
                     </Link>
-                    <Link to="/dashboard" className="flex flex-col items-center gap-1 text-dakar-emerald">
+                    <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-dakar-emerald">
                         <Calendar className="w-6 h-6" />
                         <span className="text-[10px] font-bold">Mes RDV</span>
                     </Link>
@@ -241,7 +241,7 @@ const Dashboard = () => {
                     <HomeIcon className="w-6 h-6" />
                     <span className="text-[10px] font-medium">Accueil</span>
                 </Link>
-                <Link to="/dashboard" className="flex flex-col items-center gap-1 text-dakar-emerald">
+                <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-dakar-emerald">
                     <Calendar className="w-6 h-6" />
                     <span className="text-[10px] font-bold">Mes RDV</span>
                 </Link>
@@ -254,4 +254,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default FlashDashboard;

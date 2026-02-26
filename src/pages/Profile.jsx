@@ -65,7 +65,7 @@ const Profile = () => {
                         <HomeIcon className="w-6 h-6" />
                         <span className="text-[10px] font-medium">Accueil</span>
                     </Link>
-                    <Link to="/dashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                    <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                         <CalendarIcon className="w-6 h-6" />
                         <span className="text-[10px] font-medium">Mes RDV</span>
                     </Link>
@@ -202,7 +202,7 @@ const Profile = () => {
                     <HomeIcon className="w-6 h-6" />
                     <span className="text-[10px] font-medium">Accueil</span>
                 </Link>
-                <Link to="/dashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                     <CalendarIcon className="w-6 h-6" />
                     <span className="text-[10px] font-medium">Mes RDV</span>
                 </Link>
