@@ -136,26 +136,26 @@ const Profile = () => {
             <div className="px-6 py-6 flex flex-col items-center">
                 <div className="relative mb-4">
                     <div className="w-28 h-28 rounded-[40px] bg-dakar-emerald flex items-center justify-center text-white font-bold text-4xl border-4 border-emerald-50 shadow-xl shadow-emerald-100">
-                        {user.firstName[0]}
+                        {(user.full_name || user.firstName || 'U')[0]}
                     </div>
                 </div>
                 {isEditing ? (
                     <div className="flex gap-2 text-center">
                         <input
                             name="firstName"
-                            value={formData.firstName}
+                            value={formData.firstName || ''}
                             onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                             className="w-24 bg-white border-b border-dakar-emerald text-xl font-bold text-center outline-none"
                         />
                         <input
                             name="lastName"
-                            value={formData.lastName}
+                            value={formData.lastName || ''}
                             onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                             className="w-24 bg-white border-b border-dakar-emerald text-xl font-bold text-center outline-none"
                         />
                     </div>
                 ) : (
-                    <h2 className="text-2xl font-bold text-deep-charcoal">{user.firstName} {user.lastName}</h2>
+                    <h2 className="text-2xl font-bold text-deep-charcoal">{user.full_name || `${user.firstName || ''} ${user.lastName || ''}`}</h2>
                 )}
                 <p className="text-sm text-gray-400 font-medium">ID Santé: #SN-8829-X</p>
             </div>
