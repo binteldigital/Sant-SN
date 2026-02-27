@@ -170,7 +170,7 @@ const AdminDashboard = () => {
             const { data: recentApts, error: aptError } = await supabase
                 .from('appointments')
                 .select('*')
-                .order('created_at', { ascending: false })
+                .order('appointment_date', { ascending: false })
                 .limit(5);
             
             if (aptError) {
