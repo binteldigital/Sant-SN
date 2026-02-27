@@ -8,7 +8,7 @@ import {
     Phone,
     Filter
 } from 'lucide-react';
-import { hospitalsApi } from '../../services/api';
+import { supabase } from '../../lib/supabase';
 import HospitalForm from '../../components/admin/HospitalForm';
 
 const Hospitals = () => {
@@ -29,17 +29,21 @@ const Hospitals = () => {
     const fetchHospitals = async () => {
         try {
             setLoading(true);
-            const response = await hospitalsApi.getAll();
-            setHospitals(response.data.hospitals || []);
+            const { data, error } = await supabase
+                .from('hospitals')
+                .select('*')
+                .order('name', { ascending: true });
             
-            // Fetch types if available
-            try {
-                const typesResponse = await hospitalsApi.getTypes();
-                if (typesResponse.data.types) {
-                    setTypes(typesResponse.data.types);
+            if (error) throw error;
+            
+            setHospitals(data || []);
+            
+            // Extract unique types from data
+            if (data && data.length > 0) {
+                const uniqueTypes = [...new Set(data.map(h => h.type).filter(Boolean))];
+                if (uniqueTypes.length > 0) {
+                    setTypes(uniqueTypes);
                 }
-            } catch (e) {
-                console.log('Types endpoint not available, using defaults');
             }
         } catch (err) {
             console.error('Failed to fetch hospitals:', err);
@@ -51,7 +55,13 @@ const Hospitals = () => {
 
     const handleDelete = async (id) => {
         try {
-            await hospitalsApi.delete(id);
+            const { error } = await supabase
+                .from('hospitals')
+                .delete()
+                .eq('id', id);
+            
+            if (error) throw error;
+            
             setHospitals(hospitals.filter(h => h.id !== id));
             setDeleteConfirm(null);
         } catch (err) {
@@ -68,11 +78,24 @@ const Hospitals = () => {
     const handleFormSuccess = async (newHospital) => {
         try {
             if (editingHospital) {
-                const response = await hospitalsApi.update(editingHospital.id, newHospital);
-                setHospitals(hospitals.map(h => h.id === editingHospital.id ? response.data.hospital : h));
+                const { data, error } = await supabase
+                    .from('hospitals')
+                    .update(newHospital)
+                    .eq('id', editingHospital.id)
+                    .select()
+                    .single();
+                
+                if (error) throw error;
+                setHospitals(hospitals.map(h => h.id === editingHospital.id ? data : h));
             } else {
-                const response = await hospitalsApi.create(newHospital);
-                setHospitals([...hospitals, response.data.hospital]);
+                const { data, error } = await supabase
+                    .from('hospitals')
+                    .insert([newHospital])
+                    .select()
+                    .single();
+                
+                if (error) throw error;
+                setHospitals([...hospitals, data]);
             }
             setShowForm(false);
             setEditingHospital(null);
@@ -137,7 +160,7 @@ const Hospitals = () => {
                         ))}
                     </select>
                     <button
-                        onClick={handleSearch}
+                        onClick={() => {}}
                         className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors"
                     >
                         <Filter className="w-5 h-5" />
