@@ -17,7 +17,15 @@ const Login = () => {
         try {
             const result = await login(email, password);
             if (result.success) {
-                navigate(result.user.role === 'super_admin' ? '/admin' : '/');
+                // Redirect based on user role
+                const { role } = result.user;
+                if (role === 'super_admin' || role === 'support') {
+                    navigate('/admin');
+                } else if (role === 'hospital_admin' || role === 'doctor') {
+                    navigate('/hospital-admin');
+                } else {
+                    navigate('/');
+                }
             } else {
                 setError(result.error || 'Échec de la connexion');
             }
