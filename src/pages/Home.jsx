@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, Bell, MapPin, Heart, ChevronRight, Home as HomeIcon, Calendar, User, Navigation, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { hospitals } from '../data/hospitals';
+import { getHospitals } from '../lib/supabase';
 import { useGeolocation } from '../hooks/useGeolocation';
 
 const typeImages = {
@@ -9,6 +9,8 @@ const typeImages = {
     'Hôpital Militaire': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=400&q=80',
     'Clinique Privée': 'https://images.unsplash.com/photo-1538108197022-38d6df025a17?auto=format&fit=crop&w=400&q=80',
     'Dispensaire': 'https://images.unsplash.com/photo-1576091160550-217359f4ecf8?auto=format&fit=crop&w=400&q=80',
+    'CHU': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=400&q=80',
+    'EPS': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=400&q=80',
 };
 
 const typeIcons = {
@@ -16,26 +18,52 @@ const typeIcons = {
     'Hôpital Militaire': '🔷',
     'Clinique Privée': '🔴',
     'Dispensaire': '🟠',
+    'CHU': '🟢',
+    'EPS': '🟢',
 };
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
+    const [hospitals, setHospitals] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { location, calculateDistance } = useGeolocation();
+
+    // Fetch hospitals from Supabase
+    useEffect(() => {
+        const fetchHospitals = async () => {
+            setLoading(true);
+            const { data, error } = await getHospitals();
+            if (error) {
+                console.error('Error fetching hospitals:', error);
+            } else {
+                // Transform data to match expected format
+                const transformed = data.map(h => ({
+                    ...h,
+                    coords: { lat: h.latitude, lng: h.longitude },
+                    category: h.category || h.type
+                }));
+                setHospitals(transformed);
+            }
+            setLoading(false);
+        };
+        fetchHospitals();
+    }, []);
 
     // Filtered hospitals based on search
     const filteredHospitals = useMemo(() => {
         if (!searchQuery) return [];
         return hospitals.filter(h =>
             h.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.district.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.category.toLowerCase().includes(searchQuery.toLowerCase())
+            (h.location && h.location.toLowerCase().includes(searchQuery.toLowerCase())) ||
+            (h.address && h.address.toLowerCase().includes(searchQuery.toLowerCase())) ||
+            (h.district && h.district.toLowerCase().includes(searchQuery.toLowerCase())) ||
+            (h.category && h.category.toLowerCase().includes(searchQuery.toLowerCase()))
         );
-    }, [searchQuery]);
+    }, [searchQuery, hospitals]);
 
     // Nearby hospitals (sorted by distance if location is available)
     const nearbyHospitals = useMemo(() => {
+        if (!hospitals.length) return [];
         if (!location) return hospitals.slice(0, 3); // Fallback to first 3 if no location
 
         return [...hospitals]
@@ -45,7 +73,7 @@ const Home = () => {
             }))
             .sort((a, b) => a.distance - b.distance)
             .slice(0, 3);
-    }, [location, calculateDistance]);
+    }, [location, calculateDistance, hospitals]);
 
     return (
         <div className="flex flex-col min-h-screen bg-white pb-20">

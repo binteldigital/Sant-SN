@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ChevronLeft, MapPin, Clock, Phone, Globe, Navigation, Share2, Info, Mail, Building2, Map } from 'lucide-react';
-import { hospitals } from '../data/hospitals';
+import { ChevronLeft, MapPin, Clock, Phone, Globe, Navigation, Share2, Info, Mail, Building2, Map, Heart } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 import { useGeolocation } from '../hooks/useGeolocation';
 
 const typeImages = {
@@ -9,6 +9,8 @@ const typeImages = {
     'Hôpital Militaire': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80',
     'Clinique Privée': 'https://images.unsplash.com/photo-1538108197022-38d6df025a17?auto=format&fit=crop&w=800&q=80',
     'Dispensaire': 'https://images.unsplash.com/photo-1576091160550-217359f4ecf8?auto=format&fit=crop&w=800&q=80',
+    'CHU': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=800&q=80',
+    'EPS': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=800&q=80',
 };
 
 const typeColors = {
@@ -16,18 +18,67 @@ const typeColors = {
     'Hôpital Militaire': { bg: 'from-blue-600 to-indigo-700', icon: '🔷', badge: 'bg-blue-50 text-blue-700 border-blue-200' },
     'Clinique Privée': { bg: 'from-rose-500 to-red-600', icon: '🔴', badge: 'bg-red-50 text-red-700 border-red-200' },
     'Dispensaire': { bg: 'from-amber-500 to-orange-600', icon: '🟠', badge: 'bg-orange-50 text-orange-700 border-orange-200' },
+    'CHU': { bg: 'from-emerald-600 to-teal-700', icon: '🟢', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+    'EPS': { bg: 'from-emerald-600 to-teal-700', icon: '🟢', badge: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
 };
 
 const HospitalDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-
-    const hospital = hospitals.find(h => h.id === parseInt(id));
+    const [hospital, setHospital] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    
     const { location, calculateDistance } = useGeolocation();
+
+    useEffect(() => {
+        fetchHospital();
+    }, [id]);
+
+    const fetchHospital = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('hospitals')
+                .select('*')
+                .eq('id', id)
+                .single();
+            
+            if (error) throw error;
+            
+            if (data) {
+                // Transform data to match component expectations
+                setHospital({
+                    ...data,
+                    coords: {
+                        lat: data.latitude,
+                        lng: data.longitude
+                    },
+                    category: data.category || data.type,
+                    specialties: data.services ? JSON.parse(data.services) : [],
+                    description: `${data.name} est un établissement de santé de type ${data.type} situé à ${data.location || data.district}. ${data.address ? 'Adresse: ' + data.address : ''}`
+                });
+            }
+        } catch (err) {
+            console.error('Error fetching hospital:', err);
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const distance = location && hospital
         ? calculateDistance(location.lat, location.lng, hospital.coords.lat, hospital.coords.lng)
         : null;
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dakar-emerald mb-4"></div>
+                <p className="text-gray-500">Chargement...</p>
+            </div>
+        );
+    }
 
     if (!hospital) {
         return (
