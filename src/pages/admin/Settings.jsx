@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Save, Palette, Bell, Shield } from 'lucide-react';
+import { supabase } from '../../lib/supabase';
 
 const AdminSettings = () => {
     const [settings, setSettings] = useState({
@@ -25,15 +26,72 @@ const AdminSettings = () => {
     });
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const handleSave = (section) => {
+    // Load settings from Supabase on mount
+    useEffect(() => {
+        fetchSettings();
+    }, []);
+
+    const fetchSettings = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('system_settings')
+                .select('*');
+            
+            if (error) throw error;
+            
+            // Convert array of settings to object
+            if (data && data.length > 0) {
+                const settingsMap = {};
+                data.forEach(setting => {
+                    const keys = setting.key.split('.');
+                    if (keys.length === 2) {
+                        const [section, key] = keys;
+                        if (!settingsMap[section]) settingsMap[section] = {};
+                        settingsMap[section][key] = setting.value;
+                    }
+                });
+                
+                setSettings(prev => ({
+                    branding: { ...prev.branding, ...settingsMap.branding },
+                    features: { ...prev.features, ...settingsMap.features },
+                    emergency_contacts: { ...prev.emergency_contacts, ...settingsMap.emergency_contacts },
+                }));
+            }
+        } catch (err) {
+            console.error('Error fetching settings:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSave = async (section) => {
         setSaving(true);
-        // Simulate save
-        setTimeout(() => {
-            setSaving(false);
+        try {
+            const sectionData = settings[section];
+            const settingsToUpsert = Object.entries(sectionData).map(([key, value]) => ({
+                key: `${section}.${key}`,
+                value: value,
+                updated_at: new Date().toISOString()
+            }));
+
+            // Upsert settings (insert or update)
+            const { error } = await supabase
+                .from('system_settings')
+                .upsert(settingsToUpsert, { onConflict: 'key' });
+
+            if (error) throw error;
+
             setMessage({ type: 'success', text: 'Paramètres sauvegardés avec succès' });
             setTimeout(() => setMessage(null), 3000);
-        }, 500);
+        } catch (err) {
+            console.error('Error saving settings:', err);
+            setMessage({ type: 'error', text: 'Erreur lors de la sauvegarde' });
+        } finally {
+            setSaving(false);
+        }
     };
 
     const updateSetting = (section, key, value) => {
