@@ -166,6 +166,7 @@ const AdminDashboard = () => {
             }));
             
             // Fetch recent appointments
+            console.log('Dashboard: Fetching appointments...');
             const { data: recentApts, error: aptError } = await supabase
                 .from('appointments')
                 .select('*')
@@ -176,14 +177,16 @@ const AdminDashboard = () => {
                 console.error('Error fetching appointments:', aptError);
             }
             
-            const formattedAppointments = recentApts?.map(apt => ({
+            console.log('Dashboard: Loaded appointments:', recentApts?.length || 0, recentApts);
+            
+            const formattedAppointments = (recentApts || []).map(apt => ({
                 id: apt.id,
                 patient_name: apt.user_name || 'Utilisateur inconnu',
                 hospital_name: apt.hospital_name || 'Hôpital inconnu',
                 status: apt.status,
                 appointment_date: apt.appointment_date,
                 specialty: apt.specialty
-            })) || [];
+            }));
             
             setStats({
                 hospitals: hospitals?.length || 0,
