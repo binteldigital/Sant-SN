@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (userData) => {
         try {
-            const { email, password, full_name, phone, role } = userData;
+            const { email, password, full_name, phone, role, hospital_id, specialty } = userData;
             
             // Hash password with bcrypt
             const bcrypt = await import('bcryptjs');
@@ -97,23 +97,42 @@ export const AuthProvider = ({ children }) => {
                 return { success: false, error: 'Cet email est déjà utilisé' };
             }
 
+            // Prepare user data for insertion
+            const userInsertData = {
+                email,
+                password_hash,
+                full_name,
+                phone,
+                role: role || 'patient',
+                is_active: true,
+                email_verified: false,
+                phone_verified: false
+            };
+
+            // Add hospital_id for hospital_admin and doctor roles
+            if (hospital_id && (role === 'hospital_admin' || role === 'doctor')) {
+                userInsertData.hospital_id = hospital_id;
+            }
+
             // Create user in our users table
             const { data: newUser, error: insertError } = await supabase
                 .from('users')
-                .insert({
-                    email,
-                    password_hash,
-                    full_name,
-                    phone,
-                    role: role || 'patient',
-                    is_active: true,
-                    email_verified: false,
-                    phone_verified: false
-                })
+                .insert(userInsertData)
                 .select()
                 .single();
 
             if (insertError) throw insertError;
+
+            // If doctor, create doctor profile
+            if (role === 'doctor' && specialty) {
+                await supabase
+                    .from('doctors')
+                    .insert({
+                        user_id: newUser.id,
+                        specialty: specialty,
+                        hospital_id: hospital_id
+                    });
+            }
 
             setUser(newUser);
             

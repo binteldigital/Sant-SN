@@ -19,9 +19,12 @@ const Login = () => {
             if (result.success) {
                 // Redirect based on user role
                 const { role } = result.user;
+                console.log('User role:', role); // Debug log
+                
                 if (role === 'super_admin' || role === 'support') {
                     navigate('/admin');
                 } else if (role === 'hospital_admin' || role === 'doctor') {
+                    console.log('Redirecting to /hospital-admin'); // Debug log
                     navigate('/hospital-admin');
                 } else {
                     navigate('/');

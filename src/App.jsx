@@ -17,6 +17,7 @@ import AdminHospitals from './pages/admin/Hospitals';
 import AdminPharmacies from './pages/admin/Pharmacies';
 import AdminUsers from './pages/admin/Users';
 import AdminSettings from './pages/admin/Settings';
+import AdminAppointments from './pages/admin/Appointments';
 
 // Hospital Admin imports
 import HospitalDashboard from './pages/hospital-admin/HospitalDashboard';
@@ -57,6 +58,7 @@ function App() {
                         {/* Admin Routes - Super Admin only */}
                         <Route path="/admin" element={<ProtectedRoute requireAdmin allowedRoles={['super_admin', 'support']}><AdminLayout /></ProtectedRoute>}>
                             <Route index element={<AdminDashboard />} />
+                            <Route path="appointments" element={<AdminAppointments />} />
                             <Route path="hospitals" element={<AdminHospitals />} />
                             <Route path="hospitals/new" element={<AdminHospitals />} />
                             <Route path="pharmacies" element={<AdminPharmacies />} />

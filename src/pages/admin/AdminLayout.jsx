@@ -10,7 +10,8 @@ import {
     Menu,
     X,
     ChevronRight,
-    Activity
+    Activity,
+    Calendar
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -27,6 +28,7 @@ const AdminLayout = () => {
 
     const menuItems = [
         { path: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
+        { path: '/admin/appointments', icon: Calendar, label: 'Rendez-vous' },
         { path: '/admin/hospitals', icon: Building2, label: 'Hôpitaux' },
         { path: '/admin/pharmacies', icon: Pill, label: 'Pharmacies' },
         { path: '/admin/users', icon: Users, label: 'Utilisateurs' },
