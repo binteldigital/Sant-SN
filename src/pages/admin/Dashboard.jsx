@@ -322,9 +322,17 @@ const AdminDashboard = () => {
                     appointment={selectedAppointment}
                     onClose={() => setSelectedAppointment(null)}
                     onUpdate={(updatedAppointment) => {
-                        setRecentAppointments(recentAppointments.map(apt => 
-                            apt.id === updatedAppointment.id ? updatedAppointment : apt
-                        ));
+                        setRecentAppointments(recentAppointments.map(apt => {
+                            if (apt.id === updatedAppointment.id) {
+                                // Merge updated data with existing data to preserve patient_name
+                                return {
+                                    ...apt,
+                                    ...updatedAppointment,
+                                    patient_name: apt.patient_name || updatedAppointment.user_name || 'Utilisateur inconnu'
+                                };
+                            }
+                            return apt;
+                        }));
                         setSelectedAppointment(null);
                     }}
                 />
