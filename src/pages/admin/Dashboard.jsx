@@ -7,6 +7,7 @@ import {
     Activity
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import AppointmentDetailModal from '../../components/admin/AppointmentDetailModal';
 
 const StatCard = ({ icon: Icon, label, value, color }) => (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
@@ -36,7 +37,7 @@ const MOCK_USER_DISTRIBUTION = [
     { role: 'super_admin', count: 2 },
 ];
 
-const RecentAppointments = ({ appointments }) => (
+const RecentAppointments = ({ appointments, onAppointmentClick }) => (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
         <div className="p-6 border-b border-gray-100">
             <h3 className="font-bold text-gray-900">Rendez-vous récents</h3>
@@ -46,7 +47,11 @@ const RecentAppointments = ({ appointments }) => (
                 <p className="p-6 text-gray-500 text-center">Aucun rendez-vous récent</p>
             ) : (
                 appointments.map((apt) => (
-                    <div key={apt.id} className="p-4 flex items-center justify-between hover:bg-gray-50">
+                    <div 
+                        key={apt.id} 
+                        onClick={() => onAppointmentClick(apt)}
+                        className="p-4 flex items-center justify-between hover:bg-gray-50 cursor-pointer transition-colors"
+                    >
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
                                 <span className="text-emerald-600 font-medium">
@@ -118,6 +123,7 @@ const AdminDashboard = () => {
     const [recentAppointments, setRecentAppointments] = useState([]);
     const [userDistribution, setUserDistribution] = useState([]);
     const [error, setError] = useState(null);
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
 
     useEffect(() => {
         fetchDashboardData();
@@ -182,10 +188,16 @@ const AdminDashboard = () => {
             const formattedAppointments = (recentApts || []).map(apt => ({
                 id: apt.id,
                 patient_name: apt.user_name || 'Utilisateur inconnu',
+                user_email: apt.user_email,
+                user_phone: apt.user_phone,
                 hospital_name: apt.hospital_name || 'Hôpital inconnu',
+                hospital_id: apt.hospital_id,
                 status: apt.status,
                 appointment_date: apt.appointment_date,
-                specialty: apt.specialty
+                appointment_time: apt.appointment_time,
+                specialty: apt.specialty,
+                doctor_name: apt.doctor_name,
+                notes: apt.notes
             }));
             
             setStats({
@@ -266,7 +278,10 @@ const AdminDashboard = () => {
             {/* Content Grid - Full width on large screens */}
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 <div className="xl:col-span-2">
-                    <RecentAppointments appointments={recentAppointments} />
+                    <RecentAppointments 
+                        appointments={recentAppointments} 
+                        onAppointmentClick={setSelectedAppointment}
+                    />
                 </div>
                 <div className="xl:col-span-1">
                     <UserDistribution distribution={userDistribution} />
@@ -300,6 +315,20 @@ const AdminDashboard = () => {
                     </a>
                 </div>
             </div>
+
+            {/* Appointment Detail Modal */}
+            {selectedAppointment && (
+                <AppointmentDetailModal
+                    appointment={selectedAppointment}
+                    onClose={() => setSelectedAppointment(null)}
+                    onUpdate={(updatedAppointment) => {
+                        setRecentAppointments(recentAppointments.map(apt => 
+                            apt.id === updatedAppointment.id ? updatedAppointment : apt
+                        ));
+                        setSelectedAppointment(null);
+                    }}
+                />
+            )}
         </div>
     );
 };
