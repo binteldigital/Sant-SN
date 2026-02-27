@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, UserCheck, UserX } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import UserForm from '../../components/admin/UserForm';
 
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('');
     const [filterRole, setFilterRole] = useState('');
+    const [showForm, setShowForm] = useState(false);
+    const [editingUser, setEditingUser] = useState(null);
+    const [deleteConfirm, setDeleteConfirm] = useState(null);
 
     useEffect(() => {
         fetchUsers();
@@ -62,6 +66,38 @@ const AdminUsers = () => {
         return colors[role] || colors.patient;
     };
 
+    const handleDelete = async (id) => {
+        try {
+            const { error } = await supabase
+                .from('users')
+                .delete()
+                .eq('id', id);
+            
+            if (error) throw error;
+            
+            setUsers(users.filter(u => u.id !== id));
+            setDeleteConfirm(null);
+        } catch (err) {
+            console.error('Failed to delete user:', err);
+            alert('Erreur lors de la suppression de l\'utilisateur');
+        }
+    };
+
+    const handleEdit = (user) => {
+        setEditingUser(user);
+        setShowForm(true);
+    };
+
+    const handleFormSuccess = (newUser) => {
+        if (editingUser) {
+            setUsers(users.map(u => u.id === newUser.id ? newUser : u));
+        } else {
+            setUsers([...users, newUser]);
+        }
+        setShowForm(false);
+        setEditingUser(null);
+    };
+
     const filteredUsers = users.filter(u => {
         const matchesSearch = !search || 
             u.full_name?.toLowerCase().includes(search.toLowerCase()) ||
@@ -77,7 +113,13 @@ const AdminUsers = () => {
                     <h1 className="text-2xl font-bold text-gray-900">Gestion des Utilisateurs</h1>
                     <p className="text-gray-500 mt-1">{users.length} utilisateurs enregistrés</p>
                 </div>
-                <button className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600">
+                <button 
+                    onClick={() => {
+                        setEditingUser(null);
+                        setShowForm(true);
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600"
+                >
                     <Plus className="w-5 h-5" />
                     Créer un utilisateur
                 </button>
@@ -172,10 +214,16 @@ const AdminUsers = () => {
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">
-                                            <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
+                                            <button 
+                                                onClick={() => handleEdit(user)}
+                                                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+                                            >
                                                 <Edit2 className="w-4 h-4" />
                                             </button>
-                                            <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg">
+                                            <button 
+                                                onClick={() => setDeleteConfirm(user)}
+                                                className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                                            >
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>
@@ -186,6 +234,45 @@ const AdminUsers = () => {
                     </table>
                 )}
             </div>
+
+            {/* User Form Modal */}
+            {showForm && (
+                <UserForm
+                    user={editingUser}
+                    onClose={() => {
+                        setShowForm(false);
+                        setEditingUser(null);
+                    }}
+                    onSuccess={handleFormSuccess}
+                />
+            )}
+
+            {/* Delete Confirmation */}
+            {deleteConfirm && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-2xl p-6 max-w-md w-full">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">Confirmer la suppression</h3>
+                        <p className="text-gray-600 mb-6">
+                            Êtes-vous sûr de vouloir supprimer <strong>{deleteConfirm.full_name}</strong> ?
+                            Cette action est irréversible.
+                        </p>
+                        <div className="flex gap-3 justify-end">
+                            <button
+                                onClick={() => setDeleteConfirm(null)}
+                                className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                            >
+                                Annuler
+                            </button>
+                            <button
+                                onClick={() => handleDelete(deleteConfirm.id)}
+                                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                            >
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

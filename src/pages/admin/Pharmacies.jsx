@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, MapPin, Phone, Shield } from 'lucide-react';
-import { pharmacies as staticPharmacies } from '../../data/pharmacies';
+import { supabase } from '../../lib/supabase';
+import PharmacyForm from '../../components/admin/PharmacyForm';
 
 const AdminPharmacies = () => {
     const [pharmacies, setPharmacies] = useState([]);
@@ -8,17 +9,91 @@ const AdminPharmacies = () => {
     const [search, setSearch] = useState('');
     const [filterDistrict, setFilterDistrict] = useState('');
     const [districts, setDistricts] = useState(['Dakar Centre', 'Dakar Ouest', 'Dakar Sud', 'Dakar Nord', 'Pikine', 'Guédiawaye', 'Keur Massar', 'Rufisque']);
+    const [showForm, setShowForm] = useState(false);
+    const [editingPharmacy, setEditingPharmacy] = useState(null);
+    const [deleteConfirm, setDeleteConfirm] = useState(null);
 
     useEffect(() => {
-        // Use static data
-        setPharmacies(staticPharmacies.map((p, index) => ({ ...p, id: p.id || index + 1, on_duty_status: false })));
-        setLoading(false);
+        fetchPharmacies();
     }, []);
 
-    const toggleDutyStatus = (id) => {
-        setPharmacies(pharmacies.map(p => 
-            p.id === id ? { ...p, on_duty_status: !p.on_duty_status } : p
-        ));
+    const fetchPharmacies = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('pharmacies')
+                .select('*')
+                .order('name', { ascending: true });
+            
+            if (error) throw error;
+            
+            setPharmacies(data || []);
+            
+            // Extract unique districts from data
+            if (data && data.length > 0) {
+                const uniqueDistricts = [...new Set(data.map(p => p.district).filter(Boolean))];
+                if (uniqueDistricts.length > 0) {
+                    setDistricts(uniqueDistricts);
+                }
+            }
+        } catch (err) {
+            console.error('Failed to fetch pharmacies:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const toggleDutyStatus = async (id) => {
+        const pharmacy = pharmacies.find(p => p.id === id);
+        if (!pharmacy) return;
+        
+        try {
+            const { error } = await supabase
+                .from('pharmacies')
+                .update({ on_duty_status: !pharmacy.on_duty_status })
+                .eq('id', id);
+            
+            if (error) throw error;
+            
+            setPharmacies(pharmacies.map(p => 
+                p.id === id ? { ...p, on_duty_status: !p.on_duty_status } : p
+            ));
+        } catch (err) {
+            console.error('Error updating duty status:', err);
+            alert('Erreur lors de la mise à jour du statut de garde');
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            const { error } = await supabase
+                .from('pharmacies')
+                .delete()
+                .eq('id', id);
+            
+            if (error) throw error;
+            
+            setPharmacies(pharmacies.filter(p => p.id !== id));
+            setDeleteConfirm(null);
+        } catch (err) {
+            console.error('Failed to delete pharmacy:', err);
+            alert('Erreur lors de la suppression de la pharmacie');
+        }
+    };
+
+    const handleEdit = (pharmacy) => {
+        setEditingPharmacy(pharmacy);
+        setShowForm(true);
+    };
+
+    const handleFormSuccess = (newPharmacy) => {
+        if (editingPharmacy) {
+            setPharmacies(pharmacies.map(p => p.id === newPharmacy.id ? newPharmacy : p));
+        } else {
+            setPharmacies([...pharmacies, newPharmacy]);
+        }
+        setShowForm(false);
+        setEditingPharmacy(null);
     };
 
     const filteredPharmacies = pharmacies.filter(p => {
@@ -36,7 +111,13 @@ const AdminPharmacies = () => {
                     <h1 className="text-2xl font-bold text-gray-900">Gestion des Pharmacies</h1>
                     <p className="text-gray-500 mt-1">{pharmacies.length} pharmacies enregistrées</p>
                 </div>
-                <button className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600">
+                <button 
+                    onClick={() => {
+                        setEditingPharmacy(null);
+                        setShowForm(true);
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600"
+                >
                     <Plus className="w-5 h-5" />
                     Ajouter une pharmacie
                 </button>
@@ -125,10 +206,16 @@ const AdminPharmacies = () => {
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">
-                                            <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
+                                            <button 
+                                                onClick={() => handleEdit(pharmacy)}
+                                                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+                                            >
                                                 <Edit2 className="w-4 h-4" />
                                             </button>
-                                            <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg">
+                                            <button 
+                                                onClick={() => setDeleteConfirm(pharmacy)}
+                                                className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                                            >
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>
@@ -139,6 +226,45 @@ const AdminPharmacies = () => {
                     </table>
                 )}
             </div>
+
+            {/* Pharmacy Form Modal */}
+            {showForm && (
+                <PharmacyForm
+                    pharmacy={editingPharmacy}
+                    onClose={() => {
+                        setShowForm(false);
+                        setEditingPharmacy(null);
+                    }}
+                    onSuccess={handleFormSuccess}
+                />
+            )}
+
+            {/* Delete Confirmation */}
+            {deleteConfirm && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-2xl p-6 max-w-md w-full">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">Confirmer la suppression</h3>
+                        <p className="text-gray-600 mb-6">
+                            Êtes-vous sûr de vouloir supprimer <strong>{deleteConfirm.name}</strong> ?
+                            Cette action est irréversible.
+                        </p>
+                        <div className="flex gap-3 justify-end">
+                            <button
+                                onClick={() => setDeleteConfirm(null)}
+                                className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                            >
+                                Annuler
+                            </button>
+                            <button
+                                onClick={() => handleDelete(deleteConfirm.id)}
+                                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                            >
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
