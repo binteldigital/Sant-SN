@@ -8,37 +8,29 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check for existing session
-        checkSession();
-        
-        // Listen for auth state changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            if (session?.user) {
-                // Fetch full user profile from our users table
-                const { data: profile } = await getUserProfile(session.user.id);
-                setUser(profile);
-            } else {
-                setUser(null);
+        // Check for existing session in localStorage
+        const checkStoredSession = async () => {
+            try {
+                const storedUser = localStorage.getItem('sunusante_user');
+                if (storedUser) {
+                    const parsedUser = JSON.parse(storedUser);
+                    // Verify user still exists in database
+                    const { data: profile, error } = await getUserProfile(parsedUser.id);
+                    if (!error && profile) {
+                        setUser(profile);
+                    } else {
+                        localStorage.removeItem('sunusante_user');
+                    }
+                }
+            } catch (error) {
+                console.error('Session check failed:', error);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
-        });
+        };
 
-        return () => subscription.unsubscribe();
+        checkStoredSession();
     }, []);
-
-    const checkSession = async () => {
-        try {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session?.user) {
-                const { data: profile } = await getUserProfile(session.user.id);
-                setUser(profile);
-            }
-        } catch (error) {
-            console.error('Session check failed:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const login = async (email, password) => {
         try {
@@ -73,6 +65,8 @@ export const AuthProvider = ({ children }) => {
                 .update({ last_login_at: new Date().toISOString() })
                 .eq('id', user.id);
 
+            // Store user in localStorage for session persistence
+            localStorage.setItem('sunusante_user', JSON.stringify(user));
             setUser(user);
             return { success: true, user };
         } catch (error) {
@@ -135,7 +129,8 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await supabase.auth.signOut();
+            // Remove user from localStorage
+            localStorage.removeItem('sunusante_user');
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
@@ -150,6 +145,8 @@ export const AuthProvider = ({ children }) => {
             const { data, error } = await updateSupabaseProfile(user.id, updatedData);
             if (error) throw error;
 
+            // Update localStorage with new user data
+            localStorage.setItem('sunusante_user', JSON.stringify(data));
             setUser(data);
             return { success: true, user: data };
         } catch (error) {
