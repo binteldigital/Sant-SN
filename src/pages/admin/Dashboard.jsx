@@ -165,45 +165,21 @@ const AdminDashboard = () => {
                 count
             }));
             
-            // Fetch recent appointments (without joins since IDs are now TEXT)
+            // Fetch recent appointments
             const { data: recentApts, error: aptError } = await supabase
                 .from('appointments')
                 .select('*')
-                .order('appointment_date', { ascending: false })
+                .order('created_at', { ascending: false })
                 .limit(5);
             
             if (aptError) {
                 console.error('Error fetching appointments:', aptError);
             }
             
-            // Fetch hospital names separately
-            const hospitalIds = [...new Set(recentApts?.map(apt => apt.hospital_id) || [])];
-            const { data: hospitalsData } = await supabase
-                .from('hospitals')
-                .select('id, name')
-                .in('id', hospitalIds);
-            
-            const hospitalMap = hospitalsData?.reduce((acc, h) => {
-                acc[h.id] = h.name;
-                return acc;
-            }, {}) || {};
-            
-            // Fetch user names separately
-            const userIds = [...new Set(recentApts?.map(apt => apt.user_id) || [])];
-            const { data: usersData } = await supabase
-                .from('users')
-                .select('id, full_name')
-                .in('id', userIds);
-            
-            const userMap = usersData?.reduce((acc, u) => {
-                acc[u.id] = u.full_name;
-                return acc;
-            }, {}) || {};
-            
             const formattedAppointments = recentApts?.map(apt => ({
                 id: apt.id,
-                patient_name: userMap[apt.user_id] || 'Utilisateur inconnu',
-                hospital_name: hospitalMap[apt.hospital_id] || 'Hôpital inconnu',
+                patient_name: apt.user_name || 'Utilisateur inconnu',
+                hospital_name: apt.hospital_name || 'Hôpital inconnu',
                 status: apt.status,
                 appointment_date: apt.appointment_date,
                 specialty: apt.specialty

@@ -232,6 +232,8 @@ const Booking = () => {
                                     const newAppointment = {
                                         user_id: user.id,
                                         hospital_id: hospitalId,
+                                        hospital_name: hospital?.name || 'Hôpital',
+                                        user_name: user?.full_name || user?.email || 'Patient',
                                         doctor_name: `Service ${selectedService.name}`,
                                         specialty: selectedService.name,
                                         appointment_date: selectedDate.isoDate,
