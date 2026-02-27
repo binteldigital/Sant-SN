@@ -6,7 +6,7 @@ import { Phone, Lock, ChevronRight, Shield } from 'lucide-react';
 const Login = () => {
     const navigate = useNavigate();
     const { login, loginAsAdmin } = useAuth();
-    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -15,7 +15,7 @@ const Login = () => {
         setError('');
         
         try {
-            const result = await login(phone, password);
+            const result = await login(email, password);
             if (result.success) {
                 navigate(result.user.role === 'super_admin' ? '/admin' : '/');
             } else {
@@ -51,10 +51,10 @@ const Login = () => {
                 <div className="relative group">
                     <input
                         required
-                        type="tel"
-                        placeholder="Numéro de téléphone"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="w-full pl-12 pr-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
                     />
                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dakar-emerald transition-colors" />

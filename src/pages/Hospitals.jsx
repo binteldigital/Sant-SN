@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, MapPin, ArrowLeft, Filter, Navigation, Building2, Plus } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { hospitals } from '../data/hospitals';
+import { getHospitals } from '../lib/supabase';
 import { useGeolocation } from '../hooks/useGeolocation';
 
 const typeImages = {
@@ -22,17 +22,39 @@ const Hospitals = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [filterType, setFilterType] = useState('Tous');
+    const [hospitals, setHospitals] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { location, calculateDistance } = useGeolocation();
 
     const types = ['Tous', 'Hôpital Public', 'Hôpital Militaire', 'Clinique Privée', 'Dispensaire'];
 
+    // Fetch hospitals from Supabase
+    useEffect(() => {
+        const fetchHospitals = async () => {
+            setLoading(true);
+            const { data, error } = await getHospitals();
+            if (error) {
+                console.error('Error fetching hospitals:', error);
+            } else {
+                // Transform data to match expected format
+                const transformed = data.map(h => ({
+                    ...h,
+                    coords: { lat: h.latitude, lng: h.longitude }
+                }));
+                setHospitals(transformed);
+            }
+            setLoading(false);
+        };
+        fetchHospitals();
+    }, []);
+
     const filteredHospitals = useMemo(() => {
         let results = hospitals.filter(h =>
             h.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (h.location && h.location.toLowerCase().includes(searchQuery.toLowerCase())) ||
             h.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.district.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            h.category.toLowerCase().includes(searchQuery.toLowerCase())
+            (h.district && h.district.toLowerCase().includes(searchQuery.toLowerCase())) ||
+            (h.category && h.category.toLowerCase().includes(searchQuery.toLowerCase()))
         );
 
         if (filterType !== 'Tous') {
@@ -47,7 +69,7 @@ const Hospitals = () => {
         }
 
         return results;
-    }, [searchQuery, filterType, location, calculateDistance]);
+    }, [searchQuery, filterType, location, calculateDistance, hospitals]);
 
     return (
         <div className="flex flex-col min-h-screen bg-white pb-10">
@@ -140,7 +162,14 @@ const Hospitals = () => {
                     </Link>
                 ))}
 
-                {filteredHospitals.length === 0 && (
+                {loading && (
+                    <div className="py-20 text-center">
+                        <div className="animate-spin w-8 h-8 border-2 border-dakar-emerald border-t-transparent rounded-full mx-auto mb-4"></div>
+                        <p className="text-gray-400">Chargement des établissements...</p>
+                    </div>
+                )}
+
+                {!loading && filteredHospitals.length === 0 && (
                     <div className="py-20 text-center">
                         <div className="text-4xl mb-4">🏥</div>
                         <p className="text-gray-400">Aucun établissement ne correspond à votre recherche.</p>

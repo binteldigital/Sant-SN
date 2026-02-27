@@ -9,7 +9,9 @@ import {
     Lock,
     Droplets,
     Activity,
-    ChevronRight
+    ChevronRight,
+    Mail,
+    Briefcase
 } from 'lucide-react';
 
 const Register = () => {
@@ -18,13 +20,14 @@ const Register = () => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
+        email: '',
         birthDate: '',
         birthPlace: '',
-        age: '',
         sex: 'Masculin',
         bloodGroup: 'O+',
         residence: '',
         phone: '',
+        role: 'patient',
         password: '',
         confirmPassword: '',
         chronicDiseases: ''
@@ -51,10 +54,10 @@ const Register = () => {
         // Format data for API
         const userData = {
             full_name: `${dataToSave.firstName} ${dataToSave.lastName}`,
-            email: dataToSave.phone + '@demo.sn', // Using phone as email for now
+            email: dataToSave.email,
             password: dataToSave.password,
             phone: dataToSave.phone,
-            role: 'patient'
+            role: dataToSave.role
         };
         
         try {
@@ -97,28 +100,30 @@ const Register = () => {
                             className="w-full px-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
                         />
                     </div>
+                    <div className="relative group">
+                        <input
+                            required
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="w-full pl-12 pr-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
+                        />
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dakar-emerald transition-colors" />
+                    </div>
                 </div>
 
                 <div className="space-y-4">
                     <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Naissance</h2>
-                    <div className="grid grid-cols-2 gap-4">
-                        <input
-                            required
-                            type="date"
-                            name="birthDate"
-                            value={formData.birthDate}
-                            onChange={handleChange}
-                            className="w-full px-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
-                        />
-                        <input
-                            required
-                            name="age"
-                            placeholder="Âge (ex: 35)"
-                            value={formData.age}
-                            onChange={handleChange}
-                            className="w-full px-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
-                        />
-                    </div>
+                    <input
+                        required
+                        type="date"
+                        name="birthDate"
+                        value={formData.birthDate}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
+                    />
                     <input
                         required
                         name="birthPlace"
@@ -164,14 +169,18 @@ const Register = () => {
 
                 <div className="space-y-4">
                     <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Coordonnées</h2>
-                    <input
-                        required
-                        name="phone"
-                        placeholder="Numéro de téléphone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
-                    />
+                    <div className="relative group">
+                        <input
+                            required
+                            type="tel"
+                            name="phone"
+                            placeholder="Numéro de téléphone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full pl-12 pr-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
+                        />
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dakar-emerald transition-colors" />
+                    </div>
                     <input
                         required
                         name="residence"
@@ -180,6 +189,28 @@ const Register = () => {
                         onChange={handleChange}
                         className="w-full px-4 py-4 bg-soft-gray rounded-2xl outline-none focus:ring-2 focus:ring-dakar-emerald/20 transition-all font-medium"
                     />
+                </div>
+
+                <div className="space-y-4">
+                    <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Type de compte</h2>
+                    <div className="relative group">
+                        <select
+                            required
+                            name="role"
+                            value={formData.role}
+                            onChange={handleChange}
+                            className="w-full pl-12 pr-4 py-4 bg-soft-gray rounded-2xl outline-none appearance-none font-medium"
+                        >
+                            <option value="patient">Patient</option>
+                            <option value="doctor">Docteur</option>
+                            <option value="hospital_admin">Administrateur d'hôpital</option>
+                            <option value="support">Support</option>
+                        </select>
+                        <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-dakar-emerald transition-colors" />
+                    </div>
+                    <p className="text-xs text-gray-400 ml-2">
+                        * Seul l'administrateur système peut créer des comptes super_admin
+                    </p>
                 </div>
 
                 <div className="space-y-4">

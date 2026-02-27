@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, UserCheck, UserX } from 'lucide-react';
-
-// Mock users data
-const MOCK_USERS = [
-    { id: 1, full_name: 'Amadou Diallo', email: 'amadou@email.sn', role: 'patient', phone: '+221 77 111 11 11', is_active: true },
-    { id: 2, full_name: 'Fatou Ndiaye', email: 'fatou@email.sn', role: 'doctor', phone: '+221 77 222 22 22', is_active: true },
-    { id: 3, full_name: 'Moussa Sow', email: 'moussa@email.sn', role: 'hospital_admin', phone: '+221 77 333 33 33', is_active: true },
-    { id: 4, full_name: 'Aïcha Kane', email: 'aicha@email.sn', role: 'support', phone: '+221 77 444 44 44', is_active: true },
-    { id: 5, full_name: 'Admin Demo', email: 'admin@sunusante.sn', role: 'super_admin', phone: '+221 77 123 45 67', is_active: true },
-    { id: 6, full_name: 'Ibrahima Fall', email: 'ibra@email.sn', role: 'patient', phone: '+221 77 555 55 55', is_active: false },
-];
+import { supabase } from '../../lib/supabase';
 
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
@@ -18,15 +9,46 @@ const AdminUsers = () => {
     const [filterRole, setFilterRole] = useState('');
 
     useEffect(() => {
-        // Use mock data
-        setUsers(MOCK_USERS);
-        setLoading(false);
+        fetchUsers();
     }, []);
 
-    const toggleUserStatus = (id) => {
-        setUsers(users.map(u => 
-            u.id === id ? { ...u, is_active: !u.is_active } : u
-        ));
+    const fetchUsers = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .order('created_at', { ascending: false });
+            
+            if (error) throw error;
+            setUsers(data || []);
+        } catch (err) {
+            console.error('Error fetching users:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const toggleUserStatus = async (id) => {
+        const user = users.find(u => u.id === id);
+        if (!user) return;
+        
+        try {
+            const { error } = await supabase
+                .from('users')
+                .update({ is_active: !user.is_active })
+                .eq('id', id);
+            
+            if (error) throw error;
+            
+            // Update local state
+            setUsers(users.map(u => 
+                u.id === id ? { ...u, is_active: !u.is_active } : u
+            ));
+        } catch (err) {
+            console.error('Error updating user status:', err);
+            alert('Erreur lors de la mise à jour du statut');
+        }
     };
 
     const getRoleBadgeColor = (role) => {

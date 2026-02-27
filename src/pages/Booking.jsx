@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, Calendar as CalendarIcon, Clock, CheckCircle2, Star, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from '../lib/supabase';
+import { useAuth } from '../context/AuthContext';
 
 const Booking = () => {
     const { hospitalId } = useParams();
     const navigate = useNavigate();
+    const { user } = useAuth();
     const [step, setStep] = useState(1);
+    const [hospital, setHospital] = useState(null);
+    const [loadingHospital, setLoadingHospital] = useState(true);
     const services = [
         { id: 1, name: 'Cardiologie', icon: '❤️', description: 'Consultation spécialisée du cœur' },
         { id: 2, name: 'Pédiatrie', icon: '👶', description: 'Soins pour enfants et nourrissons' },
@@ -17,16 +22,55 @@ const Booking = () => {
     const [selectedService, setSelectedService] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const dates = [
-        { label: 'Dim', day: '21', full: '21 Féb' },
-        { label: 'Lun', day: '22', full: '22 Féb', active: true },
-        { label: 'Mar', day: '23', full: '23 Féb' },
-        { label: 'Mer', day: '24', full: '24 Féb' },
-        { label: 'Jeu', day: '25', full: '25 Féb' },
-    ];
+    // Generate dynamic dates (next 5 days)
+    const generateDates = () => {
+        const dates = [];
+        const today = new Date();
+        const days = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+        const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+        
+        for (let i = 0; i < 5; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+            dates.push({
+                label: days[date.getDay()],
+                day: date.getDate().toString(),
+                full: `${date.getDate()} ${months[date.getMonth()]}`,
+                isoDate: date.toISOString().split('T')[0],
+                active: i === 0
+            });
+        }
+        return dates;
+    };
 
+    const dates = generateDates();
     const times = ['09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00'];
+
+    // Fetch hospital data
+    useEffect(() => {
+        const fetchHospital = async () => {
+            if (!hospitalId) return;
+            
+            try {
+                const { data, error } = await supabase
+                    .from('hospitals')
+                    .select('*')
+                    .eq('id', hospitalId)
+                    .single();
+                
+                if (error) throw error;
+                setHospital(data);
+            } catch (err) {
+                console.error('Error fetching hospital:', err);
+            } finally {
+                setLoadingHospital(false);
+            }
+        };
+
+        fetchHospital();
+    }, [hospitalId]);
 
     if (step === 3) {
         return (
@@ -174,45 +218,71 @@ const Booking = () => {
                             <button onClick={() => setStep(1)} className="text-[10px] font-bold text-dakar-emerald underline uppercase">Modifier</button>
                         </div>
                         <button
-                            disabled={!selectedDate || !selectedTime}
-                            onClick={() => {
-                                // Mock hospital name lookup based on ID
-                                const hospitals = {
-                                    'hopital-principal': 'Hôpital Principal',
-                                    'clinique-du-cap': 'Clinique du Cap',
-                                    'chnu-fann': 'CHNU de Fann'
-                                };
-
-                                const newAppointment = {
-                                    id: Date.now(), // Unique ID for each appointment
-                                    hospital: hospitals[hospitalId] || 'Hôpital',
-                                    doctor: `Service ${selectedService.name}`,
-                                    specialty: selectedService.name,
-                                    date: selectedDate.full,
-                                    time: selectedTime,
-                                };
-
-                                // Get existing appointments
-                                const savedData = localStorage.getItem('sunu_sante_appointments');
-                                let appointments = [];
-                                if (savedData) {
-                                    try {
-                                        appointments = JSON.parse(savedData);
-                                        if (!Array.isArray(appointments)) appointments = [];
-                                    } catch (e) {
-                                        appointments = [];
-                                    }
+                            disabled={!selectedDate || !selectedTime || isSubmitting}
+                            onClick={async () => {
+                                if (!user) {
+                                    alert('Veuillez vous connecter pour prendre un rendez-vous');
+                                    navigate('/login');
+                                    return;
                                 }
 
-                                // Add new appointment to the start of the list
-                                appointments.unshift(newAppointment);
+                                setIsSubmitting(true);
 
-                                localStorage.setItem('sunu_sante_appointments', JSON.stringify(appointments));
-                                setStep(3);
+                                try {
+                                    const newAppointment = {
+                                        user_id: user.id,
+                                        hospital_id: hospitalId,
+                                        doctor_name: `Service ${selectedService.name}`,
+                                        specialty: selectedService.name,
+                                        appointment_date: selectedDate.isoDate,
+                                        appointment_time: selectedTime,
+                                        status: 'pending',
+                                        notes: ''
+                                    };
+
+                                    const { data, error } = await supabase
+                                        .from('appointments')
+                                        .insert([newAppointment])
+                                        .select()
+                                        .single();
+
+                                    if (error) throw error;
+
+                                    // Also save to localStorage for backward compatibility
+                                    const localAppointment = {
+                                        id: data.id,
+                                        hospital: hospital?.name || 'Hôpital',
+                                        doctor: newAppointment.doctor_name,
+                                        specialty: newAppointment.specialty,
+                                        date: selectedDate.full,
+                                        time: selectedTime,
+                                        status: 'pending'
+                                    };
+                                    
+                                    const savedData = localStorage.getItem('sunu_sante_appointments');
+                                    let appointments = [];
+                                    if (savedData) {
+                                        try {
+                                            appointments = JSON.parse(savedData);
+                                            if (!Array.isArray(appointments)) appointments = [];
+                                        } catch (e) {
+                                            appointments = [];
+                                        }
+                                    }
+                                    appointments.unshift(localAppointment);
+                                    localStorage.setItem('sunu_sante_appointments', JSON.stringify(appointments));
+
+                                    setStep(3);
+                                } catch (err) {
+                                    console.error('Error creating appointment:', err);
+                                    alert('Erreur lors de la création du rendez-vous. Veuillez réessayer.');
+                                } finally {
+                                    setIsSubmitting(false);
+                                }
                             }}
-                            className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${selectedDate && selectedTime ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
+                            className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${selectedDate && selectedTime && !isSubmitting ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
                         >
-                            Confirmer rendez-vous
+                            {isSubmitting ? 'Création...' : 'Confirmer rendez-vous'}
                         </button>
                     </div>
                 )}

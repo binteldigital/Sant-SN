@@ -6,7 +6,7 @@ import {
     Calendar,
     Activity
 } from 'lucide-react';
-import { adminApi } from '../../services/api';
+import { supabase } from '../../lib/supabase';
 
 const StatCard = ({ icon: Icon, label, value, color }) => (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
@@ -126,21 +126,80 @@ const AdminDashboard = () => {
     const fetchDashboardData = async () => {
         try {
             setLoading(true);
-            const response = await adminApi.getDashboard();
-            const data = response.data;
+            setError(null);
+            
+            // Fetch counts from Supabase
+            const { data: hospitals } = await supabase
+                .from('hospitals')
+                .select('id')
+                .eq('is_active', true);
+            
+            const { data: pharmacies } = await supabase
+                .from('pharmacies')
+                .select('id')
+                .eq('is_active', true);
+            
+            const { data: users } = await supabase
+                .from('users')
+                .select('id')
+                .eq('is_active', true);
+            
+            const { data: appointments } = await supabase
+                .from('appointments')
+                .select('id')
+                .in('status', ['pending', 'confirmed']);
+            
+            // Fetch user distribution by role
+            const { data: userRoles } = await supabase
+                .from('users')
+                .select('role')
+                .eq('is_active', true);
+            
+            const roleCounts = userRoles?.reduce((acc, user) => {
+                acc[user.role] = (acc[user.role] || 0) + 1;
+                return acc;
+            }, {}) || {};
+            
+            const userDistribution = Object.entries(roleCounts).map(([role, count]) => ({
+                role,
+                count
+            }));
+            
+            // Fetch recent appointments
+            const { data: recentApts } = await supabase
+                .from('appointments')
+                .select(`
+                    id,
+                    status,
+                    appointment_date,
+                    specialty,
+                    hospitals:hospital_id (name),
+                    users:user_id (full_name)
+                `)
+                .order('created_at', { ascending: false })
+                .limit(5);
+            
+            const formattedAppointments = recentApts?.map(apt => ({
+                id: apt.id,
+                patient_name: apt.users?.full_name || 'Unknown',
+                hospital_name: apt.hospitals?.name || 'Unknown',
+                status: apt.status,
+                appointment_date: apt.appointment_date,
+                specialty: apt.specialty
+            })) || [];
             
             setStats({
-                hospitals: data.stats?.hospitals || 0,
-                pharmacies: data.stats?.pharmacies || 0,
-                users: data.stats?.users || 0,
-                appointments: data.stats?.appointments || 0
+                hospitals: hospitals?.length || 0,
+                pharmacies: pharmacies?.length || 0,
+                users: users?.length || 0,
+                appointments: appointments?.length || 0
             });
             
-            setRecentAppointments(data.recentAppointments || []);
-            setUserDistribution(data.userDistribution || []);
+            setRecentAppointments(formattedAppointments);
+            setUserDistribution(userDistribution);
         } catch (err) {
             console.error('Failed to fetch dashboard data:', err);
-            setError('Failed to load dashboard data');
+            setError('Impossible de charger les données du tableau de bord');
         } finally {
             setLoading(false);
         }
