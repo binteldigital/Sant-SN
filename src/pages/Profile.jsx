@@ -78,9 +78,13 @@ const Profile = () => {
         );
     }
 
-    const handleSave = () => {
-        updateProfile(formData);
-        setIsEditing(false);
+    const handleSave = async () => {
+        const result = await updateProfile(formData);
+        if (result.success) {
+            setIsEditing(false);
+        } else {
+            alert('Erreur lors de la sauvegarde: ' + (result.error || 'Erreur inconnue'));
+        }
     };
 
     const handleLogout = () => {
