@@ -115,8 +115,18 @@ const Register = () => {
         
         try {
             const result = await register(userData);
+            console.log('Registration result:', result); // Debug log
             if (result.success) {
-                navigate('/');
+                // Redirect based on user role after registration
+                const { role } = result.user;
+                console.log('User role after registration:', role); // Debug log
+                if (role === 'super_admin' || role === 'support') {
+                    navigate('/admin');
+                } else if (role === 'hospital_admin' || role === 'doctor') {
+                    navigate('/hospital-admin');
+                } else {
+                    navigate('/');
+                }
             } else {
                 alert(result.error || 'Échec de l\'inscription');
             }
