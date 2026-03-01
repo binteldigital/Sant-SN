@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, MapPin, Calendar, Clock, ChevronRight, Map, ClipboardList, Settings, Heart, Home as HomeIcon, User, Trash2, XCircle, RefreshCw } from 'lucide-react';
+import { Bell, MapPin, Calendar, Clock, ChevronRight, Map, ClipboardList, Settings, Heart, Home as HomeIcon, User, Trash2, XCircle, RefreshCw, MessageSquare } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
@@ -319,6 +319,19 @@ const FlashDashboard = () => {
                                             <span className="text-sm font-bold">{rdv.appointment_time || rdv.time}</span>
                                         </div>
                                     </div>
+
+                                    {/* Admin Message */}
+                                    {rdv.notes && (
+                                        <div className="mt-3 p-3 bg-white/20 backdrop-blur-md rounded-xl border border-white/20 relative z-10">
+                                            <div className="flex items-start gap-2">
+                                                <MessageSquare className="w-4 h-4 text-emerald-100 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <p className="text-[10px] font-bold text-emerald-100 uppercase tracking-wider mb-1">Message de l'hôpital</p>
+                                                    <p className="text-sm text-white font-medium leading-relaxed">{rdv.notes}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
 
                                     {/* Action Buttons */}
                                     {!isCancelled && rdv.status !== 'completed' ? (
