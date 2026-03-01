@@ -22,10 +22,12 @@ const HospitalDashboard = () => {
         total: 0,
         pending: 0,
         confirmed: 0,
-        cancelled: 0
+        cancelled: 0,
+        completed: 0
     });
     const [loading, setLoading] = useState(true);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
+    const [activeFilter, setActiveFilter] = useState('all'); // 'all', 'pending', 'confirmed', 'cancelled', 'completed'
 
     useEffect(() => {
         if (!user || (user.role !== 'hospital_admin' && user.role !== 'doctor')) {
@@ -59,13 +61,15 @@ const HospitalDashboard = () => {
             if (aptError) throw aptError;
             setAppointments(appointmentsData || []);
 
-            // Calculate stats
+            // Calculate stats - inclure tous les RDV même supprimés par patient
             const total = appointmentsData?.length || 0;
             const pending = appointmentsData?.filter(a => a.status === 'pending').length || 0;
             const confirmed = appointmentsData?.filter(a => a.status === 'confirmed').length || 0;
             const cancelled = appointmentsData?.filter(a => a.status === 'cancelled').length || 0;
+            const completed = appointmentsData?.filter(a => a.status === 'completed' || 
+                (new Date(a.appointment_date) < new Date() && a.status === 'confirmed')).length || 0;
             
-            setStats({ total, pending, confirmed, cancelled });
+            setStats({ total, pending, confirmed, cancelled, completed });
         } catch (err) {
             console.error('Error fetching hospital data:', err);
         } finally {
@@ -123,64 +127,133 @@ const HospitalDashboard = () => {
 
             {/* Main Content */}
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                {/* Stats - Clickable Filters */}
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+                    <button 
+                        onClick={() => setActiveFilter('all')}
+                        className={`p-6 rounded-2xl border shadow-sm text-left transition-all ${
+                            activeFilter === 'all' 
+                                ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' 
+                                : 'bg-white border-gray-100 hover:bg-gray-50'
+                        }`}
+                    >
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-gray-500">Total RDV</p>
+                                <p className={`text-sm ${activeFilter === 'all' ? 'text-blue-600' : 'text-gray-500'}`}>Total RDV</p>
                                 <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
                             </div>
                             <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                                 <Calendar className="w-6 h-6 text-blue-600" />
                             </div>
                         </div>
-                    </div>
-                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    </button>
+                    <button 
+                        onClick={() => setActiveFilter('pending')}
+                        className={`p-6 rounded-2xl border shadow-sm text-left transition-all ${
+                            activeFilter === 'pending' 
+                                ? 'bg-amber-50 border-amber-300 ring-2 ring-amber-200' 
+                                : 'bg-white border-gray-100 hover:bg-gray-50'
+                        }`}
+                    >
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-gray-500">En attente</p>
+                                <p className={`text-sm ${activeFilter === 'pending' ? 'text-amber-600' : 'text-gray-500'}`}>En attente</p>
                                 <p className="text-2xl font-bold text-amber-600">{stats.pending}</p>
                             </div>
                             <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
                                 <Clock className="w-6 h-6 text-amber-600" />
                             </div>
                         </div>
-                    </div>
-                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    </button>
+                    <button 
+                        onClick={() => setActiveFilter('confirmed')}
+                        className={`p-6 rounded-2xl border shadow-sm text-left transition-all ${
+                            activeFilter === 'confirmed' 
+                                ? 'bg-emerald-50 border-emerald-300 ring-2 ring-emerald-200' 
+                                : 'bg-white border-gray-100 hover:bg-gray-50'
+                        }`}
+                    >
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-gray-500">Confirmés</p>
+                                <p className={`text-sm ${activeFilter === 'confirmed' ? 'text-emerald-600' : 'text-gray-500'}`}>Confirmés</p>
                                 <p className="text-2xl font-bold text-emerald-600">{stats.confirmed}</p>
                             </div>
                             <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
                                 <CheckCircle className="w-6 h-6 text-emerald-600" />
                             </div>
                         </div>
-                    </div>
-                    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    </button>
+                    <button 
+                        onClick={() => setActiveFilter('cancelled')}
+                        className={`p-6 rounded-2xl border shadow-sm text-left transition-all ${
+                            activeFilter === 'cancelled' 
+                                ? 'bg-red-50 border-red-300 ring-2 ring-red-200' 
+                                : 'bg-white border-gray-100 hover:bg-gray-50'
+                        }`}
+                    >
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-gray-500">Refusés</p>
+                                <p className={`text-sm ${activeFilter === 'cancelled' ? 'text-red-600' : 'text-gray-500'}`}>Refusés</p>
                                 <p className="text-2xl font-bold text-red-600">{stats.cancelled}</p>
                             </div>
                             <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
                                 <XCircle className="w-6 h-6 text-red-600" />
                             </div>
                         </div>
-                    </div>
+                    </button>
+                    <button 
+                        onClick={() => setActiveFilter('completed')}
+                        className={`p-6 rounded-2xl border shadow-sm text-left transition-all ${
+                            activeFilter === 'completed' 
+                                ? 'bg-purple-50 border-purple-300 ring-2 ring-purple-200' 
+                                : 'bg-white border-gray-100 hover:bg-gray-50'
+                        }`}
+                    >
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className={`text-sm ${activeFilter === 'completed' ? 'text-purple-600' : 'text-gray-500'}`}>Passés</p>
+                                <p className="text-2xl font-bold text-purple-600">{stats.completed}</p>
+                            </div>
+                            <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                                <CheckCircle className="w-6 h-6 text-purple-600" />
+                            </div>
+                        </div>
+                    </button>
                 </div>
 
                 {/* Appointments List */}
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
-                    <div className="p-6 border-b border-gray-100">
-                        <h2 className="text-lg font-bold text-gray-900">Rendez-vous récents</h2>
+                    <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+                        <h2 className="text-lg font-bold text-gray-900">
+                            {activeFilter === 'all' && 'Tous les rendez-vous'}
+                            {activeFilter === 'pending' && 'Rendez-vous en attente'}
+                            {activeFilter === 'confirmed' && 'Rendez-vous confirmés'}
+                            {activeFilter === 'cancelled' && 'Rendez-vous refusés'}
+                            {activeFilter === 'completed' && 'Rendez-vous passés'}
+                        </h2>
+                        <button 
+                            onClick={() => setActiveFilter('all')}
+                            className="text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+                        >
+                            Voir tout
+                        </button>
                     </div>
                     <div className="divide-y divide-gray-100">
-                        {appointments.length === 0 ? (
-                            <p className="p-6 text-gray-500 text-center">Aucun rendez-vous</p>
-                        ) : (
-                            appointments.map((apt) => (
+                        {(() => {
+                            // Filtrer les rendez-vous selon le statut sélectionné
+                            const filteredAppointments = appointments.filter(apt => {
+                                if (activeFilter === 'all') return true;
+                                if (activeFilter === 'completed') {
+                                    return new Date(apt.appointment_date) < new Date() && apt.status === 'confirmed';
+                                }
+                                return apt.status === activeFilter;
+                            });
+
+                            if (filteredAppointments.length === 0) {
+                                return <p className="p-6 text-gray-500 text-center">Aucun rendez-vous dans cette catégorie</p>;
+                            }
+
+                            return filteredAppointments.map((apt) => (
                                 <div 
                                     key={apt.id} 
                                     onClick={() => setSelectedAppointment(apt)}
@@ -195,6 +268,9 @@ const HospitalDashboard = () => {
                                         <div>
                                             <p className="font-medium text-gray-900">{apt.user_name || 'Utilisateur inconnu'}</p>
                                             <p className="text-sm text-gray-500">{apt.specialty}</p>
+                                            {apt.deleted_by_patient && (
+                                                <span className="text-xs text-red-500 font-medium">Supprimé par le patient</span>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="text-right">
@@ -204,15 +280,15 @@ const HospitalDashboard = () => {
                                             ${apt.status === 'pending' ? 'bg-amber-100 text-amber-700' : ''}
                                             ${apt.status === 'cancelled' ? 'bg-red-100 text-red-700' : ''}
                                         `}>
-                                            {apt.status}
+                                            {apt.status === 'confirmed' && new Date(apt.appointment_date) < new Date() ? 'Passé' : apt.status}
                                         </span>
                                         <p className="text-sm text-gray-500 mt-1">
                                             {new Date(apt.appointment_date).toLocaleDateString('fr-FR')}
                                         </p>
                                     </div>
                                 </div>
-                            ))
-                        )}
+                            ));
+                        })()}
                     </div>
                 </div>
             </main>

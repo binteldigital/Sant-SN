@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { ChevronLeft, Calendar as CalendarIcon, Clock, CheckCircle2, Star, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabase';
@@ -8,10 +8,14 @@ import { useAuth } from '../context/AuthContext';
 const Booking = () => {
     const { hospitalId } = useParams();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const editAppointmentId = searchParams.get('edit');
     const { user } = useAuth();
     const [step, setStep] = useState(1);
     const [hospital, setHospital] = useState(null);
     const [loadingHospital, setLoadingHospital] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingAppointment, setEditingAppointment] = useState(null);
     const services = [
         { id: 1, name: 'Cardiologie', icon: '❤️', description: 'Consultation spécialisée du cœur' },
         { id: 2, name: 'Pédiatrie', icon: '👶', description: 'Soins pour enfants et nourrissons' },
@@ -48,29 +52,53 @@ const Booking = () => {
     const dates = generateDates();
     const times = ['09:00', '09:30', '10:00', '10:30', '11:00', '14:00', '14:30', '15:00'];
 
-    // Fetch hospital data
+    // Fetch hospital data and appointment if in edit mode
     useEffect(() => {
-        const fetchHospital = async () => {
-            if (!hospitalId) return;
+        const fetchData = async () => {
+            setLoadingHospital(true);
             
             try {
-                const { data, error } = await supabase
-                    .from('hospitals')
-                    .select('*')
-                    .eq('id', hospitalId)
-                    .single();
+                // Fetch hospital data
+                if (hospitalId) {
+                    const { data: hospitalData, error: hospitalError } = await supabase
+                        .from('hospitals')
+                        .select('*')
+                        .eq('id', hospitalId)
+                        .single();
+                    
+                    if (hospitalError) throw hospitalError;
+                    setHospital(hospitalData);
+                }
                 
-                if (error) throw error;
-                setHospital(data);
+                // If in edit mode, fetch the appointment data
+                if (editAppointmentId) {
+                    const { data: appointmentData, error: appointmentError } = await supabase
+                        .from('appointments')
+                        .select('*')
+                        .eq('id', editAppointmentId)
+                        .single();
+                    
+                    if (appointmentError) throw appointmentError;
+                    
+                    setEditingAppointment(appointmentData);
+                    setStep(1); // Start from the beginning
+                    
+                    // Pre-fill the form with appointment data
+                    if (appointmentData) {
+                        setSelectedService({ id: appointmentData.service_id, name: appointmentData.specialty });
+                        setSelectedDate(dates.find(d => d.isoDate === new Date(appointmentData.appointment_date).toISOString().split('T')[0]));
+                        setSelectedTime(appointmentData.appointment_time);
+                    }
+                }
             } catch (err) {
-                console.error('Error fetching hospital:', err);
+                console.error('Error fetching data:', err);
             } finally {
                 setLoadingHospital(false);
             }
         };
 
-        fetchHospital();
-    }, [hospitalId]);
+        fetchData();
+    }, [hospitalId, editAppointmentId]);
 
     if (step === 3) {
         return (
@@ -229,55 +257,107 @@ const Booking = () => {
                                 setIsSubmitting(true);
 
                                 try {
-                                    const newAppointment = {
-                                        user_id: user.id,
-                                        hospital_id: hospitalId,
-                                        hospital_name: hospital?.name || 'Hôpital',
-                                        user_name: user?.full_name || user?.email || 'Patient',
-                                        doctor_name: `Service ${selectedService.name}`,
-                                        specialty: selectedService.name,
-                                        appointment_date: selectedDate.isoDate,
-                                        appointment_time: selectedTime,
-                                        status: 'pending',
-                                        notes: ''
-                                    };
+                                    if (editAppointmentId) {
+                                        // Update existing appointment
+                                        const updatedAppointment = {
+                                            hospital_id: hospitalId,
+                                            hospital_name: hospital?.name || 'Hôpital',
+                                            user_name: user?.full_name || user?.email || 'Patient',
+                                            doctor_name: `Service ${selectedService.name}`,
+                                            specialty: selectedService.name,
+                                            appointment_date: selectedDate.isoDate,
+                                            appointment_time: selectedTime,
+                                            status: 'pending', // Reset status to pending for modified appointments
+                                            updated_at: new Date().toISOString()
+                                        };
 
-                                    const { data, error } = await supabase
-                                        .from('appointments')
-                                        .insert([newAppointment])
-                                        .select()
-                                        .single();
+                                        const { data, error } = await supabase
+                                            .from('appointments')
+                                            .update(updatedAppointment)
+                                            .eq('id', editAppointmentId)
+                                            .select()
+                                            .single();
 
-                                    if (error) throw error;
+                                        if (error) throw error;
 
-                                    // Also save to localStorage for backward compatibility
-                                    const localAppointment = {
-                                        id: data.id,
-                                        hospital: hospital?.name || 'Hôpital',
-                                        doctor: newAppointment.doctor_name,
-                                        specialty: newAppointment.specialty,
-                                        date: selectedDate.full,
-                                        time: selectedTime,
-                                        status: 'pending'
-                                    };
-                                    
-                                    const savedData = localStorage.getItem('sunu_sante_appointments');
-                                    let appointments = [];
-                                    if (savedData) {
-                                        try {
-                                            appointments = JSON.parse(savedData);
-                                            if (!Array.isArray(appointments)) appointments = [];
-                                        } catch (e) {
-                                            appointments = [];
+                                        // Also update localStorage for backward compatibility
+                                        const savedData = localStorage.getItem('sunu_sante_appointments');
+                                        if (savedData) {
+                                            try {
+                                                let appointments = JSON.parse(savedData);
+                                                if (Array.isArray(appointments)) {
+                                                    const appointmentIndex = appointments.findIndex(apt => apt.id === editAppointmentId);
+                                                    if (appointmentIndex !== -1) {
+                                                        appointments[appointmentIndex] = {
+                                                            ...appointments[appointmentIndex],
+                                                            hospital: hospital?.name || 'Hôpital',
+                                                            doctor: updatedAppointment.doctor_name,
+                                                            specialty: updatedAppointment.specialty,
+                                                            date: selectedDate.full,
+                                                            time: selectedTime,
+                                                            status: 'pending'
+                                                        };
+                                                        localStorage.setItem('sunu_sante_appointments', JSON.stringify(appointments));
+                                                    }
+                                                }
+                                            } catch (e) {
+                                                console.error('Error updating local appointments:', e);
+                                            }
                                         }
+
+                                        alert('Rendez-vous modifié avec succès!');
+                                    } else {
+                                        // Create new appointment
+                                        const newAppointment = {
+                                            user_id: user.id,
+                                            hospital_id: hospitalId,
+                                            hospital_name: hospital?.name || 'Hôpital',
+                                            user_name: user?.full_name || user?.email || 'Patient',
+                                            doctor_name: `Service ${selectedService.name}`,
+                                            specialty: selectedService.name,
+                                            appointment_date: selectedDate.isoDate,
+                                            appointment_time: selectedTime,
+                                            status: 'pending',
+                                            notes: ''
+                                        };
+
+                                        const { data, error } = await supabase
+                                            .from('appointments')
+                                            .insert([newAppointment])
+                                            .select()
+                                            .single();
+
+                                        if (error) throw error;
+
+                                        // Also save to localStorage for backward compatibility
+                                        const localAppointment = {
+                                            id: data.id,
+                                            hospital: hospital?.name || 'Hôpital',
+                                            doctor: newAppointment.doctor_name,
+                                            specialty: newAppointment.specialty,
+                                            date: selectedDate.full,
+                                            time: selectedTime,
+                                            status: 'pending'
+                                        };
+                                        
+                                        const savedData = localStorage.getItem('sunu_sante_appointments');
+                                        let appointments = [];
+                                        if (savedData) {
+                                            try {
+                                                appointments = JSON.parse(savedData);
+                                                if (!Array.isArray(appointments)) appointments = [];
+                                            } catch (e) {
+                                                appointments = [];
+                                            }
+                                        }
+                                        appointments.unshift(localAppointment);
+                                        localStorage.setItem('sunu_sante_appointments', JSON.stringify(appointments));
                                     }
-                                    appointments.unshift(localAppointment);
-                                    localStorage.setItem('sunu_sante_appointments', JSON.stringify(appointments));
 
                                     setStep(3);
                                 } catch (err) {
-                                    console.error('Error creating appointment:', err);
-                                    alert('Erreur lors de la création du rendez-vous. Veuillez réessayer.');
+                                    console.error('Error processing appointment:', err);
+                                    alert('Erreur lors de la modification du rendez-vous. Veuillez réessayer.');
                                 } finally {
                                     setIsSubmitting(false);
                                 }

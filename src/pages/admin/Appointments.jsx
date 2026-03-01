@@ -36,6 +36,15 @@ const Appointments = () => {
     
     // Hospitals list for filter
     const [hospitals, setHospitals] = useState([]);
+    
+    // Stats
+    const [stats, setStats] = useState({
+        total: 0,
+        pending: 0,
+        confirmed: 0,
+        cancelled: 0,
+        completed: 0
+    });
 
     useEffect(() => {
         fetchAppointments();
@@ -96,6 +105,19 @@ const Appointments = () => {
             
             setAppointments(data || []);
             setTotalCount(count || 0);
+            
+            // Calculate stats - inclure tous les RDV même supprimés par patient
+            const allAppointments = data || [];
+            setStats({
+                total: allAppointments.length,
+                pending: allAppointments.filter(a => a.status === 'pending').length,
+                confirmed: allAppointments.filter(a => a.status === 'confirmed').length,
+                cancelled: allAppointments.filter(a => a.status === 'cancelled').length,
+                completed: allAppointments.filter(a => 
+                    a.status === 'completed' || 
+                    (new Date(a.appointment_date) < new Date() && a.status === 'confirmed')
+                ).length
+            });
         } catch (err) {
             console.error('Error fetching appointments:', err);
             setError('Impossible de charger les rendez-vous');
@@ -158,6 +180,18 @@ const Appointments = () => {
         a.click();
     };
 
+    const handleStatClick = (filter) => {
+        if (filter === 'completed') {
+            setStatusFilter('confirmed');
+            // Filtrer pour n'afficher que les passés
+            const today = new Date().toISOString().split('T')[0];
+            setDateFilter('');
+        } else {
+            setStatusFilter(filter);
+        }
+        setCurrentPage(1);
+    };
+
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -182,6 +216,65 @@ const Appointments = () => {
                         Actualiser
                     </button>
                 </div>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <button 
+                    onClick={() => handleStatClick('all')}
+                    className={`p-4 rounded-xl border text-left transition-all ${
+                        statusFilter === 'all' 
+                            ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200' 
+                            : 'bg-white border-gray-200 hover:bg-gray-50'
+                    }`}
+                >
+                    <p className={`text-xs ${statusFilter === 'all' ? 'text-blue-600' : 'text-gray-500'}`}>Total RDV</p>
+                    <p className="text-xl font-bold text-gray-900">{stats.total}</p>
+                </button>
+                <button 
+                    onClick={() => handleStatClick('pending')}
+                    className={`p-4 rounded-xl border text-left transition-all ${
+                        statusFilter === 'pending' 
+                            ? 'bg-amber-50 border-amber-300 ring-2 ring-amber-200' 
+                            : 'bg-white border-gray-200 hover:bg-gray-50'
+                    }`}
+                >
+                    <p className={`text-xs ${statusFilter === 'pending' ? 'text-amber-600' : 'text-gray-500'}`}>En attente</p>
+                    <p className="text-xl font-bold text-amber-600">{stats.pending}</p>
+                </button>
+                <button 
+                    onClick={() => handleStatClick('confirmed')}
+                    className={`p-4 rounded-xl border text-left transition-all ${
+                        statusFilter === 'confirmed' 
+                            ? 'bg-emerald-50 border-emerald-300 ring-2 ring-emerald-200' 
+                            : 'bg-white border-gray-200 hover:bg-gray-50'
+                    }`}
+                >
+                    <p className={`text-xs ${statusFilter === 'confirmed' ? 'text-emerald-600' : 'text-gray-500'}`}>Confirmés</p>
+                    <p className="text-xl font-bold text-emerald-600">{stats.confirmed}</p>
+                </button>
+                <button 
+                    onClick={() => handleStatClick('cancelled')}
+                    className={`p-4 rounded-xl border text-left transition-all ${
+                        statusFilter === 'cancelled' 
+                            ? 'bg-red-50 border-red-300 ring-2 ring-red-200' 
+                            : 'bg-white border-gray-200 hover:bg-gray-50'
+                    }`}
+                >
+                    <p className={`text-xs ${statusFilter === 'cancelled' ? 'text-red-600' : 'text-gray-500'}`}>Refusés</p>
+                    <p className="text-xl font-bold text-red-600">{stats.cancelled}</p>
+                </button>
+                <button 
+                    onClick={() => handleStatClick('completed')}
+                    className={`p-4 rounded-xl border text-left transition-all ${
+                        statusFilter === 'completed' 
+                            ? 'bg-purple-50 border-purple-300 ring-2 ring-purple-200' 
+                            : 'bg-white border-gray-200 hover:bg-gray-50'
+                    }`}
+                >
+                    <p className={`text-xs ${statusFilter === 'completed' ? 'text-purple-600' : 'text-gray-500'}`}>Passés</p>
+                    <p className="text-xl font-bold text-purple-600">{stats.completed}</p>
+                </button>
             </div>
 
             {/* Filters */}

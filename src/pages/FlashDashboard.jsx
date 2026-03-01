@@ -47,6 +47,7 @@ const FlashDashboard = () => {
                 .from('appointments')
                 .select('*')
                 .eq('user_id', authUser.id)
+                .is('deleted_by_patient', null)  // Exclure les RDV supprimés par le patient
                 .order('appointment_date', { ascending: true });
 
             if (error) throw error;
@@ -101,17 +102,20 @@ const FlashDashboard = () => {
     };
 
     const handleDelete = async (id) => {
-        if (window.confirm("Voulez-vous supprimer définitivement ce rendez-vous de votre historique ?")) {
+        if (window.confirm("Voulez-vous retirer ce rendez-vous de votre liste ? (L'hôpital conservera l'historique)")) {
             try {
-                // Delete from Supabase
+                // Soft delete - marquer comme supprimé par le patient
                 const { error } = await supabase
                     .from('appointments')
-                    .delete()
+                    .update({ 
+                        deleted_by_patient: true,
+                        deleted_at: new Date().toISOString()
+                    })
                     .eq('id', id);
 
                 if (error) throw error;
 
-                // Update local state
+                // Update local state - retirer de la vue patient
                 const updatedAppointments = appointments.filter(apt => apt.id !== id);
                 setAppointments(updatedAppointments);
 
