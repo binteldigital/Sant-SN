@@ -321,7 +321,7 @@ const FlashDashboard = () => {
                                     </div>
 
                                     {/* Action Buttons */}
-                                    {!isCancelled ? (
+                                    {!isCancelled && rdv.status !== 'completed' ? (
                                         <div className="mt-4 flex gap-3 relative z-10">
                                             <button
                                                 onClick={() => handleCancel(rdv.id)}
@@ -344,14 +344,16 @@ const FlashDashboard = () => {
                                             </button>
                                         </div>
                                     ) : (
-                                        <div className="mt-4 p-4 bg-black/10 rounded-2xl flex flex-col items-center gap-2 relative z-10">
-                                            <p className="text-xs font-bold text-white/90">CE RENDEZ-VOUS A ÉTÉ ANNULÉ</p>
+                                        <div className="mt-4 p-4 bg-black/10 rounded-2xl flex flex-col items-center gap-3 relative z-10">
+                                            <p className="text-xs font-bold text-white/90">
+                                                {rdv.status === 'completed' ? 'CE RENDEZ-VOUS EST TERMINÉ' : 'CE RENDEZ-VOUS A ÉTÉ ANNULÉ'}
+                                            </p>
                                             <button
                                                 onClick={() => handleDelete(rdv.id)}
-                                                className="text-[10px] font-black uppercase text-red-200 hover:text-white flex items-center gap-1 transition-colors"
+                                                className="h-10 px-6 bg-red-500 hover:bg-red-600 text-white rounded-xl text-[11px] font-bold uppercase tracking-wider shadow-md active:scale-95 transition-all flex items-center gap-2"
                                             >
-                                                <Trash2 className="w-3 h-3" />
-                                                Retirer de l'historique
+                                                <Trash2 className="w-4 h-4" />
+                                                SUPPRIMER DÉFINITIVEMENT
                                             </button>
                                         </div>
                                     )}
