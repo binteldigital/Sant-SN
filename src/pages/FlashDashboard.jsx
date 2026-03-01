@@ -47,7 +47,7 @@ const FlashDashboard = () => {
                 .from('appointments')
                 .select('*')
                 .eq('user_id', authUser.id)
-                .is('deleted_by_patient', null)  // Exclure les RDV supprimés par le patient
+                .eq('deleted_by_patient', false)  // Exclure les RDV supprimés par le patient
                 .order('appointment_date', { ascending: true });
 
             if (error) throw error;
