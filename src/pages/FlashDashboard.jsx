@@ -43,12 +43,16 @@ const FlashDashboard = () => {
     const fetchAppointments = async () => {
         try {
             setLoading(true);
+            console.log('🔍 Fetching appointments for user:', authUser?.id, authUser?.email);
+            
             const { data, error } = await supabase
                 .from('appointments')
                 .select('*')
                 .eq('user_id', authUser.id)
                 .eq('deleted_by_patient', false)  // Exclure les RDV supprimés par le patient
                 .order('appointment_date', { ascending: true });
+            
+            console.log('📊 Appointments found:', data?.length || 0, data);
 
             if (error) throw error;
             setAppointments(data || []);
