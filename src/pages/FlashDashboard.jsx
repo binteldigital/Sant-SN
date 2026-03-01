@@ -1,52 +1,147 @@
 import React from 'react';
-import { Bell, MapPin, Calendar, Clock, ChevronRight, Map, ClipboardList, Settings, Heart, Home as HomeIcon, User, Trash2 } from 'lucide-react';
+import { Bell, MapPin, Calendar, Clock, ChevronRight, Map, ClipboardList, Settings, Heart, Home as HomeIcon, User, Trash2, XCircle, RefreshCw } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 
 const FlashDashboard = () => {
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user: authUser } = useAuth();
+    const [user, setUser] = React.useState(authUser);
     const [appointments, setAppointments] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
 
+    // Fetch fresh user profile and appointments from Supabase
     React.useEffect(() => {
-        const savedData = localStorage.getItem('sunu_sante_appointments');
-        console.log("Dashboard: Loading appointments...", savedData);
-        if (savedData) {
-            try {
-                const parsed = JSON.parse(savedData);
-                if (Array.isArray(parsed)) {
-                    console.log("Dashboard: Loaded count:", parsed.length);
-                    setAppointments(parsed);
-                }
-            } catch (e) {
-                console.error("Failed to parse appointments", e);
-            }
-        } else {
-            // Fallback for old single data format or initial state
-            const oldData = localStorage.getItem('sunu_sante_appointment');
-            if (oldData) {
-                const parsed = JSON.parse(oldData);
-                setAppointments([{ ...parsed, id: 'legacy' }]);
-            } else {
-                // Initial placeholder if nothing exists
-                setAppointments([{
-                    id: 'placeholder',
-                    doctor: 'Service Cardiologie',
-                    specialty: 'Cardiologie',
-                    hospital: 'Hôpital Principal',
-                    date: 'Demain, 22 Février',
-                    time: '10:00',
-                }]);
-            }
+        if (authUser?.id) {
+            fetchUserProfile();
+            fetchAppointments();
         }
-    }, []);
+    }, [authUser?.id]);
 
-    const handleCancel = (id) => {
-        if (window.confirm("Êtes-vous sûr de vouloir annuler ce rendez-vous ?")) {
-            const updatedAppointments = appointments.filter(rdv => rdv.id !== id);
-            setAppointments(updatedAppointments);
-            localStorage.setItem('sunu_sante_appointments', JSON.stringify(updatedAppointments));
+    const fetchUserProfile = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', authUser.id)
+                .single();
+
+            if (!error && data) {
+                setUser(data);
+                // Update localStorage with fresh data
+                localStorage.setItem('sunusante_user', JSON.stringify(data));
+            } else {
+                setUser(authUser);
+            }
+        } catch (err) {
+            console.error('Failed to fetch user profile:', err);
+            setUser(authUser);
         }
+    };
+
+    const fetchAppointments = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('appointments')
+                .select('*')
+                .eq('user_id', authUser.id)
+                .order('appointment_date', { ascending: true });
+
+            if (error) throw error;
+            setAppointments(data || []);
+        } catch (err) {
+            console.error('Failed to fetch appointments:', err);
+            // Fallback to localStorage if Supabase fails
+            const savedData = localStorage.getItem('sunu_sante_appointments');
+            if (savedData) {
+                try {
+                    const parsed = JSON.parse(savedData);
+                    if (Array.isArray(parsed)) {
+                        setAppointments(parsed);
+                    }
+                } catch (e) {
+                    console.error("Failed to parse local appointments", e);
+                }
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleCancel = async (id) => {
+        if (window.confirm("Êtes-vous sûr de vouloir annuler ce rendez-vous ?")) {
+            try {
+                // Update in Supabase
+                const { error } = await supabase
+                    .from('appointments')
+                    .update({ 
+                        status: 'cancelled',
+                        updated_at: new Date().toISOString()
+                    })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                // Update local state
+                const updatedAppointments = appointments.map(apt => 
+                    apt.id === id ? { ...apt, status: 'cancelled' } : apt
+                );
+                setAppointments(updatedAppointments);
+                
+                // Also update localStorage as fallback
+                localStorage.setItem('sunu_sante_appointments', JSON.stringify(updatedAppointments));
+                
+            } catch (err) {
+                console.error('Failed to cancel appointment:', err);
+                alert('Erreur lors de l\'annulation du rendez-vous');
+            }
+        }
+    };
+
+    const handleDelete = async (id) => {
+        if (window.confirm("Voulez-vous supprimer définitivement ce rendez-vous de votre historique ?")) {
+            try {
+                // Delete from Supabase
+                const { error } = await supabase
+                    .from('appointments')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                // Update local state
+                const updatedAppointments = appointments.filter(apt => apt.id !== id);
+                setAppointments(updatedAppointments);
+
+                // Update localStorage
+                localStorage.setItem('sunu_sante_appointments', JSON.stringify(updatedAppointments));
+
+            } catch (err) {
+                console.error('Failed to delete appointment:', err);
+                alert('Erreur lors de la suppression du rendez-vous');
+            }
+        }
+    };
+
+    const getStatusBadge = (status) => {
+        const styles = {
+            confirmed: 'bg-emerald-100 text-emerald-700',
+            pending: 'bg-amber-100 text-amber-700',
+            cancelled: 'bg-red-100 text-red-700',
+            completed: 'bg-gray-100 text-gray-700'
+        };
+        const labels = {
+            confirmed: 'Confirmé',
+            pending: 'En attente',
+            cancelled: 'Annulé',
+            completed: 'Terminé'
+        };
+        return {
+            className: styles[status] || 'bg-gray-100 text-gray-700',
+            label: labels[status] || status
+        };
     };
 
     const handleItinerary = (hospital) => {
@@ -54,14 +149,8 @@ const FlashDashboard = () => {
         window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
     };
 
-    const handleEdit = (id) => {
-        const rdv = appointments.find(a => a.id === id);
-        const hospitalId = rdv?.hospital?.toLowerCase().replace(/ /g, '-') || 'hopital-principal';
-        navigate(`/booking/${hospitalId}`);
-    };
-
     // Écran non connecté
-    if (!user) {
+    if (!authUser) {
         return (
             <div className="flex flex-col min-h-screen bg-white pb-24">
                 <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
@@ -86,7 +175,6 @@ const FlashDashboard = () => {
                     </Link>
                 </div>
 
-                {/* Bottom Tabs */}
                 <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center py-2 px-6 safe-area-inset-bottom max-w-[440px] mx-auto z-50">
                     <Link to="/" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                         <HomeIcon className="w-6 h-6" />
@@ -110,25 +198,28 @@ const FlashDashboard = () => {
         { title: 'Analyse de Sang', hospital: 'CHNU Fann', date: 'Authorisé', status: 'Passé' },
     ];
 
+    const displayName = user.full_name || user.name || 'Utilisateur';
+    const initial = displayName.charAt(0).toUpperCase();
+
     return (
         <div className="flex flex-col min-h-screen bg-white pb-24">
             {/* Header */}
             <header className="px-6 pt-8 pb-4 flex justify-between items-start">
                 <div>
-                    <h1 className="text-2xl font-bold text-deep-charcoal">Bonjour, Moustapha</h1>
+                    <h1 className="text-2xl font-bold text-deep-charcoal tracking-tight">Bonjour, {displayName}</h1>
                     <p className="text-sm text-gray-400 font-medium">
                         Vous avez {appointments.length} rendez-vous {appointments.length > 1 ? 'prévus' : 'prévu'}
                     </p>
                 </div>
                 <div className="w-12 h-12 rounded-2xl bg-dakar-emerald flex items-center justify-center text-white font-bold text-lg border-4 border-emerald-50 shadow-sm">
-                    M
+                    {initial}
                 </div>
             </header>
 
-            {/* Main Stats/Shortcuts */}
+            {/* Shortcuts */}
             <div className="px-6 py-4 grid grid-cols-4 gap-4">
                 {[
-                    { label: 'RDV', icon: <Calendar className="w-5 h-5" />, color: 'bg-emerald-50 text-dakar-emerald', count: '01' },
+                    { label: 'RDV', icon: <Calendar className="w-5 h-5" />, color: 'bg-emerald-50 text-dakar-emerald', count: appointments.length > 0 ? `0${appointments.length}`.slice(-2) : null },
                     { label: 'Hôpitaux', icon: <MapPin className="w-5 h-5" />, color: 'bg-emerald-50 text-dakar-emerald', count: '' },
                     { label: 'Docs', icon: <ClipboardList className="w-5 h-5" />, color: 'bg-emerald-50 text-dakar-emerald', count: '' },
                     { label: 'Favoris', icon: <Heart className="w-5 h-5" />, color: 'bg-pink-50 text-pink-500', count: '' },
@@ -138,84 +229,144 @@ const FlashDashboard = () => {
                             {item.icon}
                             {item.count && <span className="absolute -top-1 -right-1 bg-deep-charcoal text-white text-[8px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">{item.count}</span>}
                         </div>
-                        <span className="text-[10px] font-bold text-gray-500 uppercase">{item.label}</span>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-tighter">{item.label}</span>
                     </div>
                 ))}
             </div>
 
-            {/* Prochain rendez-vous Section */}
+            {/* Appointments List */}
             <section className="px-6 mb-8">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="font-bold text-deep-charcoal">Mes rendez-vous à venir</h2>
+                    <h2 className="font-bold text-deep-charcoal text-lg">Mes rendez-vous à venir</h2>
                     <span className="text-[10px] bg-emerald-50 text-dakar-emerald px-2 py-1 rounded-full font-bold">
                         {appointments.length} Total
                     </span>
                 </div>
 
-                <div className="space-y-4">
-                    {appointments.map((rdv) => (
-                        <div key={rdv.id} className="relative overflow-hidden p-6 rounded-[32px] bg-dakar-emerald text-white shadow-xl shadow-emerald-100 group">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
-
-                            <div className="flex justify-between items-start relative z-10 mb-4">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-xl shadow-inner">
-                                        👨‍⚕️
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-white text-lg leading-tight">{rdv.doctor}</h3>
-                                        <p className="text-xs text-white/70 font-medium uppercase tracking-wider">{rdv.specialty}</p>
-                                    </div>
-                                </div>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={() => handleCancel(rdv.id)}
-                                        className="p-3 bg-white/10 hover:bg-red-500/20 backdrop-blur-md rounded-full active:scale-90 transition-all text-white/80 hover:text-white"
-                                        title="Annuler le rendez-vous"
-                                    >
-                                        <Trash2 className="w-5 h-5" />
-                                    </button>
-                                    <button className="p-3 bg-white/20 backdrop-blur-md rounded-full active:scale-90 transition-all">
-                                        <Bell className="w-5 h-5 text-white" />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="bg-white/15 backdrop-blur-md rounded-2xl p-4 flex justify-between items-center relative z-10 border border-white/10">
-                                <div className="flex items-center gap-2">
-                                    <Calendar className="w-4 h-4 text-emerald-100" />
-                                    <span className="text-sm font-bold">{rdv.date}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Clock className="w-4 h-4 text-emerald-100" />
-                                    <span className="text-sm font-bold">{rdv.time}</span>
-                                </div>
-                            </div>
-
-                            <div className="mt-4 flex gap-3 relative z-10">
-                                <button
-                                    onClick={() => handleItinerary(rdv.hospital)}
-                                    className="flex-1 h-12 bg-white text-dakar-emerald rounded-2xl text-[11px] font-bold uppercase tracking-wider shadow-md active:scale-95 transition-all"
-                                >
-                                    Voir Itinéraire
-                                </button>
-                                <button
-                                    onClick={() => navigate(`/booking/${rdv.hospital?.toLowerCase().replace(/ /g, '-') || 'hopital-principal'}`)}
-                                    className="h-12 px-6 bg-dakar-emerald border border-white/20 text-white rounded-2xl text-[11px] font-bold uppercase tracking-wider active:scale-95 transition-all"
-                                >
-                                    Modifier
-                                </button>
-                            </div>
+                {loading ? (
+                    <div className="flex items-center justify-center h-32">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                    </div>
+                ) : appointments.length === 0 ? (
+                    <div className="bg-soft-gray rounded-[32px] p-8 text-center">
+                        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                            <Calendar className="w-6 h-6 text-gray-300" />
                         </div>
-                    ))}
-                </div>
+                        <p className="text-sm font-bold text-gray-400">Aucun rendez-vous prévu</p>
+                        <button
+                            onClick={() => navigate('/hospitals')}
+                            className="mt-4 text-xs font-bold text-dakar-emerald uppercase tracking-wider"
+                        >
+                            Prendre rendez-vous
+                        </button>
+                    </div>
+                ) : (
+                    <div className="space-y-4">
+                        {appointments.map((rdv) => {
+                            const statusBadge = getStatusBadge(rdv.status);
+                            const isCancelled = rdv.status === 'cancelled';
+                            
+                            return (
+                                <div key={rdv.id} className={`relative overflow-hidden p-6 rounded-[32px] shadow-xl group transition-all duration-300 ${
+                                    isCancelled ? 'bg-gray-400/90' : 'bg-dakar-emerald'
+                                } text-white`}>
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+
+                                    {/* Status Badge & Delete Button */}
+                                    <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+                                        <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${statusBadge.className}`}>
+                                            {statusBadge.label}
+                                        </span>
+                                        <button
+                                            onClick={() => handleDelete(rdv.id)}
+                                            className="w-8 h-8 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center hover:bg-red-500 transition-colors group/btn"
+                                            title="Supprimer ce rendez-vous"
+                                        >
+                                            <Trash2 className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform" />
+                                        </button>
+                                    </div>
+
+                                    <div className="flex justify-between items-start relative z-10 mb-4 pr-24">
+                                        <div className="flex items-center gap-3">
+                                            <div className={`w-12 h-12 rounded-2xl backdrop-blur-md flex items-center justify-center text-xl shadow-inner ${
+                                                isCancelled ? 'bg-white/10' : 'bg-white/20'
+                                            }`}>
+                                                {isCancelled ? <XCircle className="w-6 h-6" /> : '👨‍⚕️'}
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-white text-lg leading-tight">{rdv.doctor_name || rdv.doctor || 'Médecin'}</h3>
+                                                <p className="text-xs text-white/70 font-medium uppercase tracking-wider">{rdv.specialty}</p>
+                                                <p className="text-[11px] text-white/50 font-bold">{rdv.hospital_name || rdv.hospital}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={`backdrop-blur-md rounded-2xl p-4 flex justify-between items-center relative z-10 border border-white/10 ${
+                                        isCancelled ? 'bg-white/5' : 'bg-white/15'
+                                    }`}>
+                                        <div className="flex items-center gap-2">
+                                            <Calendar className="w-4 h-4 text-emerald-100" />
+                                            <span className="text-sm font-bold">
+                                                {new Date(rdv.appointment_date).toLocaleDateString('fr-FR', { 
+                                                    weekday: 'long', 
+                                                    day: 'numeric', 
+                                                    month: 'long' 
+                                                })}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Clock className="w-4 h-4 text-emerald-100" />
+                                            <span className="text-sm font-bold">{rdv.appointment_time || rdv.time}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Action Buttons */}
+                                    {!isCancelled ? (
+                                        <div className="mt-4 flex gap-3 relative z-10">
+                                            <button
+                                                onClick={() => handleCancel(rdv.id)}
+                                                className="flex-1 h-12 bg-red-500/80 hover:bg-red-500 text-white rounded-2xl text-[11px] font-bold uppercase tracking-wider shadow-md active:scale-95 transition-all flex items-center justify-center gap-2"
+                                            >
+                                                <XCircle className="w-4 h-4" />
+                                                ANNULER
+                                            </button>
+                                            <button
+                                                onClick={() => handleItinerary(rdv.hospital_name || rdv.hospital)}
+                                                className="flex-1 h-12 bg-white text-dakar-emerald rounded-2xl text-[11px] font-bold uppercase tracking-wider shadow-md active:scale-95 transition-all"
+                                            >
+                                                ITINÉRAIRE
+                                            </button>
+                                            <button
+                                                onClick={() => navigate(`/booking/${rdv.hospital_id || rdv.hospital?.toLowerCase().replace(/ /g, '-') || 'hopital-principal'}?edit=${rdv.id}`)}
+                                                className="h-12 px-6 bg-emerald-600 border border-white/20 text-white rounded-2xl text-[11px] font-bold uppercase tracking-wider active:scale-95 transition-all"
+                                            >
+                                                MODIFIER
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <div className="mt-4 p-4 bg-black/10 rounded-2xl flex flex-col items-center gap-2 relative z-10">
+                                            <p className="text-xs font-bold text-white/90">CE RENDEZ-VOUS A ÉTÉ ANNULÉ</p>
+                                            <button
+                                                onClick={() => handleDelete(rdv.id)}
+                                                className="text-[10px] font-black uppercase text-red-200 hover:text-white flex items-center gap-1 transition-colors"
+                                            >
+                                                <Trash2 className="w-3 h-3" />
+                                                Retirer de l'historique
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
             </section>
 
             {/* History */}
             <div className="px-6 py-4">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="font-bold text-deep-charcoal">Historique</h2>
-                    <button className="text-xs text-gray-400 font-bold">TOUT VOIR</button>
+                    <button className="text-xs text-gray-400 font-bold hover:text-dakar-emerald">TOUT VOIR</button>
                 </div>
                 <div className="space-y-3">
                     {history.map((item, i) => (
@@ -235,8 +386,8 @@ const FlashDashboard = () => {
                 </div>
             </div>
 
-            {/* Bottom Tabs */}
-            <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center py-2 px-6 safe-area-inset-bottom max-w-[440px] mx-auto">
+            {/* Bottom Navigation */}
+            <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center py-2 px-6 safe-area-inset-bottom max-w-[440px] mx-auto z-50">
                 <Link to="/" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                     <HomeIcon className="w-6 h-6" />
                     <span className="text-[10px] font-medium">Accueil</span>
