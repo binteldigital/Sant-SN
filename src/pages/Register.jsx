@@ -109,7 +109,14 @@ const Register = () => {
                 phone: dataToSave.phone,
                 role: dataToSave.role,
                 hospital_id: dataToSave.hospitalId || null,
-                specialty: dataToSave.specialty || null
+                specialty: dataToSave.specialty || null,
+                // Profil santé
+                sex: dataToSave.sex || null,
+                birth_date: dataToSave.birthDate || null,
+                birth_place: dataToSave.birthPlace || null,
+                residence: dataToSave.residence || null,
+                blood_group: dataToSave.bloodGroup || null,
+                chronic_diseases: dataToSave.chronicDiseases || null
             };
         }
         

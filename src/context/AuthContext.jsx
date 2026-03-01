@@ -80,7 +80,8 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (userData) => {
         try {
-            const { email, password, full_name, phone, role, hospital_id, specialty } = userData;
+            const { email, password, full_name, phone, role, hospital_id, specialty, 
+                    sex, birth_date, birth_place, residence, blood_group, chronic_diseases } = userData;
             
             // Hash password with bcrypt
             const bcrypt = await import('bcryptjs');
@@ -106,7 +107,14 @@ export const AuthProvider = ({ children }) => {
                 role: role || 'patient',
                 is_active: true,
                 email_verified: false,
-                phone_verified: false
+                phone_verified: false,
+                // Profil santé
+                sex: sex || null,
+                birth_date: birth_date || null,
+                birth_place: birth_place || null,
+                residence: residence || null,
+                blood_group: blood_group || null,
+                chronic_diseases: chronic_diseases || null
             };
 
             // Add hospital_id for hospital_admin and doctor roles
