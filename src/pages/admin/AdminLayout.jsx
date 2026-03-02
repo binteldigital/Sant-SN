@@ -52,7 +52,7 @@ const AdminLayout = () => {
                 {/* Logo */}
                 <div className="h-16 flex items-center px-6 border-b border-gray-200 flex-shrink-0">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
+                        <div className="w-10 h-10 bg-dakar-emerald rounded-xl flex items-center justify-center">
                             <Activity className="w-6 h-6 text-white" />
                         </div>
                         <div>
@@ -75,7 +75,7 @@ const AdminLayout = () => {
                                 className={`
                                     flex items-center gap-3 px-4 py-3 rounded-xl transition-all
                                     ${active 
-                                        ? 'bg-emerald-50 text-emerald-600 font-medium' 
+                                        ? 'bg-blue-50 text-dakar-emerald font-medium'
                                         : 'text-gray-600 hover:bg-gray-100'
                                     }
                                 `}
@@ -134,12 +134,12 @@ const AdminLayout = () => {
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => setShowQRScanner(true)}
-                            className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white hover:bg-emerald-600 rounded-xl transition-colors text-sm font-medium"
+                            className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white hover:bg-blue-600 rounded-xl transition-colors text-sm font-medium"
                         >
                             <QrCode className="w-4 h-4" />
                             Scanner QR Patient
                         </button>
-                        <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
+                        <span className="px-3 py-1 bg-blue-100 text-dakar-emerald rounded-full text-sm font-medium">
                             {user?.role === 'super_admin' ? 'Super Admin' : user?.role}
                         </span>
                     </div>

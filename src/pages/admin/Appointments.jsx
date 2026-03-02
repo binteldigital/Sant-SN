@@ -140,7 +140,7 @@ const Appointments = () => {
 
     const getStatusBadge = (status) => {
         const styles = {
-            confirmed: 'bg-emerald-100 text-emerald-700',
+            confirmed: 'bg-blue-100 text-dakar-emerald',
             pending: 'bg-amber-100 text-amber-700',
             cancelled: 'bg-red-100 text-red-700'
         };
@@ -210,7 +210,7 @@ const Appointments = () => {
                     </button>
                     <button
                         onClick={() => fetchAppointments()}
-                        className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white rounded-lg hover:bg-blue-600 transition-colors"
                     >
                         <RefreshCw className="w-4 h-4" />
                         Actualiser
@@ -246,12 +246,12 @@ const Appointments = () => {
                     onClick={() => handleStatClick('confirmed')}
                     className={`p-4 rounded-xl border text-left transition-all ${
                         statusFilter === 'confirmed' 
-                            ? 'bg-emerald-50 border-emerald-300 ring-2 ring-emerald-200' 
+                            ? 'bg-blue-50 border-blue-300 ring-2 ring-blue-200'
                             : 'bg-white border-gray-200 hover:bg-gray-50'
                     }`}
                 >
-                    <p className={`text-xs ${statusFilter === 'confirmed' ? 'text-emerald-600' : 'text-gray-500'}`}>Confirmés</p>
-                    <p className="text-xl font-bold text-emerald-600">{stats.confirmed}</p>
+                    <p className={`text-xs ${statusFilter === 'confirmed' ? 'text-dakar-emerald' : 'text-gray-500'}`}>Confirmés</p>
+                    <p className="text-xl font-bold text-dakar-emerald">{stats.confirmed}</p>
                 </button>
                 <button 
                     onClick={() => handleStatClick('cancelled')}
@@ -289,7 +289,7 @@ const Appointments = () => {
                                 placeholder="Rechercher par nom, email ou téléphone..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
                             />
                         </div>
                     </form>

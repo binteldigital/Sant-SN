@@ -112,7 +112,7 @@ const AdminSettings = () => {
             </div>
 
             {message && (
-                <div className={`p-4 rounded-xl ${message.type === 'success' ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}`}>
+                <div className={`p-4 rounded-xl ${message.type === 'success' ? 'bg-blue-50 text-dakar-emerald' : 'bg-red-50 text-red-700'}`}>
                     {message.text}
                 </div>
             )}
@@ -120,7 +120,7 @@ const AdminSettings = () => {
             {/* Branding Settings */}
             <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                 <div className="flex items-center gap-3 mb-6">
-                    <Palette className="w-5 h-5 text-emerald-500" />
+                    <Palette className="w-5 h-5 text-dakar-emerald" />
                     <h2 className="text-lg font-semibold text-gray-900">Identité visuelle</h2>
                 </div>
                 
@@ -131,7 +131,7 @@ const AdminSettings = () => {
                             type="text"
                             value={settings.branding.app_name}
                             onChange={(e) => updateSetting('branding', 'app_name', e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald"
                         />
                     </div>
                     <div>
@@ -140,7 +140,7 @@ const AdminSettings = () => {
                             type="text"
                             value={settings.branding.tagline}
                             onChange={(e) => updateSetting('branding', 'tagline', e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald"
                         />
                     </div>
                     <div>
@@ -166,7 +166,7 @@ const AdminSettings = () => {
                     <button
                         onClick={() => handleSave('branding')}
                         disabled={saving}
-                        className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 disabled:opacity-50"
+                        className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600 disabled:opacity-50"
                     >
                         <Save className="w-4 h-4" />
                         {saving ? 'Sauvegarde...' : 'Sauvegarder'}
@@ -177,7 +177,7 @@ const AdminSettings = () => {
             {/* Features Settings */}
             <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                 <div className="flex items-center gap-3 mb-6">
-                    <Bell className="w-5 h-5 text-emerald-500" />
+                    <Bell className="w-5 h-5 text-dakar-emerald" />
                     <h2 className="text-lg font-semibold text-gray-900">Fonctionnalités</h2>
                 </div>
 
@@ -201,7 +201,7 @@ const AdminSettings = () => {
                                     onChange={(e) => updateSetting('features', feature.key, e.target.checked)}
                                     className="sr-only peer"
                                 />
-                                <div className="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-emerald-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                                <div className="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dakar-emerald"></div>
                             </label>
                         </div>
                     ))}
@@ -211,7 +211,7 @@ const AdminSettings = () => {
                     <button
                         onClick={() => handleSave('features')}
                         disabled={saving}
-                        className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 disabled:opacity-50"
+                        className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600 disabled:opacity-50"
                     >
                         <Save className="w-4 h-4" />
                         {saving ? 'Sauvegarde...' : 'Sauvegarder'}
@@ -239,7 +239,7 @@ const AdminSettings = () => {
                                 type="text"
                                 value={settings.emergency_contacts[contact.key]}
                                 onChange={(e) => updateSetting('emergency_contacts', contact.key, e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                                className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald"
                             />
                         </div>
                     ))}
@@ -249,7 +249,7 @@ const AdminSettings = () => {
                     <button
                         onClick={() => handleSave('emergency_contacts')}
                         disabled={saving}
-                        className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 disabled:opacity-50"
+                        className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600 disabled:opacity-50"
                     >
                         <Save className="w-4 h-4" />
                         {saving ? 'Sauvegarde...' : 'Sauvegarder'}

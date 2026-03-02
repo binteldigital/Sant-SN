@@ -116,7 +116,7 @@ const AdminPharmacies = () => {
                         setEditingPharmacy(null);
                         setShowForm(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600"
+                    className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600"
                 >
                     <Plus className="w-5 h-5" />
                     Ajouter une pharmacie
@@ -133,13 +133,13 @@ const AdminPharmacies = () => {
                             placeholder="Rechercher une pharmacie..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald"
                         />
                     </div>
                     <select
                         value={filterDistrict}
                         onChange={(e) => setFilterDistrict(e.target.value)}
-                        className="px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                        className="px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald"
                     >
                         <option value="">Tous les districts</option>
                         {districts.map(d => (
@@ -153,7 +153,7 @@ const AdminPharmacies = () => {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 {loading ? (
                     <div className="flex items-center justify-center h-64">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-dakar-emerald" />
                     </div>
                 ) : (
                     <table className="w-full">
