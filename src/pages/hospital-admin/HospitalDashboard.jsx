@@ -106,31 +106,34 @@ const HospitalDashboard = () => {
             <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
-                        <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+                        <div className="flex items-center gap-3 min-w-0">
+                            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <Building2 className="w-6 h-6 text-emerald-600" />
                             </div>
-                            <div>
-                                <h1 className="text-lg font-bold text-gray-900">{hospital?.name}</h1>
-                                <p className="text-sm text-gray-500">
-                                    {user.role === 'hospital_admin' ? 'Admin Hôpital' : 'Docteur'}
+                            <div className="min-w-0">
+                                <h1 className="text-base sm:text-lg font-bold text-gray-900 truncate max-w-[120px] sm:max-w-[200px]">{hospital?.name}</h1>
+                                <p className="text-xs sm:text-sm text-gray-500">
+                                    {user.role === 'hospital_admin' ? 'Admin' : 'Docteur'}
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                             <button
                                 onClick={() => setShowQRScanner(true)}
-                                className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white hover:bg-emerald-600 rounded-xl transition-colors"
+                                className="flex items-center gap-1.5 px-3 py-2 bg-dakar-emerald text-white hover:bg-emerald-600 rounded-xl transition-colors text-sm"
+                                title="Scanner QR Patient"
                             >
-                                <QrCode className="w-5 h-5" />
-                                Scanner QR Patient
+                                <QrCode className="w-4 h-4" />
+                                <span className="hidden sm:inline">Scanner QR</span>
+                                <span className="sm:hidden">QR</span>
                             </button>
                             <button
                                 onClick={handleLogout}
-                                className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                                className="flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                                title="Déconnexion"
                             >
                                 <LogOut className="w-5 h-5" />
-                                Déconnexion
+                                <span className="hidden sm:inline text-sm">Déconnexion</span>
                             </button>
                         </div>
                     </div>
