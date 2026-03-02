@@ -1986,19 +1986,5 @@ export const pharmacies = [
         phone: "",
         email: "",
         website: ""
-    },
-    {
-        id: 143,
-        name: "Pharmacie Marinas",
-        pharmacist: "Dr Abdou DIOP",
-        quartier: "Hann Marinas",
-        commune: "Hann Bel Air",
-        district: "Dakar Sud",
-        department: "Dakar",
-        address: "Villa D 2, Hann Marinas, Bel Air, Dakar",
-        coords: { lat: 14.708141154010196, lng: -17.429701338895246 },
-        phone: "+221 33 832 10 06",
-        email: "",
-        website: ""
     }
 ];
