@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Phone, Lock, ChevronRight, Shield } from 'lucide-react';
+import { Phone, Lock, ChevronRight } from 'lucide-react';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { login, loginAsAdmin } = useAuth();
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -31,19 +31,6 @@ const Login = () => {
                 }
             } else {
                 setError(result.error || 'Échec de la connexion');
-            }
-        } catch (err) {
-            setError('Erreur de connexion au serveur');
-        }
-    };
-
-    const handleAdminDemo = async () => {
-        try {
-            const result = await loginAsAdmin();
-            if (result.success) {
-                navigate('/admin');
-            } else {
-                setError(result.error || 'Échec de la connexion admin');
             }
         } catch (err) {
             setError('Erreur de connexion au serveur');
@@ -95,21 +82,6 @@ const Login = () => {
                     <ChevronRight className="w-5 h-5" />
                 </button>
             </form>
-
-            {/* Admin Demo Button */}
-            <div className="mt-6">
-                <button
-                    type="button"
-                    onClick={handleAdminDemo}
-                    className="w-full h-14 bg-purple-500 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-purple-600 transition-all"
-                >
-                    <Shield className="w-5 h-5" />
-                    Accès Admin Demo
-                </button>
-                <p className="text-xs text-center text-gray-400 mt-2">
-                    Cliquez pour tester le panneau d'administration
-                </p>
-            </div>
 
             <div className="mt-auto pb-12 text-center text-sm text-gray-500">
                 Vous n'avez pas de compte ?{' '}
