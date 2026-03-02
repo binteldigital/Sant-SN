@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
-import { X, QrCode, Loader2, User, Calendar, MapPin, Phone, Droplets, Activity, Syringe, FileText } from 'lucide-react';
+import { X, QrCode, Loader2, User, Calendar, MapPin, Phone, Droplets, Activity, Syringe, FileText, Keyboard } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 const QRScanner = ({ onClose, onScanSuccess }) => {
@@ -8,6 +8,8 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
     const [error, setError] = useState(null);
     const [scannedData, setScannedData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [manualToken, setManualToken] = useState('');
+    const [showManualInput, setShowManualInput] = useState(false);
     const scannerRef = useRef(null);
     const scannerInstanceRef = useRef(null);
 
@@ -139,12 +141,21 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                             <p className="text-gray-500 mb-6 max-w-sm mx-auto">
                                 Cliquez sur le bouton ci-dessous pour activer la caméra et scanner le QR code du patient.
                             </p>
-                            <button
-                                onClick={startScanner}
-                                className="px-8 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-emerald-200 hover:shadow-xl transition-all active:scale-95"
-                            >
-                                Démarrer le scan
-                            </button>
+                            <div className="flex flex-col gap-3">
+                                <button
+                                    onClick={startScanner}
+                                    className="px-8 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-emerald-200 hover:shadow-xl transition-all active:scale-95"
+                                >
+                                    Démarrer le scan
+                                </button>
+                                <button
+                                    onClick={() => setShowManualInput(true)}
+                                    className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors"
+                                >
+                                    <Keyboard className="w-5 h-5" />
+                                    Saisir le code manuellement
+                                </button>
+                            </div>
                         </div>
                     )}
 
@@ -168,18 +179,63 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                         </div>
                     )}
 
-                    {error && (
+                    {error && !showManualInput && (
                         <div className="text-center py-8">
                             <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <X className="w-8 h-8 text-red-500" />
                             </div>
                             <p className="text-red-600 font-medium mb-4">{error}</p>
-                            <button
-                                onClick={() => { setError(null); startScanner(); }}
-                                className="px-6 py-3 bg-dakar-emerald text-white rounded-xl font-bold"
-                            >
-                                Réessayer
-                            </button>
+                            <div className="flex flex-col gap-3">
+                                <button
+                                    onClick={() => { setError(null); startScanner(); }}
+                                    className="px-6 py-3 bg-dakar-emerald text-white rounded-xl font-bold"
+                                >
+                                    Réessayer avec la caméra
+                                </button>
+                                <button
+                                    onClick={() => { setError(null); setShowManualInput(true); }}
+                                    className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold flex items-center justify-center gap-2"
+                                >
+                                    <Keyboard className="w-5 h-5" />
+                                    Saisir le code manuellement
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {showManualInput && (
+                        <div className="text-center py-8">
+                            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Keyboard className="w-8 h-8 text-blue-500" />
+                            </div>
+                            <h3 className="text-lg font-bold text-deep-charcoal mb-2">Saisie manuelle</h3>
+                            <p className="text-gray-500 mb-4 text-sm">
+                                Entrez le code ID affiché sous le QR code du patient
+                            </p>
+                            <div className="max-w-sm mx-auto space-y-3">
+                                <input
+                                    type="text"
+                                    value={manualToken}
+                                    onChange={(e) => setManualToken(e.target.value)}
+                                    placeholder="Ex: A1B2C3D4E5F6..."
+                                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-center font-mono text-lg uppercase focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
+                                />
+                                <div className="flex gap-3">
+                                    <button
+                                        onClick={() => { setShowManualInput(false); setManualToken(''); }}
+                                        className="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold"
+                                    >
+                                        Annuler
+                                    </button>
+                                    <button
+                                        onClick={() => onScanSuccessHandler(manualToken.trim())}
+                                        disabled={!manualToken.trim() || loading}
+                                        className="flex-1 px-4 py-3 bg-dakar-emerald text-white rounded-xl font-bold disabled:opacity-50"
+                                    >
+                                        {loading ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : 'Rechercher'}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     )}
 
