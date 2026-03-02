@@ -61,7 +61,7 @@ const Profile = () => {
                     <div className="w-24 h-24 rounded-[36px] bg-emerald-50 flex items-center justify-center mb-6 border-2 border-emerald-100">
                         <User className="w-12 h-12 text-dakar-emerald" />
                     </div>
-                    <h2 className="text-2xl font-bold text-deep-charcoal mb-2">Bienvenue sur Sunu Santé</h2>
+                    <h2 className="text-2xl font-bold text-deep-charcoal mb-2">Bienvenue sur FAJU</h2>
                     <p className="text-sm text-gray-400 mb-8 max-w-[280px]">
                         Créez votre compte pour accéder à votre profil santé et gérer votre dossier médical.
                     </p>
@@ -238,7 +238,7 @@ const Profile = () => {
                         <LogOut className="w-5 h-5" />
                         Déconnexion sécurisée
                     </button>
-                    <p className="text-[10px] text-gray-400 text-center mt-6 font-medium opacity-50">Version 1.0.0 • Sunu Santé Sénégal</p>
+                    <p className="text-[10px] text-gray-400 text-center mt-6 font-medium opacity-50">Version 1.0.0 • FAJU Sénégal</p>
                 </div>
             </div>
 

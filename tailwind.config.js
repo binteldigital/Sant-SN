@@ -7,7 +7,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                'dakar-emerald': '#009B77',
+                'dakar-emerald': '#4A90D9',
                 'safe-blue': '#0055A4',
                 'deep-charcoal': '#333333',
                 'soft-gray': '#F4F4F4',

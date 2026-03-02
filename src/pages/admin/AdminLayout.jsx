@@ -56,7 +56,7 @@ const AdminLayout = () => {
                             <Activity className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                            <h1 className="font-bold text-gray-900">Sunu Santé</h1>
+                            <h1 className="font-bold text-gray-900">FAJU</h1>
                             <p className="text-xs text-gray-500">Admin Panel</p>
                         </div>
                     </div>

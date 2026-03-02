@@ -7,7 +7,7 @@ const AdminSettings = () => {
         branding: {
             primary_color: '#10b981',
             secondary_color: '#059669',
-            app_name: 'Sunu Santé',
+            app_name: 'FAJU',
             tagline: 'Santé à votre portée',
         },
         features: {
@@ -108,7 +108,7 @@ const AdminSettings = () => {
         <div className="space-y-8">
             <div>
                 <h1 className="text-2xl font-bold text-gray-900">Paramètres système</h1>
-                <p className="text-gray-500 mt-1">Configurez votre application Sunu Santé</p>
+                <p className="text-gray-500 mt-1">Configurez votre application FAJU</p>
             </div>
 
             {message && (

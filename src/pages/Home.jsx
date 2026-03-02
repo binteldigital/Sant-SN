@@ -83,7 +83,7 @@ const Home = () => {
             {/* Header */}
             <header className="px-6 py-4 flex justify-between items-center bg-white sticky top-0 z-10 transition-all">
                 <div>
-                    <h1 className="text-xl font-bold text-dakar-emerald">Sunu Santé</h1>
+                    <h1 className="text-xl font-bold text-dakar-emerald">FAJU</h1>
                     <p className="text-[10px] text-gray-400 font-medium">Santé à votre portée</p>
                 </div>
                 <button className="p-2.5 rounded-2xl bg-soft-gray hover:bg-gray-100 transition-colors">

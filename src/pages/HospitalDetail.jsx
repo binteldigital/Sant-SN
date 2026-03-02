@@ -121,7 +121,7 @@ const HospitalDetail = () => {
         if (navigator.share) {
             navigator.share({
                 title: hospital.name,
-                text: `Découvrez ${hospital.name} sur Sunu Santé`,
+                text: `Découvrez ${hospital.name} sur FAJU`,
                 url: window.location.href
             });
         }
