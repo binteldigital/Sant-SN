@@ -106,12 +106,12 @@ const HospitalDashboard = () => {
             <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
-                        <div className="flex items-center gap-3 min-w-0">
+                        <div className="flex items-center gap-3 min-w-0 flex-1">
                             <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <Building2 className="w-6 h-6 text-emerald-600" />
                             </div>
-                            <div className="min-w-0">
-                                <h1 className="text-base sm:text-lg font-bold text-gray-900 truncate max-w-[120px] sm:max-w-[200px]">{hospital?.name}</h1>
+                            <div className="min-w-0 flex-1">
+                                <h1 className="text-base sm:text-lg font-bold text-gray-900 truncate">{hospital?.name}</h1>
                                 <p className="text-xs sm:text-sm text-gray-500">
                                     {user.role === 'hospital_admin' ? 'Admin' : 'Docteur'}
                                 </p>
@@ -120,20 +120,19 @@ const HospitalDashboard = () => {
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={() => setShowQRScanner(true)}
-                                className="flex items-center gap-1.5 px-3 py-2 bg-dakar-emerald text-white hover:bg-emerald-600 rounded-xl transition-colors text-sm"
+                                className="flex items-center gap-1.5 px-3 py-2 bg-dakar-emerald text-white hover:bg-emerald-600 rounded-xl transition-colors text-sm whitespace-nowrap"
                                 title="Scanner QR Patient"
                             >
                                 <QrCode className="w-4 h-4" />
-                                <span className="hidden sm:inline">Scanner QR</span>
-                                <span className="sm:hidden">QR</span>
+                                <span>Scanner QR</span>
                             </button>
                             <button
                                 onClick={handleLogout}
-                                className="flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                                className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
                                 title="Déconnexion"
                             >
                                 <LogOut className="w-5 h-5" />
-                                <span className="hidden sm:inline text-sm">Déconnexion</span>
+                                <span className="text-sm">Déconnexion</span>
                             </button>
                         </div>
                     </div>
@@ -315,6 +314,17 @@ const HospitalDashboard = () => {
                             ));
                         })()}
                     </div>
+                </div>
+
+                {/* Bouton Déconnexion Mobile - En bas de page */}
+                <div className="sm:hidden mt-8 mb-4">
+                    <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center justify-center gap-2 px-4 py-3 text-red-600 bg-red-50 hover:bg-red-100 rounded-xl transition-colors font-medium"
+                    >
+                        <LogOut className="w-5 h-5" />
+                        Déconnexion
+                    </button>
                 </div>
             </main>
 
