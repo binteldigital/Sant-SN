@@ -19,12 +19,14 @@ import {
     Calendar as CalendarIcon,
     User as UserIcon,
     Heart,
-    HeartPulse
+    HeartPulse,
+    Lock
 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
 import { QRCodeSVG } from 'qrcode.react';
+import PinLock from '../components/PinLock';
 
 const HealthRecord = () => {
     const navigate = useNavigate();
@@ -36,6 +38,8 @@ const HealthRecord = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [showQR, setShowQR] = useState(false);
     const [formData, setFormData] = useState({});
+    const [isUnlocked, setIsUnlocked] = useState(false);
+    const [showPinSetup, setShowPinSetup] = useState(false);
     const [newVaccine, setNewVaccine] = useState({
         vaccine_name: '',
         dose: '',
@@ -250,6 +254,53 @@ const HealthRecord = () => {
         }
     };
 
+    // Vérifier le PIN
+    const verifyPin = async (pin) => {
+        try {
+            const { data, error } = await supabase
+                .from('health_records')
+                .select('pin_code')
+                .eq('id', healthRecord.id)
+                .single();
+            
+            if (error) throw error;
+            
+            if (data.pin_code === pin) {
+                setIsUnlocked(true);
+                return true;
+            }
+            return false;
+        } catch (err) {
+            console.error('Error verifying PIN:', err);
+            return false;
+        }
+    };
+
+    // Définir un nouveau PIN
+    const setPin = async (pin) => {
+        try {
+            const { error } = await supabase
+                .from('health_records')
+                .update({ pin_code: pin })
+                .eq('id', healthRecord.id);
+            
+            if (error) throw error;
+            
+            setIsUnlocked(true);
+            setShowPinSetup(false);
+            await fetchHealthRecord();
+            return true;
+        } catch (err) {
+            console.error('Error setting PIN:', err);
+            return false;
+        }
+    };
+
+    // Ouvrir le setup du PIN
+    const openPinSetup = () => {
+        setShowPinSetup(true);
+    };
+
     if (loading) {
         return (
             <div className="flex flex-col min-h-screen bg-white items-center justify-center">
@@ -288,6 +339,53 @@ const HealthRecord = () => {
             <h3 className="text-sm font-black text-gray-700 uppercase tracking-wider">{title}</h3>
         </div>
     );
+
+    // Si le carnet existe et n'a pas de PIN, montrer le setup
+    if (healthRecord && !healthRecord.pin_code && !showPinSetup && !isUnlocked) {
+        return (
+            <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center px-8">
+                <div className="w-20 h-20 bg-dakar-emerald/10 rounded-full flex items-center justify-center mb-6">
+                    <Lock className="w-10 h-10 text-dakar-emerald" />
+                </div>
+                <h2 className="text-xl font-bold text-deep-charcoal mb-2 text-center">
+                    Sécurisez votre Carnet
+                </h2>
+                <p className="text-sm text-gray-500 text-center mb-8">
+                    Vos informations de santé sont confidentielles. Créez un code à 4 chiffres pour les protéger.
+                </p>
+                <button
+                    onClick={openPinSetup}
+                    className="px-8 py-4 bg-dakar-emerald text-white rounded-2xl font-bold"
+                >
+                    Créer un code secret
+                </button>
+            </div>
+        );
+    }
+
+    // Setup du PIN
+    if (showPinSetup) {
+        return (
+            <PinLock
+                healthRecordId={healthRecord?.id}
+                hasPin={false}
+                onSetPin={setPin}
+                onUnlock={() => setIsUnlocked(true)}
+            />
+        );
+    }
+
+    // Vérification du PIN
+    if (healthRecord?.pin_code && !isUnlocked) {
+        return (
+            <PinLock
+                healthRecordId={healthRecord?.id}
+                hasPin={true}
+                onUnlock={verifyPin}
+                onSetPin={setPin}
+            />
+        );
+    }
 
     return (
         <div className="flex flex-col min-h-screen bg-white pb-32">
