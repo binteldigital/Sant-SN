@@ -137,10 +137,24 @@ const HealthRecord = () => {
             // Si pas de healthRecord, on le crée d'abord
             if (!recordId) {
                 console.log('🆕 Création d\'un nouveau carnet de santé...');
+                // Générer un short_id unique de 6 caractères
+                const generateShortId = () => {
+                    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                    let result = '';
+                    for (let i = 0; i < 6; i++) {
+                        result += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    return result;
+                };
+                
+                const shortId = generateShortId();
+                console.log('🆕 Short ID généré:', shortId);
+                
                 const { data: newRecord, error: createError } = await supabase
                     .from('health_records')
                     .insert({
                         user_id: user.id,
+                        short_id: shortId,
                         ...dataToSave
                     })
                     .select()
@@ -323,11 +337,24 @@ const HealthRecord = () => {
                                     includeMargin={true}
                                 />
                             </div>
-                            <p className="text-xs text-gray-500 text-center mt-4">
-                                Présentez ce QR code à votre professionnel de santé pour qu'il accède à votre dossier médical.
-                            </p>
-                            <p className="text-[10px] text-gray-400 mt-2 font-mono">
-                                ID: {healthRecord.qr_code_token.substring(0, 16)}...
+                            
+                            {/* Identifiant court */}
+                            <div className="mt-4 bg-dakar-emerald/10 rounded-xl p-4 w-full">
+                                <p className="text-xs text-gray-500 text-center mb-2">
+                                    Code d'accès rapide (6 caractères)
+                                </p>
+                                <div className="flex items-center justify-center gap-2">
+                                    <span className="text-3xl font-black text-dakar-emerald tracking-widest font-mono">
+                                        {healthRecord.short_id || '------'}
+                                    </span>
+                                </div>
+                                <p className="text-[10px] text-gray-400 text-center mt-2">
+                                    Donnez ce code à votre professionnel de santé
+                                </p>
+                            </div>
+                            
+                            <p className="text-xs text-gray-400 text-center mt-4">
+                                Ou présentez le QR code pour accès automatique
                             </p>
                         </div>
                     </div>
