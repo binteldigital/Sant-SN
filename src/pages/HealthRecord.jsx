@@ -55,6 +55,17 @@ const HealthRecord = () => {
         }
     }, [user]);
 
+    // Vérifier si déjà déverrouillé dans cette session
+    useEffect(() => {
+        if (healthRecord?.id) {
+            const sessionKey = `pin_verified_${healthRecord.id}`;
+            const isVerifiedInSession = sessionStorage.getItem(sessionKey);
+            if (isVerifiedInSession === 'true') {
+                setIsUnlocked(true);
+            }
+        }
+    }, [healthRecord?.id]);
+
     const fetchHealthRecord = async () => {
         try {
             setLoading(true);
@@ -339,17 +350,6 @@ const HealthRecord = () => {
             <h3 className="text-sm font-black text-gray-700 uppercase tracking-wider">{title}</h3>
         </div>
     );
-
-    // Vérifier si déjà déverrouillé dans cette session
-    useEffect(() => {
-        if (healthRecord?.id) {
-            const sessionKey = `pin_verified_${healthRecord.id}`;
-            const isVerifiedInSession = sessionStorage.getItem(sessionKey);
-            if (isVerifiedInSession === 'true') {
-                setIsUnlocked(true);
-            }
-        }
-    }, [healthRecord?.id]);
 
     // Si le carnet existe et n'a pas de PIN, montrer le setup
     if (healthRecord && !healthRecord.pin_code && !showPinSetup && !isUnlocked) {
