@@ -6,17 +6,6 @@ const PinLock = ({ onUnlock, onSetPin, hasPin, healthRecordId }) => {
     const [confirmPin, setConfirmPin] = useState('');
     const [step, setStep] = useState(hasPin ? 'verify' : 'create');
     const [error, setError] = useState('');
-    const [isVerified, setIsVerified] = useState(false);
-
-    // Vérifier si le PIN a déjà été validé dans cette session
-    useEffect(() => {
-        const sessionKey = `pin_verified_${healthRecordId}`;
-        const isVerifiedInSession = sessionStorage.getItem(sessionKey);
-        if (isVerifiedInSession === 'true') {
-            setIsVerified(true);
-            onUnlock();
-        }
-    }, [healthRecordId, onUnlock]);
 
     const handleNumberClick = (num) => {
         if (error) setError('');
@@ -53,7 +42,6 @@ const PinLock = ({ onUnlock, onSetPin, hasPin, healthRecordId }) => {
         if (isValid) {
             // Marquer comme vérifié pour cette session
             sessionStorage.setItem(`pin_verified_${healthRecordId}`, 'true');
-            setIsVerified(true);
         } else {
             setError('Code incorrect');
             setPin('');
@@ -85,7 +73,6 @@ const PinLock = ({ onUnlock, onSetPin, hasPin, healthRecordId }) => {
         const success = await onSetPin(pin);
         if (success) {
             sessionStorage.setItem(`pin_verified_${healthRecordId}`, 'true');
-            setIsVerified(true);
         } else {
             setError('Erreur lors de la sauvegarde');
         }
@@ -103,10 +90,6 @@ const PinLock = ({ onUnlock, onSetPin, hasPin, healthRecordId }) => {
             handleConfirmPin();
         }
     }, [confirmPin, step]);
-
-    if (isVerified) {
-        return null;
-    }
 
     const getDisplayValue = () => {
         if (step === 'confirm') {
