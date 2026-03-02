@@ -18,7 +18,8 @@ import {
     Home as HomeIcon,
     Calendar as CalendarIcon,
     User as UserIcon,
-    Heart
+    Heart,
+    HeartPulse
 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';

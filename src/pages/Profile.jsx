@@ -13,7 +13,8 @@ import {
     Edit3,
     Check,
     LogOut,
-    Loader2
+    Loader2,
+    HeartPulse
 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -86,6 +87,10 @@ const Profile = () => {
                     <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                         <CalendarIcon className="w-6 h-6" />
                         <span className="text-[10px] font-medium">Mes RDV</span>
+                    </Link>
+                    <Link to="/health-record" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                        <HeartPulse className="w-6 h-6" />
+                        <span className="text-[10px] font-medium">Carnet</span>
                     </Link>
                     <Link to="/profile" className="flex flex-col items-center gap-1 text-dakar-emerald">
                         <UserIcon className="w-6 h-6" />
@@ -246,6 +251,10 @@ const Profile = () => {
                 <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                     <CalendarIcon className="w-6 h-6" />
                     <span className="text-[10px] font-medium uppercase tracking-tighter">Mes RDV</span>
+                </Link>
+                <Link to="/health-record" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                    <HeartPulse className="w-6 h-6" />
+                    <span className="text-[10px] font-medium uppercase tracking-tighter">Carnet</span>
                 </Link>
                 <Link to="/profile" className="flex flex-col items-center gap-1 text-dakar-emerald">
                     <UserIcon className="w-6 h-6" />

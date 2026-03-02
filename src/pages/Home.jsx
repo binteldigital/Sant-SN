@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, Bell, MapPin, Heart, ChevronRight, Home as HomeIcon, Calendar, User, Navigation, Building2 } from 'lucide-react';
+import { Search, Bell, MapPin, Heart, ChevronRight, Home as HomeIcon, Calendar, User, Navigation, Building2, HeartPulse } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getHospitals } from '../lib/supabase';
 import { useGeolocation } from '../hooks/useGeolocation';
@@ -200,6 +200,10 @@ const Home = () => {
                 <Link to="/flashdashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                     <Calendar className="w-6 h-6" />
                     <span className="text-[10px] font-medium">Mes RDV</span>
+                </Link>
+                <Link to="/health-record" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
+                    <HeartPulse className="w-6 h-6" />
+                    <span className="text-[10px] font-medium">Carnet</span>
                 </Link>
                 <Link to="/profile" className="flex flex-col items-center gap-1 text-gray-400 hover:text-dakar-emerald transition-colors">
                     <User className="w-6 h-6" />
