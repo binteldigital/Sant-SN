@@ -53,8 +53,8 @@ const RecentAppointments = ({ appointments, onAppointmentClick }) => (
                         className="p-4 flex items-center justify-between hover:bg-gray-50 cursor-pointer transition-colors"
                     >
                         <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                                <span className="text-emerald-600 font-medium">
+                            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span className="text-dakar-emerald font-medium">
                                     {(apt.patient_name || 'U').charAt(0)}
                                 </span>
                             </div>
@@ -66,7 +66,7 @@ const RecentAppointments = ({ appointments, onAppointmentClick }) => (
                         <div className="text-right">
                             <span className={`
                                 px-3 py-1 rounded-full text-xs font-medium
-                                ${apt.status === 'confirmed' ? 'bg-emerald-100 text-emerald-700' : ''}
+                                ${apt.status === 'confirmed' ? 'bg-blue-100 text-dakar-emerald' : ''}
                                 ${apt.status === 'pending' ? 'bg-amber-100 text-amber-700' : ''}
                                 ${apt.status === 'cancelled' ? 'bg-red-100 text-red-700' : ''}
                             `}>
@@ -100,7 +100,7 @@ const UserDistribution = ({ distribution }) => {
                             </div>
                             <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                                 <div 
-                                    className="h-full bg-emerald-500 rounded-full transition-all"
+                                    className="h-full bg-dakar-emerald rounded-full transition-all"
                                     style={{ width: `${percentage}%` }}
                                 />
                             </div>
@@ -220,7 +220,7 @@ const AdminDashboard = () => {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-64">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-dakar-emerald" />
             </div>
         );
     }
@@ -259,7 +259,7 @@ const AdminDashboard = () => {
                     icon={Pill}
                     label="Pharmacies"
                     value={stats.pharmacies}
-                    color="bg-emerald-500"
+                    color="bg-dakar-emerald"
                 />
                 <StatCard
                     icon={Users}
@@ -294,7 +294,7 @@ const AdminDashboard = () => {
                 <div className="flex flex-wrap gap-4">
                     <a 
                         href="/admin/hospitals"
-                        className="flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 rounded-lg hover:bg-emerald-100 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-dakar-emerald rounded-lg hover:bg-blue-100 transition-colors"
                     >
                         <Building2 className="w-4 h-4" />
                         Gérer les hôpitaux
