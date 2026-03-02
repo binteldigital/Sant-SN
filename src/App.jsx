@@ -5,6 +5,7 @@ import HospitalDetail from './pages/HospitalDetail';
 import Booking from './pages/Booking';
 import FlashDashboard from './pages/FlashDashboard';
 import Profile from './pages/Profile';
+import HealthRecord from './pages/HealthRecord';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Hospitals from './pages/Hospitals';
@@ -53,7 +54,8 @@ function App() {
                         {/* Pages nécessitant un compte */}
                         <Route path="/booking/:hospitalId" element={<ProtectedRoute><Booking /></ProtectedRoute>} />
                         <Route path="/flashdashboard" element={<FlashDashboard />} />
-                                                <Route path="/dashboard" element={<FlashDashboard />} />
+                        <Route path="/dashboard" element={<FlashDashboard />} />
+                        <Route path="/health-record" element={<ProtectedRoute><HealthRecord /></ProtectedRoute>} />
                         
                         {/* Admin Routes - Super Admin only */}
                         <Route path="/admin" element={<ProtectedRoute requireAdmin allowedRoles={['super_admin', 'support']}><AdminLayout /></ProtectedRoute>}>

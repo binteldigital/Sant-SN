@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, Bell, MapPin, Heart, ChevronRight, Home as HomeIcon, Calendar, User, Navigation, Building2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getHospitals } from '../lib/supabase';
 import { useGeolocation } from '../hooks/useGeolocation';
+import { useAuth } from '../context/AuthContext';
 
 const typeImages = {
     'Hôpital Public': 'https://images.unsplash.com/photo-1586773860418-d319a39ec55e?auto=format&fit=crop&w=400&q=80',
@@ -27,6 +28,8 @@ const Home = () => {
     const [hospitals, setHospitals] = useState([]);
     const [loading, setLoading] = useState(true);
     const { location, calculateDistance } = useGeolocation();
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     // Fetch hospitals from Supabase
     useEffect(() => {
@@ -153,10 +156,10 @@ const Home = () => {
                                 <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-red-100 active:scale-90 transition-transform">💊</div>
                                 <span className="text-[10px] font-bold text-gray-600">Pharmacies</span>
                             </Link>
-                            <div className="flex flex-col items-center gap-2 opacity-50 grayscale">
-                                <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-blue-100">🧪</div>
-                                <span className="text-[10px] font-bold text-gray-600">Labo</span>
-                            </div>
+                            <Link to="/health-record" className="flex flex-col items-center gap-2">
+                                <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-blue-100 active:scale-90 transition-transform">📋</div>
+                                <span className="text-[10px] font-bold text-gray-600">Carnet Santé</span>
+                            </Link>
                             <div className="flex flex-col items-center gap-2 opacity-50 grayscale">
                                 <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-purple-100">🚑</div>
                                 <span className="text-[10px] font-bold text-gray-600">Ambulance</span>

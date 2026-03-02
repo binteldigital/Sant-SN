@@ -6,12 +6,14 @@ import {
     LogOut,
     CheckCircle,
     XCircle,
-    Clock
+    Clock,
+    QrCode
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase';
 import AppointmentDetailModal from '../../components/admin/AppointmentDetailModal';
+import QRScanner from '../../components/admin/QRScanner';
 
 const HospitalDashboard = () => {
     const navigate = useNavigate();
@@ -28,6 +30,7 @@ const HospitalDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
     const [activeFilter, setActiveFilter] = useState('all'); // 'all', 'pending', 'confirmed', 'cancelled', 'completed'
+    const [showQRScanner, setShowQRScanner] = useState(false);
 
     useEffect(() => {
         if (!user || (user.role !== 'hospital_admin' && user.role !== 'doctor')) {
@@ -114,16 +117,35 @@ const HospitalDashboard = () => {
                                 </p>
                             </div>
                         </div>
-                        <button
-                            onClick={handleLogout}
-                            className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
-                        >
-                            <LogOut className="w-5 h-5" />
-                            Déconnexion
-                        </button>
+                        <div className="flex items-center gap-3">
+                            <button
+                                onClick={() => setShowQRScanner(true)}
+                                className="flex items-center gap-2 px-4 py-2 bg-dakar-emerald text-white hover:bg-emerald-600 rounded-xl transition-colors"
+                            >
+                                <QrCode className="w-5 h-5" />
+                                Scanner QR Patient
+                            </button>
+                            <button
+                                onClick={handleLogout}
+                                className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                            >
+                                <LogOut className="w-5 h-5" />
+                                Déconnexion
+                            </button>
+                        </div>
                     </div>
                 </div>
             </header>
+
+            {/* QR Scanner Modal */}
+            {showQRScanner && (
+                <QRScanner 
+                    onClose={() => setShowQRScanner(false)} 
+                    onScanSuccess={(data) => {
+                        console.log('Patient scanned:', data);
+                    }}
+                />
+            )}
 
             {/* Main Content */}
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
