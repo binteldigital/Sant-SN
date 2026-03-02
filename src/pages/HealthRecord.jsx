@@ -108,20 +108,45 @@ const HealthRecord = () => {
     const handleSave = async () => {
         setIsSaving(true);
         try {
-            const { id, created_at, updated_at, qr_code_token, user_id, ...dataToSave } = formData;
+            // Préparer les données à sauvegarder
+            const dataToSave = {
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+                birth_date: formData.birth_date,
+                birth_place: formData.birth_place,
+                sex: formData.sex,
+                parent_guardian: formData.parent_guardian,
+                address: formData.address,
+                phone: formData.phone,
+                health_id_number: formData.health_id_number,
+                personal_history: formData.personal_history,
+                family_history: formData.family_history,
+                allergies: formData.allergies,
+                blood_group: formData.blood_group,
+                chronic_diseases: formData.chronic_diseases,
+                reference_health_center: formData.reference_health_center,
+                health_region: formData.health_region,
+                status: formData.status || 'actif'
+            };
+            
+            console.log('💾 Sauvegarde des données:', dataToSave);
+            console.log('📝 Health Record ID:', healthRecord?.id);
             
             const { error } = await supabase
                 .from('health_records')
                 .update(dataToSave)
                 .eq('id', healthRecord.id);
             
-            if (error) throw error;
+            if (error) {
+                console.error('❌ Erreur Supabase:', error);
+                throw error;
+            }
             
             // Mettre à jour aussi le profil utilisateur
-            await supabase
+            const { error: userError } = await supabase
                 .from('users')
                 .update({
-                    full_name: `${dataToSave.first_name} ${dataToSave.last_name}`.trim(),
+                    full_name: `${dataToSave.first_name || ''} ${dataToSave.last_name || ''}`.trim(),
                     phone: dataToSave.phone,
                     birth_date: dataToSave.birth_date,
                     birth_place: dataToSave.birth_place,
@@ -131,11 +156,16 @@ const HealthRecord = () => {
                 })
                 .eq('id', user.id);
             
+            if (userError) {
+                console.error('❌ Erreur mise à jour user:', userError);
+            }
+            
             setIsEditing(false);
-            fetchHealthRecord();
+            await fetchHealthRecord();
+            alert('Sauvegarde réussie !');
         } catch (error) {
-            console.error('Save failed:', error);
-            alert('Erreur lors de la sauvegarde');
+            console.error('❌ Save failed:', error);
+            alert('Erreur lors de la sauvegarde: ' + (error.message || 'Échec de la mise à jour'));
         } finally {
             setIsSaving(false);
         }
