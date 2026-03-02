@@ -1986,5 +1986,19 @@ export const pharmacies = [
         phone: "",
         email: "",
         website: ""
+    },
+    {
+        id: 143,
+        name: "Pharmacie de l'Etrier",
+        pharmacist: "",
+        quartier: "Hann Bel Air",
+        commune: "Hann Bel Air",
+        district: "Dakar Sud",
+        department: "Dakar",
+        address: "PH3F+9C9, Dakar",
+        coords: { lat: 14.7081450, lng: -17.4294618 },
+        phone: "+221 33 832 34 98",
+        email: "",
+        website: ""
     }
 ];
