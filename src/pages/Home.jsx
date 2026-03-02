@@ -214,12 +214,8 @@ const HospitalCard = ({ hospital, showDistance }) => (
     <Link to={`/hospital/${hospital.id}`} className="block group">
         <div className="bg-white border border-gray-100 p-3 rounded-3xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] overflow-hidden relative flex gap-4">
             {/* Image Thumbnail */}
-            <div className="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50">
-                <img
-                    src={typeImages[hospital.type] || typeImages['Hôpital Public']}
-                    alt={hospital.type}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+            <div className="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50 bg-soft-gray flex items-center justify-center">
+                <Building2 className="w-12 h-12 text-dakar-emerald/60" />
             </div>
 
             <div className="flex-1 flex flex-col">
