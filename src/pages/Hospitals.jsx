@@ -132,12 +132,8 @@ const Hospitals = () => {
                     <Link to={`/hospital/${hospital.id}`} key={hospital.id} className="block group">
                         <div className="bg-white border border-gray-100 p-3 rounded-3xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] flex gap-4 overflow-hidden relative">
                             {/* Image Thumbnail */}
-                            <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50 flex items-center justify-center">
-                                <img
-                                    src={typeImages[hospital.type] || typeImages['Hôpital Public']}
-                                    alt={hospital.type}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
+                            <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50 bg-soft-gray flex items-center justify-center">
+                                <Building2 className="w-10 h-10 text-dakar-emerald/60" />
                             </div>
 
                             <div className="flex-1 min-w-0 flex flex-col justify-center">
