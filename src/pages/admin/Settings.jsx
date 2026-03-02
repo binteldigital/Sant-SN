@@ -156,7 +156,7 @@ const AdminSettings = () => {
                                 type="text"
                                 value={settings.branding.primary_color}
                                 onChange={(e) => updateSetting('branding', 'primary_color', e.target.value)}
-                                className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                                className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald"
                             />
                         </div>
                     </div>

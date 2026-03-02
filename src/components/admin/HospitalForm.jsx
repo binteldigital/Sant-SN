@@ -289,7 +289,7 @@ const HospitalForm = ({ hospital, onClose, onSuccess }) => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="px-6 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors disabled:opacity-50"
+                            className="px-6 py-2 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600 transition-colors disabled:opacity-50"
                         >
                             {loading ? 'Enregistrement...' : (hospital ? 'Mettre à jour' : 'Créer')}
                         </button>

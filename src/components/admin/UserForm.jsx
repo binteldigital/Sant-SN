@@ -141,7 +141,7 @@ const UserForm = ({ user, onClose, onSuccess }) => {
                             value={formData.full_name}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
                             placeholder="ex: Amadou Diallo"
                         />
                     </div>
@@ -158,7 +158,7 @@ const UserForm = ({ user, onClose, onSuccess }) => {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
                             placeholder="ex: amadou.diallo@email.com"
                         />
                     </div>
@@ -174,7 +174,7 @@ const UserForm = ({ user, onClose, onSuccess }) => {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
                             placeholder="ex: +221 77 123 45 67"
                         />
                     </div>
@@ -190,7 +190,7 @@ const UserForm = ({ user, onClose, onSuccess }) => {
                             value={formData.role}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
                         >
                             {roles.map(r => (
                                 <option key={r.value} value={r.value}>{r.label}</option>
@@ -209,7 +209,7 @@ const UserForm = ({ user, onClose, onSuccess }) => {
                             value={formData.password}
                             onChange={handleChange}
                             required={!user}
-                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
                             placeholder={user ? '••••••••' : 'Entrez un mot de passe'}
                         />
                     </div>
@@ -222,7 +222,7 @@ const UserForm = ({ user, onClose, onSuccess }) => {
                             id="is_active"
                             checked={formData.is_active}
                             onChange={handleChange}
-                            className="w-5 h-5 text-emerald-500 rounded focus:ring-emerald-500"
+                            className="w-5 h-5 text-dakar-emerald rounded focus:ring-dakar-emerald"
                         />
                         <label htmlFor="is_active" className="text-sm font-medium text-gray-700">
                             Compte actif
@@ -241,7 +241,7 @@ const UserForm = ({ user, onClose, onSuccess }) => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex-1 px-4 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors disabled:opacity-50"
+                            className="flex-1 px-4 py-3 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600 transition-colors disabled:opacity-50"
                         >
                             {loading ? 'Enregistrement...' : (user ? 'Modifier' : 'Créer')}
                         </button>

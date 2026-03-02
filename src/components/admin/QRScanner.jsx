@@ -235,7 +235,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                     {/* Saisie manuelle */}
                     {!scannedData && activeTab === 'manual' && !loading && (
                         <div className="text-center py-8">
-                            <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <span className="text-2xl font-black text-dakar-emerald">ABC</span>
                             </div>
                             <h3 className="text-lg font-bold text-deep-charcoal mb-2">Saisir le code patient</h3>
@@ -250,7 +250,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                                     onChange={(e) => setManualCode(e.target.value.toUpperCase())}
                                     placeholder="Ex: A1B2C3"
                                     maxLength={6}
-                                    className="w-full px-6 py-4 text-center text-2xl font-black tracking-widest border-2 border-gray-200 rounded-2xl uppercase focus:border-dakar-emerald focus:ring-4 focus:ring-emerald-100 outline-none transition-all"
+                                    className="w-full px-6 py-4 text-center text-2xl font-black tracking-widest border-2 border-gray-200 rounded-2xl uppercase focus:border-dakar-emerald focus:ring-4 focus:ring-blue-100 outline-none transition-all"
                                 />
                                 <p className="text-xs text-gray-400 mt-2">
                                     {manualCode.length}/6 caractères
@@ -259,7 +259,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                                 <button
                                     onClick={handleManualSubmit}
                                     disabled={manualCode.length !== 6 || loading}
-                                    className="w-full mt-4 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-emerald-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 transition-all"
+                                    className="w-full mt-4 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-blue-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 transition-all"
                                 >
                                     {loading ? <Loader2 className="w-6 h-6 animate-spin mx-auto" /> : 'Rechercher'}
                                 </button>
@@ -270,7 +270,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                     {/* Scan QR */}
                     {!scannedData && activeTab === 'scan' && !scanning && !loading && (
                         <div className="text-center py-8">
-                            <div className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div className="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Camera className="w-12 h-12 text-dakar-emerald" />
                             </div>
                             <h3 className="text-lg font-bold text-deep-charcoal mb-2">Scanner le QR code</h3>
@@ -298,7 +298,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                             
                             <button
                                 onClick={startScanner}
-                                className="px-8 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-emerald-200 hover:shadow-xl transition-all active:scale-95"
+                                className="px-8 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-blue-200 hover:shadow-xl transition-all active:scale-95"
                             >
                                 Démarrer le scan
                             </button>
@@ -369,7 +369,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                     {scannedData && (
                         <div className="space-y-6">
                             {/* Patient Header */}
-                            <div className="bg-gradient-to-br from-dakar-emerald to-emerald-600 rounded-2xl p-6 text-white">
+                            <div className="bg-gradient-to-br from-dakar-emerald to-blue-600 rounded-2xl p-6 text-white">
                                 <div className="flex items-center gap-4">
                                     <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-md">
                                         <User className="w-8 h-8" />

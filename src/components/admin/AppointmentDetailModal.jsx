@@ -42,7 +42,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
 
     const getStatusColor = (status) => {
         switch (status) {
-            case 'confirmed': return 'bg-emerald-100 text-emerald-700';
+            case 'confirmed': return 'bg-blue-100 text-dakar-emerald';
             case 'pending': return 'bg-amber-100 text-amber-700';
             case 'cancelled': return 'bg-red-100 text-red-700';
             default: return 'bg-gray-100 text-gray-700';
@@ -85,7 +85,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                     {/* Patient Info */}
                     <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center gap-3 mb-3">
-                            <User className="w-5 h-5 text-emerald-600" />
+                            <User className="w-5 h-5 text-dakar-emerald" />
                             <h3 className="font-semibold text-gray-900">Patient</h3>
                         </div>
                         <p className="text-gray-900 font-medium">{appointment.patient_name || 'Utilisateur inconnu'}</p>
@@ -100,7 +100,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                     {/* Hospital Info */}
                     <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center gap-3 mb-3">
-                            <Building2 className="w-5 h-5 text-emerald-600" />
+                            <Building2 className="w-5 h-5 text-dakar-emerald" />
                             <h3 className="font-semibold text-gray-900">Hôpital</h3>
                         </div>
                         <p className="text-gray-900 font-medium">{appointment.hospital_name || 'Hôpital inconnu'}</p>
@@ -110,7 +110,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                     <div className="grid grid-cols-2 gap-4">
                         <div className="bg-gray-50 p-4 rounded-xl">
                             <div className="flex items-center gap-3 mb-2">
-                                <Calendar className="w-5 h-5 text-emerald-600" />
+                                <Calendar className="w-5 h-5 text-dakar-emerald" />
                                 <h3 className="font-semibold text-gray-900">Date</h3>
                             </div>
                             <p className="text-gray-900">
@@ -124,7 +124,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                         </div>
                         <div className="bg-gray-50 p-4 rounded-xl">
                             <div className="flex items-center gap-3 mb-2">
-                                <Clock className="w-5 h-5 text-emerald-600" />
+                                <Clock className="w-5 h-5 text-dakar-emerald" />
                                 <h3 className="font-semibold text-gray-900">Heure</h3>
                             </div>
                             <p className="text-gray-900">{appointment.appointment_time}</p>
@@ -134,7 +134,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                     {/* Specialty */}
                     <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center gap-3 mb-3">
-                            <Stethoscope className="w-5 h-5 text-emerald-600" />
+                            <Stethoscope className="w-5 h-5 text-dakar-emerald" />
                             <h3 className="font-semibold text-gray-900">Spécialité / Service</h3>
                         </div>
                         <p className="text-gray-900">{appointment.specialty || 'Non spécifié'}</p>
@@ -146,7 +146,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                     {/* Notes */}
                     <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center gap-3 mb-3">
-                            <MessageSquare className="w-5 h-5 text-emerald-600" />
+                            <MessageSquare className="w-5 h-5 text-dakar-emerald" />
                             <h3 className="font-semibold text-gray-900">Notes / Message au patient</h3>
                         </div>
                         <textarea
@@ -179,7 +179,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                                 setShowConfirmModal(true);
                             }}
                             disabled={loading}
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors disabled:opacity-50"
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600 transition-colors disabled:opacity-50"
                         >
                             <CheckCircle className="w-5 h-5" />
                             Confirmer
@@ -223,7 +223,7 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
                                 disabled={loading}
                                 className={`flex-1 px-4 py-2 rounded-lg transition-colors disabled:opacity-50 ${
                                     action === 'confirm'
-                                        ? 'bg-emerald-500 text-white hover:bg-emerald-600'
+                                        ? 'bg-dakar-emerald text-white hover:bg-blue-600'
                                         : 'bg-red-500 text-white hover:bg-red-600'
                                 }`}
                             >

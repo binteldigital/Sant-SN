@@ -207,7 +207,7 @@ const PharmacyForm = ({ pharmacy, onClose, onSuccess }) => {
                             id="on_duty_status"
                             checked={formData.on_duty_status}
                             onChange={handleChange}
-                            className="w-5 h-5 text-emerald-500 rounded focus:ring-emerald-500"
+                            className="w-5 h-5 text-dakar-emerald rounded focus:ring-dakar-emerald"
                         />
                         <label htmlFor="on_duty_status" className="flex items-center gap-2 text-sm font-medium text-gray-700">
                             <Clock className="w-4 h-4" />
@@ -227,7 +227,7 @@ const PharmacyForm = ({ pharmacy, onClose, onSuccess }) => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex-1 px-4 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors disabled:opacity-50"
+                            className="flex-1 px-4 py-3 bg-dakar-emerald text-white rounded-xl hover:bg-blue-600 transition-colors disabled:opacity-50"
                         >
                             {loading ? 'Enregistrement...' : (pharmacy ? 'Modifier' : 'Ajouter')}
                         </button>
