@@ -67,6 +67,10 @@ export const AuthProvider = ({ children }) => {
 
             // Store user in localStorage for session persistence
             localStorage.setItem('sunusante_user', JSON.stringify(user));
+            
+            // Store login time for PIN security
+            sessionStorage.setItem(`login_time_${user.id}`, Date.now().toString());
+            
             setUser(user);
             return { success: true, user };
         } catch (error) {

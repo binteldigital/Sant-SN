@@ -55,16 +55,29 @@ const HealthRecord = () => {
         }
     }, [user]);
 
-    // Vérifier si déjà déverrouillé dans cette session
+    // Vérifier si déjà déverrouillé dans cette session (avec vérification de l'heure de connexion)
     useEffect(() => {
-        if (healthRecord?.id) {
+        if (healthRecord?.id && user?.id) {
             const sessionKey = `pin_verified_${healthRecord.id}`;
-            const isVerifiedInSession = sessionStorage.getItem(sessionKey);
-            if (isVerifiedInSession === 'true') {
-                setIsUnlocked(true);
+            const sessionData = sessionStorage.getItem(sessionKey);
+            const loginTime = sessionStorage.getItem(`login_time_${user.id}`);
+            
+            if (sessionData && loginTime) {
+                const parsedData = JSON.parse(sessionData);
+                const lastVerified = parsedData.timestamp;
+                const currentLogin = parseInt(loginTime);
+                
+                // Vérifier que le PIN a été validé APRÈS la connexion actuelle
+                if (lastVerified > currentLogin) {
+                    setIsUnlocked(true);
+                } else {
+                    // PIN validé avant la connexion actuelle, on reset
+                    setIsUnlocked(false);
+                    sessionStorage.removeItem(sessionKey);
+                }
             }
         }
-    }, [healthRecord?.id]);
+    }, [healthRecord?.id, user?.id]);
 
     const fetchHealthRecord = async () => {
         try {

@@ -40,8 +40,11 @@ const PinLock = ({ onUnlock, onSetPin, hasPin, healthRecordId }) => {
         // Vérifier le PIN
         const isValid = await onUnlock(pin);
         if (isValid) {
-            // Marquer comme vérifié pour cette session
-            sessionStorage.setItem(`pin_verified_${healthRecordId}`, 'true');
+            // Marquer comme vérifié pour cette session avec timestamp
+            sessionStorage.setItem(`pin_verified_${healthRecordId}`, JSON.stringify({
+                verified: true,
+                timestamp: Date.now()
+            }));
         } else {
             setError('Code incorrect');
             setPin('');
@@ -72,7 +75,10 @@ const PinLock = ({ onUnlock, onSetPin, hasPin, healthRecordId }) => {
         // Sauvegarder le PIN
         const success = await onSetPin(pin);
         if (success) {
-            sessionStorage.setItem(`pin_verified_${healthRecordId}`, 'true');
+            sessionStorage.setItem(`pin_verified_${healthRecordId}`, JSON.stringify({
+                verified: true,
+                timestamp: Date.now()
+            }));
         } else {
             setError('Erreur lors de la sauvegarde');
         }
