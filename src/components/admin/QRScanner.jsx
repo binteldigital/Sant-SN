@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
-import { X, QrCode, Loader2, User, Calendar, MapPin, Phone, Droplets, Activity, Syringe, FileText, Keyboard } from 'lucide-react';
+import { BrowserQRCodeReader } from '@zxing/browser';
+import { X, QrCode, Loader2, User, Calendar, MapPin, Phone, Droplets, Activity, Syringe, FileText, Camera, RefreshCw } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 const QRScanner = ({ onClose, onScanSuccess }) => {
@@ -8,59 +8,97 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
     const [error, setError] = useState(null);
     const [scannedData, setScannedData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [manualToken, setManualToken] = useState('');
-    const [showManualInput, setShowManualInput] = useState(false);
-    const scannerRef = useRef(null);
-    const scannerInstanceRef = useRef(null);
+    const [cameras, setCameras] = useState([]);
+    const [selectedCamera, setSelectedCamera] = useState(null);
+    const videoRef = useRef(null);
+    const codeReaderRef = useRef(null);
+    const controlsRef = useRef(null);
 
     useEffect(() => {
+        // Liste les caméras disponibles au chargement
+        listCameras();
+        
         return () => {
             stopScanner();
         };
     }, []);
+
+    const listCameras = async () => {
+        try {
+            const devices = await BrowserQRCodeReader.listVideoInputDevices();
+            console.log('📷 Caméras disponibles:', devices);
+            setCameras(devices);
+            
+            // Sélectionner la caméra arrière par défaut (mobile) ou la première dispo
+            const backCamera = devices.find(d => 
+                d.label.toLowerCase().includes('back') || 
+                d.label.toLowerCase().includes('arrière') ||
+                d.label.toLowerCase().includes('environment')
+            );
+            setSelectedCamera(backCamera?.deviceId || devices[0]?.deviceId);
+        } catch (err) {
+            console.error('❌ Erreur liste caméras:', err);
+        }
+    };
 
     const startScanner = async () => {
         try {
             setScanning(true);
             setError(null);
 
-            const scanner = new Html5Qrcode('qr-reader');
-            scannerInstanceRef.current = scanner;
+            if (!selectedCamera) {
+                setError('Aucune caméra disponible');
+                setScanning(false);
+                return;
+            }
 
-            await scanner.start(
-                { facingMode: 'environment' },
-                {
-                    fps: 10,
-                    qrbox: { width: 250, height: 250 }
-                },
-                onScanSuccessHandler,
-                onScanErrorHandler
+            const codeReader = new BrowserQRCodeReader();
+            codeReaderRef.current = codeReader;
+
+            console.log('🎥 Démarrage scan avec caméra:', selectedCamera);
+
+            const controls = await codeReader.decodeFromVideoDevice(
+                selectedCamera,
+                videoRef.current,
+                (result, err) => {
+                    if (result) {
+                        console.log('✅ QR Code détecté:', result.getText());
+                        handleScanSuccess(result.getText());
+                    }
+                    if (err && err.name !== 'NotFoundException') {
+                        console.error('❌ Erreur scan:', err);
+                    }
+                }
             );
+
+            controlsRef.current = controls;
+
         } catch (err) {
-            console.error('Scanner error:', err);
+            console.error('❌ Erreur démarrage scanner:', err);
             setError('Impossible d\'accéder à la caméra. Vérifiez les permissions.');
             setScanning(false);
         }
     };
 
-    const stopScanner = async () => {
-        if (scannerInstanceRef.current) {
-            try {
-                await scannerInstanceRef.current.stop();
-            } catch (err) {
-                console.error('Stop scanner error:', err);
-            }
-            scannerInstanceRef.current = null;
+    const stopScanner = () => {
+        if (controlsRef.current) {
+            controlsRef.current.stop();
+            controlsRef.current = null;
         }
         setScanning(false);
     };
 
-    const onScanSuccessHandler = async (decodedText) => {
+    const handleScanSuccess = async (decodedText) => {
         if (loading) return;
+        
+        stopScanner();
         
         try {
             setLoading(true);
-            await stopScanner();
+            
+            // Nettoyer le texte scanné
+            const token = decodedText.trim();
+            console.log('🔍 Token scanné:', token);
             
             // Rechercher le carnet de santé par le token QR
             const { data: healthRecord, error: recordError } = await supabase
@@ -70,11 +108,18 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                     vaccinations(*),
                     users:user_id(full_name, email)
                 `)
-                .eq('qr_code_token', decodedText)
+                .eq('qr_code_token', token)
                 .single();
 
-            if (recordError || !healthRecord) {
+            if (recordError) {
+                console.error('❌ Erreur recherche:', recordError);
                 setError('QR code invalide ou carnet non trouvé');
+                setLoading(false);
+                return;
+            }
+            
+            if (!healthRecord) {
+                setError('Aucun carnet trouvé pour ce QR code');
                 setLoading(false);
                 return;
             }
@@ -92,15 +137,11 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
             setScannedData(healthRecord);
             if (onScanSuccess) onScanSuccess(healthRecord);
         } catch (err) {
-            console.error('Scan processing error:', err);
+            console.error('❌ Scan processing error:', err);
             setError('Erreur lors du traitement du QR code');
         } finally {
             setLoading(false);
         }
-    };
-
-    const onScanErrorHandler = (err) => {
-        // Ignorer les erreurs de scan normales
     };
 
     const formatDate = (date) => {
@@ -132,43 +173,71 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
 
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto p-6">
-                    {!scannedData && !scanning && (
+                    {!scannedData && !scanning && !loading && (
                         <div className="text-center py-12">
                             <div className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <QrCode className="w-12 h-12 text-dakar-emerald" />
+                                <Camera className="w-12 h-12 text-dakar-emerald" />
                             </div>
                             <h3 className="text-lg font-bold text-deep-charcoal mb-2">Prêt à scanner</h3>
                             <p className="text-gray-500 mb-6 max-w-sm mx-auto">
-                                Cliquez sur le bouton ci-dessous pour activer la caméra et scanner le QR code du patient.
+                                Positionnez le QR code du patient devant la caméra pour scanner.
                             </p>
-                            <div className="flex flex-col gap-3">
-                                <button
-                                    onClick={startScanner}
-                                    className="px-8 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-emerald-200 hover:shadow-xl transition-all active:scale-95"
-                                >
-                                    Démarrer le scan
-                                </button>
-                                <button
-                                    onClick={() => setShowManualInput(true)}
-                                    className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors"
-                                >
-                                    <Keyboard className="w-5 h-5" />
-                                    Saisir le code manuellement
-                                </button>
-                            </div>
+                            
+                            {/* Sélection de caméra si plusieurs disponibles */}
+                            {cameras.length > 1 && (
+                                <div className="mb-4">
+                                    <label className="text-sm text-gray-600 mb-2 block">Caméra:</label>
+                                    <select
+                                        value={selectedCamera || ''}
+                                        onChange={(e) => setSelectedCamera(e.target.value)}
+                                        className="px-4 py-2 border border-gray-200 rounded-xl text-sm"
+                                    >
+                                        {cameras.map((cam) => (
+                                            <option key={cam.deviceId} value={cam.deviceId}>
+                                                {cam.label || `Caméra ${cam.deviceId.slice(0, 8)}...`}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
+                            
+                            <button
+                                onClick={startScanner}
+                                className="px-8 py-4 bg-dakar-emerald text-white rounded-2xl font-bold shadow-lg shadow-emerald-200 hover:shadow-xl transition-all active:scale-95"
+                            >
+                                Démarrer le scan
+                            </button>
                         </div>
                     )}
 
                     {scanning && (
                         <div className="text-center">
-                            <div id="qr-reader" className="mx-auto max-w-sm rounded-2xl overflow-hidden"></div>
-                            <p className="text-sm text-gray-500 mt-4">Placez le QR code dans le cadre</p>
-                            <button
-                                onClick={stopScanner}
-                                className="mt-4 px-6 py-2 bg-gray-100 text-gray-600 rounded-xl font-medium hover:bg-gray-200 transition-colors"
-                            >
-                                Annuler
-                            </button>
+                            <div className="relative mx-auto max-w-sm rounded-2xl overflow-hidden bg-black">
+                                <video 
+                                    ref={videoRef} 
+                                    className="w-full h-auto"
+                                    style={{ minHeight: '300px' }}
+                                />
+                                <div className="absolute inset-0 border-2 border-dakar-emerald/50 rounded-2xl pointer-events-none">
+                                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-dakar-emerald rounded-lg"></div>
+                                </div>
+                            </div>
+                            <p className="text-sm text-gray-500 mt-4">Placez le QR code dans le cadre vert</p>
+                            <div className="flex justify-center gap-3 mt-4">
+                                <button
+                                    onClick={stopScanner}
+                                    className="px-6 py-2 bg-gray-100 text-gray-600 rounded-xl font-medium hover:bg-gray-200 transition-colors"
+                                >
+                                    Annuler
+                                </button>
+                                <button
+                                    onClick={listCameras}
+                                    className="px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-medium hover:bg-blue-100 transition-colors flex items-center gap-2"
+                                >
+                                    <RefreshCw className="w-4 h-4" />
+                                    Changer caméra
+                                </button>
+                            </div>
                         </div>
                     )}
 
@@ -179,7 +248,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                         </div>
                     )}
 
-                    {error && !showManualInput && (
+                    {error && (
                         <div className="text-center py-8">
                             <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <X className="w-8 h-8 text-red-500" />
@@ -190,51 +259,14 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                                     onClick={() => { setError(null); startScanner(); }}
                                     className="px-6 py-3 bg-dakar-emerald text-white rounded-xl font-bold"
                                 >
-                                    Réessayer avec la caméra
+                                    Réessayer
                                 </button>
                                 <button
-                                    onClick={() => { setError(null); setShowManualInput(true); }}
-                                    className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold flex items-center justify-center gap-2"
+                                    onClick={() => { setError(null); listCameras(); }}
+                                    className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold"
                                 >
-                                    <Keyboard className="w-5 h-5" />
-                                    Saisir le code manuellement
+                                    Rafraîchir les caméras
                                 </button>
-                            </div>
-                        </div>
-                    )}
-
-                    {showManualInput && (
-                        <div className="text-center py-8">
-                            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Keyboard className="w-8 h-8 text-blue-500" />
-                            </div>
-                            <h3 className="text-lg font-bold text-deep-charcoal mb-2">Saisie manuelle</h3>
-                            <p className="text-gray-500 mb-4 text-sm">
-                                Entrez le code ID affiché sous le QR code du patient
-                            </p>
-                            <div className="max-w-sm mx-auto space-y-3">
-                                <input
-                                    type="text"
-                                    value={manualToken}
-                                    onChange={(e) => setManualToken(e.target.value)}
-                                    placeholder="Ex: A1B2C3D4E5F6..."
-                                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-center font-mono text-lg uppercase focus:ring-2 focus:ring-dakar-emerald focus:border-transparent"
-                                />
-                                <div className="flex gap-3">
-                                    <button
-                                        onClick={() => { setShowManualInput(false); setManualToken(''); }}
-                                        className="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold"
-                                    >
-                                        Annuler
-                                    </button>
-                                    <button
-                                        onClick={() => onScanSuccessHandler(manualToken.trim())}
-                                        disabled={!manualToken.trim() || loading}
-                                        className="flex-1 px-4 py-3 bg-dakar-emerald text-white rounded-xl font-bold disabled:opacity-50"
-                                    >
-                                        {loading ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : 'Rechercher'}
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     )}
