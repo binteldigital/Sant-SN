@@ -147,7 +147,7 @@ const Home = () => {
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="font-bold text-deep-charcoal">Services</h2>
                         </div>
-                        <div className="grid grid-cols-4 gap-4">
+                        <div className="grid grid-cols-3 gap-4">
                             <Link to="/hospitals" className="flex flex-col items-center gap-2">
                                 <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-emerald-100 active:scale-90 transition-transform">🏥</div>
                                 <span className="text-[10px] font-bold text-gray-600">Hôpitaux</span>
@@ -155,10 +155,6 @@ const Home = () => {
                             <Link to="/pharmacies" className="flex flex-col items-center gap-2">
                                 <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-red-100 active:scale-90 transition-transform">💊</div>
                                 <span className="text-[10px] font-bold text-gray-600">Pharmacies</span>
-                            </Link>
-                            <Link to="/health-record" className="flex flex-col items-center gap-2">
-                                <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-blue-100 active:scale-90 transition-transform">📋</div>
-                                <span className="text-[10px] font-bold text-gray-600">Carnet Santé</span>
                             </Link>
                             <div className="flex flex-col items-center gap-2 opacity-50 grayscale">
                                 <div className="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-xl shadow-sm border border-purple-100">🚑</div>
