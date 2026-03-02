@@ -15,7 +15,8 @@ import {
     Briefcase,
     Building2,
     Stethoscope,
-    UserCircle
+    UserCircle,
+    ChevronLeft
 } from 'lucide-react';
 
 const Register = () => {
@@ -157,6 +158,13 @@ const Register = () => {
     return (
         <div className="flex flex-col min-h-screen bg-white px-6 py-8">
             <header className="mb-8">
+                <button
+                    onClick={() => navigate(-1)}
+                    className="flex items-center gap-2 text-gray-500 hover:text-dakar-emerald transition-colors mb-4"
+                >
+                    <ChevronLeft className="w-5 h-5" />
+                    <span className="text-sm font-medium">Retour</span>
+                </button>
                 <h1 className="text-3xl font-bold text-deep-charcoal mb-2">Bienvenue !</h1>
                 <p className="text-gray-500">{getSubtitle()}</p>
             </header>
