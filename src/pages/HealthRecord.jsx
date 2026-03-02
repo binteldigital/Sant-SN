@@ -130,16 +130,41 @@ const HealthRecord = () => {
             };
             
             console.log('💾 Sauvegarde des données:', dataToSave);
-            console.log('📝 Health Record ID:', healthRecord?.id);
+            console.log('📝 Health Record:', healthRecord);
             
-            const { error } = await supabase
-                .from('health_records')
-                .update(dataToSave)
-                .eq('id', healthRecord.id);
+            let recordId = healthRecord?.id;
             
-            if (error) {
-                console.error('❌ Erreur Supabase:', error);
-                throw error;
+            // Si pas de healthRecord, on le crée d'abord
+            if (!recordId) {
+                console.log('🆕 Création d\'un nouveau carnet de santé...');
+                const { data: newRecord, error: createError } = await supabase
+                    .from('health_records')
+                    .insert({
+                        user_id: user.id,
+                        ...dataToSave
+                    })
+                    .select()
+                    .single();
+                
+                if (createError) {
+                    console.error('❌ Erreur création carnet:', createError);
+                    throw createError;
+                }
+                
+                recordId = newRecord.id;
+                setHealthRecord(newRecord);
+                console.log('✅ Carnet créé avec ID:', recordId);
+            } else {
+                // Mettre à jour le carnet existant
+                const { error } = await supabase
+                    .from('health_records')
+                    .update(dataToSave)
+                    .eq('id', recordId);
+                
+                if (error) {
+                    console.error('❌ Erreur Supabase:', error);
+                    throw error;
+                }
             }
             
             // Mettre à jour aussi le profil utilisateur
