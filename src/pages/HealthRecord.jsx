@@ -79,6 +79,24 @@ const HealthRecord = () => {
             
             if (error && error.code === 'PGRST116') {
                 // Créer un nouveau carnet si inexistant
+                // Générer un short_id unique de 6 caractères
+                const generateShortId = () => {
+                    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                    let result = '';
+                    for (let i = 0; i < 6; i++) {
+                        result += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    return result;
+                };
+                
+                // Générer un token QR unique
+                const generateQRToken = () => {
+                    return 'qr_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                };
+                
+                const shortId = generateShortId();
+                const qrToken = generateQRToken();
+                
                 const { data: newRecord, error: createError } = await supabase
                     .from('health_records')
                     .insert({
@@ -90,7 +108,9 @@ const HealthRecord = () => {
                         birth_place: user.birth_place || '',
                         sex: user.sex || '',
                         address: user.residence || '',
-                        blood_group: user.blood_group || ''
+                        blood_group: user.blood_group || '',
+                        short_id: shortId,
+                        qr_code_token: qrToken
                     })
                     .select()
                     .single();
