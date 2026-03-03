@@ -60,7 +60,7 @@ const AdminUsers = () => {
             super_admin: 'bg-purple-100 text-purple-700',
             hospital_admin: 'bg-blue-100 text-blue-700',
             support: 'bg-orange-100 text-orange-700',
-            doctor: 'bg-emerald-100 text-emerald-700',
+            doctor: 'bg-blue-100 text-blue-700',
             patient: 'bg-gray-100 text-gray-700',
         };
         return colors[role] || colors.patient;
@@ -118,7 +118,7 @@ const AdminUsers = () => {
                         setEditingUser(null);
                         setShowForm(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
                 >
                     <Plus className="w-5 h-5" />
                     Créer un utilisateur
@@ -157,7 +157,7 @@ const AdminUsers = () => {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 {loading ? (
                     <div className="flex items-center justify-center h-64">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
                     </div>
                 ) : (
                     <table className="w-full">
@@ -200,7 +200,7 @@ const AdminUsers = () => {
                                             className={`
                                                 px-3 py-1 rounded-full text-xs font-medium transition-colors
                                                 ${user.is_active 
-                                                    ? 'bg-emerald-100 text-emerald-700' 
+                                                    ? 'bg-blue-100 text-blue-700'
                                                     : 'bg-red-100 text-red-700'
                                                 }
                                             `}

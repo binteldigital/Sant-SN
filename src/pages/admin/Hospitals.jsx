@@ -128,7 +128,7 @@ const Hospitals = () => {
                         setEditingHospital(null);
                         setShowForm(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors"
                 >
                     <Plus className="w-5 h-5" />
                     Ajouter un hôpital
@@ -146,13 +146,13 @@ const Hospitals = () => {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                     </div>
                     <select
                         value={filterType}
                         onChange={(e) => setFilterType(e.target.value)}
-                        className="px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                        className="px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="">Tous les types</option>
                         {types.map(type => (
@@ -172,7 +172,7 @@ const Hospitals = () => {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 {loading ? (
                     <div className="flex items-center justify-center h-64">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
                     </div>
                 ) : (
                     <div className="overflow-x-auto">
@@ -203,7 +203,7 @@ const Hospitals = () => {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                                     {hospital.type}
                                                 </span>
                                             </td>

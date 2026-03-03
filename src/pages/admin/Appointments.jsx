@@ -366,7 +366,7 @@ const Appointments = () => {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 {loading ? (
                     <div className="flex items-center justify-center h-64">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
                     </div>
                 ) : appointments.length === 0 ? (
                     <div className="flex flex-col items-center justify-center h-64 text-gray-500">
@@ -396,8 +396,8 @@ const Appointments = () => {
                                         >
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                                                        <span className="text-emerald-600 font-medium">
+                                                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                                        <span className="text-blue-600 font-medium">
                                                             {(apt.user_name || 'U')[0]}
                                                         </span>
                                                     </div>
@@ -433,7 +433,7 @@ const Appointments = () => {
                                             <td className="px-6 py-4">
                                                 <button
                                                     onClick={() => setSelectedAppointment(apt)}
-                                                    className="text-emerald-600 hover:text-emerald-700 font-medium text-sm"
+                                                    className="text-blue-600 hover:text-blue-700 font-medium text-sm"
                                                 >
                                                     Voir détails
                                                 </button>
