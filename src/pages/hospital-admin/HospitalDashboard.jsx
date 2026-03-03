@@ -35,6 +35,8 @@ const HospitalDashboard = () => {
     const [showQRScanner, setShowQRScanner] = useState(false);
     const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard', 'agenda', 'patients'
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedPatient, setSelectedPatient] = useState(null);
+    const [patientDetails, setPatientDetails] = useState(null);
 
     useEffect(() => {
         if (!user || (user.role !== 'hospital_admin' && user.role !== 'doctor')) {
@@ -91,6 +93,31 @@ const HospitalDashboard = () => {
     const handleLogout = () => {
         logout();
         navigate('/login');
+    };
+
+    const handlePatientClick = async (patientName) => {
+        setSelectedPatient(patientName);
+        
+        // Get patient details from appointments
+        const patientAppointments = appointments.filter(apt => apt.user_name === patientName);
+        const firstAppointment = patientAppointments[0];
+        
+        if (firstAppointment) {
+            // Try to get more details from users table
+            const { data: userData } = await supabase
+                .from('users')
+                .select('*')
+                .eq('full_name', patientName)
+                .single();
+            
+            setPatientDetails({
+                name: patientName,
+                email: firstAppointment.user_email || userData?.email || 'Non renseigné',
+                phone: firstAppointment.user_phone || userData?.phone || 'Non renseigné',
+                totalAppointments: patientAppointments.length,
+                appointments: patientAppointments
+            });
+        }
     };
 
     const handleUpdateAppointment = (updatedAppointment) => {
@@ -323,7 +350,8 @@ const HospitalDashboard = () => {
                                 filteredPatients.map((patient, index) => (
                                     <div 
                                         key={index} 
-                                        className="p-4 flex items-center gap-3 hover:bg-gray-50"
+                                        onClick={() => handlePatientClick(patient)}
+                                        className="p-4 flex items-center gap-3 hover:bg-gray-50 cursor-pointer"
                                     >
                                         <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
                                             <span className="text-emerald-600 font-medium text-sm">
@@ -397,6 +425,75 @@ const HospitalDashboard = () => {
                     onClose={() => setSelectedAppointment(null)}
                     onUpdate={handleUpdateAppointment}
                 />
+            )}
+
+            {/* Patient Details Modal */}
+            {selectedPatient && patientDetails && (
+                <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+                    <div className="bg-white rounded-2xl max-w-md w-full max-h-[80vh] overflow-y-auto">
+                        <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+                            <h2 className="text-xl font-bold text-gray-900">Détails du patient</h2>
+                            <button
+                                onClick={() => {
+                                    setSelectedPatient(null);
+                                    setPatientDetails(null);
+                                }}
+                                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
+                            >
+                                ✕
+                            </button>
+                        </div>
+                        <div className="p-6">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <span className="text-emerald-600 font-bold text-xl">
+                                        {patientDetails.name[0]}
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-gray-900">{patientDetails.name}</h3>
+                                    <p className="text-sm text-gray-500">{patientDetails.totalAppointments} rendez-vous</p>
+                                </div>
+                            </div>
+                            
+                            <div className="space-y-4">
+                                <div className="bg-gray-50 p-4 rounded-xl">
+                                    <p className="text-xs text-gray-500 mb-1">Email</p>
+                                    <p className="font-medium text-gray-900">{patientDetails.email}</p>
+                                </div>
+                                <div className="bg-gray-50 p-4 rounded-xl">
+                                    <p className="text-xs text-gray-500 mb-1">Téléphone</p>
+                                    <p className="font-medium text-gray-900">{patientDetails.phone}</p>
+                                </div>
+                            </div>
+
+                            <div className="mt-6">
+                                <h4 className="font-bold text-gray-900 mb-3">Historique des rendez-vous</h4>
+                                <div className="space-y-2 max-h-48 overflow-y-auto">
+                                    {patientDetails.appointments.map((apt, idx) => (
+                                        <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                                            <div>
+                                                <p className="text-sm font-medium text-gray-900">{apt.specialty}</p>
+                                                <p className="text-xs text-gray-500">
+                                                    {new Date(apt.appointment_date).toLocaleDateString('fr-FR')}
+                                                </p>
+                                            </div>
+                                            <span className={`
+                                                px-2 py-1 rounded-full text-xs font-medium
+                                                ${apt.status === 'confirmed' ? 'bg-emerald-100 text-emerald-700' : ''}
+                                                ${apt.status === 'pending' ? 'bg-amber-100 text-amber-700' : ''}
+                                                ${apt.status === 'cancelled' ? 'bg-red-100 text-red-700' : ''}
+                                            `}>
+                                                {apt.status === 'confirmed' ? 'Confirmé' :
+                                                 apt.status === 'pending' ? 'En attente' : 'Annulé'}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );
