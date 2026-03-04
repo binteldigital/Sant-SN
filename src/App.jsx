@@ -24,7 +24,17 @@ import AdminAppointments from './pages/admin/Appointments';
 import HospitalDashboard from './pages/hospital-admin/HospitalDashboard';
 
 const ProtectedRoute = ({ children, requireAdmin = false, allowedRoles = [] }) => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
+    
+    // Attendre que le chargement soit terminé
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dakar-emerald"></div>
+            </div>
+        );
+    }
+    
     if (!user) {
         return <Navigate to="/login" replace />;
     }
