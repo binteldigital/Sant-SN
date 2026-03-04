@@ -205,10 +205,18 @@ const FlashDashboard = () => {
         );
     }
 
+    // Historique des rendez-vous (passés et annulés)
+    const [showAllHistory, setShowAllHistory] = React.useState(false);
+    
     const history = [
         { title: 'Consultation Dermatologie', hospital: 'Clinique du Cap', date: '10 Jan 2026', status: 'Terminé' },
         { title: 'Analyse de Sang', hospital: 'CHNU Fann', date: 'Authorisé', status: 'Passé' },
     ];
+    
+    // Combiner les rendez-vous actuels avec l'historique pour "Tout voir"
+    const allAppointments = showAllHistory 
+        ? [...appointments, ...history.map(h => ({ ...h, isHistory: true }))]
+        : appointments;
 
     const displayName = user.full_name || user.name || 'Utilisateur';
     const initial = displayName.charAt(0).toUpperCase();
@@ -274,9 +282,18 @@ const FlashDashboard = () => {
                     </div>
                 ) : (
                     <div className="space-y-4">
-                        {appointments.map((rdv) => {
+                        {(showAllHistory ? [...appointments, ...history.map(h => ({ 
+                            ...h, 
+                            id: `history-${h.title}`,
+                            service: h.title,
+                            hospital_name: h.hospital,
+                            appointment_date: h.date,
+                            status: h.status === 'Terminé' ? 'completed' : 'cancelled',
+                            isHistory: true 
+                        }))] : appointments).map((rdv) => {
                             const statusBadge = getStatusBadge(rdv.status);
-                            const isCancelled = rdv.status === 'cancelled';
+                            const isCancelled = rdv.status === 'cancelled' || rdv.status === 'cancelled_by_patient';
+                            const isHistoryItem = rdv.isHistory || false;
                             
                             return (
                                 <div key={rdv.id} className={`relative overflow-hidden p-6 rounded-[32px] shadow-xl group transition-all duration-300 ${
@@ -346,7 +363,14 @@ const FlashDashboard = () => {
                                     )}
 
                                     {/* Action Buttons */}
-                                    {!isCancelled && rdv.status !== 'completed' ? (
+                                    {isHistoryItem ? (
+                                        // Rendez-vous de l'historique (pas d'actions)
+                                        <div className="mt-4 p-3 bg-white/10 rounded-2xl flex items-center justify-center gap-2 relative z-10">
+                                            <p className="text-xs font-bold text-white/80">
+                                                {rdv.status === 'completed' ? '✓ RENDEZ-VOUS TERMINÉ' : '✗ RENDEZ-VOUS ANNULÉ'}
+                                            </p>
+                                        </div>
+                                    ) : !isCancelled && rdv.status !== 'completed' ? (
                                         <div className="mt-4 flex gap-3 relative z-10">
                                             <button
                                                 onClick={() => handleCancel(rdv.id)}
@@ -393,7 +417,12 @@ const FlashDashboard = () => {
             <div className="px-6 py-4">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="font-bold text-deep-charcoal">Historique</h2>
-                    <button className="text-xs text-gray-400 font-bold hover:text-dakar-emerald">TOUT VOIR</button>
+                    <button 
+                        onClick={() => setShowAllHistory(!showAllHistory)}
+                        className="text-xs text-gray-400 font-bold hover:text-dakar-emerald transition-colors"
+                    >
+                        {showAllHistory ? 'RÉDUIRE' : 'TOUT VOIR'}
+                    </button>
                 </div>
                 <div className="space-y-3">
                     {history.map((item, i) => (
