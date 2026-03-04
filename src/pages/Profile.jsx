@@ -16,7 +16,7 @@ import {
     Loader2,
     HeartPulse
 } from 'lucide-react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
@@ -25,6 +25,15 @@ const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [formData, setFormData] = useState({});
+
+    // Rediriger les admins vers le panel admin
+    useEffect(() => {
+        if (user && ['super_admin', 'support'].includes(user.role)) {
+            navigate('/admin', { replace: true });
+        } else if (user && ['hospital_admin', 'doctor'].includes(user.role)) {
+            navigate('/hospital-admin', { replace: true });
+        }
+    }, [user, navigate]);
 
     // Initialize form data when user changes
     useEffect(() => {
