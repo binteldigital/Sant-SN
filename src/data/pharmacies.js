@@ -2008,5 +2008,20 @@ export const pharmacies = [
         "phone": "+221 33 892 60 56",
         "email": "",
         "website": ""
+    },
+    {
+        "id": 135,
+        "name": "Pharmacie Anne et Juliette",
+        "pharmacist": "",
+        "quartier": "Médina",
+        "district": "Dakar Centre",
+        "address": "Av. Blaise Diagne, Dakar",
+        "coords": {
+            "lat": 14.677725,
+            "lng": -17.446433
+        },
+        "phone": "+221 33 822 57 56",
+        "email": "",
+        "website": ""
     }
 ];
