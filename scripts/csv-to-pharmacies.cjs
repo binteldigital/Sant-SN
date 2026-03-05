@@ -85,6 +85,7 @@ const data = parseCSV(csvContent);
 const pharmacies = data.map((row, index) => ({
     id: index + 1,
     name: row['NOM DE LA PHARMACIE'] || '',
+    pharmacist: '', // Champ vide pour l'instant
     quartier: row['QUARTIER / ZONE'] || '',
     district: getDistrict(row['QUARTIER / ZONE']),
     address: row['ADRESSE / LOCALISATION'] || '',

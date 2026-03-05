@@ -2,7 +2,6 @@ export const pharmacies = [
     {
         "id": 1,
         "name": "Pharmacie Pasteur",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Av Pasteur, Plateau",
@@ -17,7 +16,6 @@ export const pharmacies = [
     {
         "id": 2,
         "name": "Pharmacie Anna Kadet",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "En face Hopital Le Dantec, Corniche Est",
@@ -32,7 +30,6 @@ export const pharmacies = [
     {
         "id": 3,
         "name": "Pharmacie Cheikh Ahmadou Bamba",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "95 Avenue Place 116, Plateau",
@@ -47,7 +44,6 @@ export const pharmacies = [
     {
         "id": 4,
         "name": "Pharmacie Du Plateau",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "70, Rue Carnot x Lamine Gueye",
@@ -62,7 +58,6 @@ export const pharmacies = [
     {
         "id": 5,
         "name": "Pharmacie Lamine Guèye",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "22, Ave. Pdt Lamine Gueye",
@@ -77,7 +72,6 @@ export const pharmacies = [
     {
         "id": 6,
         "name": "Pharmacie Wagane Diouf",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "rue Wagane Diouf X Abdou K. Bourgi",
@@ -92,7 +86,6 @@ export const pharmacies = [
     {
         "id": 7,
         "name": "Pharmacie Guigon",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "101, Ave. Lamine Guèye",
@@ -107,7 +100,6 @@ export const pharmacies = [
     {
         "id": 8,
         "name": "Pharmacie Abdoul Birane Wane",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "N°27 Av. L. Guèye x rue Laperine",
@@ -122,7 +114,6 @@ export const pharmacies = [
     {
         "id": 9,
         "name": "Pharmacie Africaine",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "33, Av Lamine Guèye X A. Goux",
@@ -137,7 +128,6 @@ export const pharmacies = [
     {
         "id": 10,
         "name": "Pharmacie Allées Canard",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "N° 7, Allées Robert Delmas",
@@ -152,7 +142,6 @@ export const pharmacies = [
     {
         "id": 11,
         "name": "Pharmacie Avicennes",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Av. Faidherbe X 16bis, rue Moussé Diop",
@@ -167,7 +156,6 @@ export const pharmacies = [
     {
         "id": 12,
         "name": "Pharmacie Boisson",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "3, Rue Parent",
@@ -182,7 +170,6 @@ export const pharmacies = [
     {
         "id": 13,
         "name": "Pharmacie Co.Pha.Se.",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Av Félix Eboué",
@@ -197,7 +184,6 @@ export const pharmacies = [
     {
         "id": 14,
         "name": "Pharmacie Dardanelles",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Rue des Dardanelles",
@@ -212,7 +198,6 @@ export const pharmacies = [
     {
         "id": 15,
         "name": "Pharmacie de l'Islam",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "42, ave. Emile Badiane",
@@ -227,7 +212,6 @@ export const pharmacies = [
     {
         "id": 16,
         "name": "Pharmacie de la Mosquée",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "24, Rue Mohamed V",
@@ -242,7 +226,6 @@ export const pharmacies = [
     {
         "id": 17,
         "name": "Pharmacie de la Poste",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Blaise Diagne x Rue 1",
@@ -257,7 +240,6 @@ export const pharmacies = [
     {
         "id": 18,
         "name": "Pharmacie Drugstore",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "60, Ave. G. Pompidou",
@@ -272,7 +254,6 @@ export const pharmacies = [
     {
         "id": 19,
         "name": "Pharmacie du Cap Vert",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "139, Ave. Pdt Lamine Gueye",
@@ -287,7 +268,6 @@ export const pharmacies = [
     {
         "id": 20,
         "name": "Pharmacie du Port",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Bvld de l'Arsenal",
@@ -302,7 +282,6 @@ export const pharmacies = [
     {
         "id": 21,
         "name": "Pharmacie du Théâtre",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Imm. Sorano, Blvd. de la République",
@@ -317,7 +296,6 @@ export const pharmacies = [
     {
         "id": 22,
         "name": "Pharmacie Fahd",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "12, blvd. Djily Mbaye",
@@ -332,7 +310,6 @@ export const pharmacies = [
     {
         "id": 23,
         "name": "Pharmacie Faidherbe",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Ave. Faidherbe x Tolbiac",
@@ -347,7 +324,6 @@ export const pharmacies = [
     {
         "id": 24,
         "name": "Pharmacie Fatima",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "9, Ave. Pétersen x Escarfait",
@@ -362,7 +338,6 @@ export const pharmacies = [
     {
         "id": 25,
         "name": "Pharmacie Gallieni",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Ave. Brière de l'Isle x Rue Gallieni",
@@ -377,7 +352,6 @@ export const pharmacies = [
     {
         "id": 26,
         "name": "Pharmacie Gambetta",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "114, Av. Pdt Lamine Guèye",
@@ -392,7 +366,6 @@ export const pharmacies = [
     {
         "id": 27,
         "name": "Pharmacie Gorom",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Av. J. Jaurès X rue A. A. Ndoye",
@@ -407,7 +380,6 @@ export const pharmacies = [
     {
         "id": 28,
         "name": "Pharmacie Guet",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Rue Huart X rue Parchappe",
@@ -422,7 +394,6 @@ export const pharmacies = [
     {
         "id": 29,
         "name": "Pharmacie Kermel",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "1, Place Kermel",
@@ -437,7 +408,6 @@ export const pharmacies = [
     {
         "id": 30,
         "name": "Pharmacie Lat Dior",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Allées Papa G. Fall, Face Gde Mosquée",
@@ -452,7 +422,6 @@ export const pharmacies = [
     {
         "id": 31,
         "name": "Pharmacie Nation",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "153, Ave. Pdt Lamine Gueye",
@@ -467,7 +436,6 @@ export const pharmacies = [
     {
         "id": 32,
         "name": "Pharmacie Nelson Mandela",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "12, Avenue Nelson Mandela",
@@ -482,7 +450,6 @@ export const pharmacies = [
     {
         "id": 33,
         "name": "Pharmacie Ngorba",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "rue Vincens x rue Amadou L. Ndoye",
@@ -497,7 +464,6 @@ export const pharmacies = [
     {
         "id": 34,
         "name": "Pharmacie Ponty",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "9, rue de Thiong x W. Diouf",
@@ -512,7 +478,6 @@ export const pharmacies = [
     {
         "id": 35,
         "name": "Pharmacie République",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "15, blvd. de la République",
@@ -527,7 +492,6 @@ export const pharmacies = [
     {
         "id": 36,
         "name": "Pharmacie Rolland",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "37, rue Abdou Karim Bourgi",
@@ -542,7 +506,6 @@ export const pharmacies = [
     {
         "id": 37,
         "name": "Pharmacie Rond Point",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "55, ave. Albert Sarraut",
@@ -557,7 +520,6 @@ export const pharmacies = [
     {
         "id": 38,
         "name": "Pharmacie Sainte Anne",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "Rue Ambroise Mendy X Mangin",
@@ -572,7 +534,6 @@ export const pharmacies = [
     {
         "id": 39,
         "name": "Pharmacie Sandaga",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "15, ave. J. Jaurès X Ave. A. Peytavin",
@@ -587,7 +548,6 @@ export const pharmacies = [
     {
         "id": 40,
         "name": "Pharmacie Téranga",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "68, rue Dr Théze X F. Faure",
@@ -602,7 +562,6 @@ export const pharmacies = [
     {
         "id": 41,
         "name": "Pharmacie Vital",
-        "pharmacist": "",
         "quartier": "Plateau",
         "district": "Dakar Centre",
         "address": "36, rue M. Diop X Grasland",
@@ -617,7 +576,6 @@ export const pharmacies = [
     {
         "id": 42,
         "name": "Pharmacie Aimé Césaire",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Rue FN 20, Fann",
@@ -632,7 +590,6 @@ export const pharmacies = [
     {
         "id": 43,
         "name": "Pharmacie Point-E",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Boulevard de l'est, Point-E",
@@ -647,7 +604,6 @@ export const pharmacies = [
     {
         "id": 44,
         "name": "Pharmacie Résidence Serigne Malick Diéye",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Point-E à la rue Axrue 3 et 4",
@@ -662,7 +618,6 @@ export const pharmacies = [
     {
         "id": 45,
         "name": "Pharmacie Birago Diop",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Avenue Birago Diop, Point-E",
@@ -677,7 +632,6 @@ export const pharmacies = [
     {
         "id": 46,
         "name": "Pharmacie Fann-Hock",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Rue 55 x 70, Fann-Hock",
@@ -692,7 +646,6 @@ export const pharmacies = [
     {
         "id": 47,
         "name": "Pharmacie Signara",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Km 4,5 avenue Cheikh Anta Diop",
@@ -707,7 +660,6 @@ export const pharmacies = [
     {
         "id": 48,
         "name": "Pharmacie Keur Jaraff",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Allées Seydou Nourou Tall",
@@ -722,7 +674,6 @@ export const pharmacies = [
     {
         "id": 49,
         "name": "Pharmacie Besse",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Av. Bourguiba face Ecole de Police",
@@ -737,7 +688,6 @@ export const pharmacies = [
     {
         "id": 50,
         "name": "Pharmacie Selma",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Amitié III n° 4418",
@@ -752,7 +702,6 @@ export const pharmacies = [
     {
         "id": 51,
         "name": "Pharmacie Ndoss",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Avenue Cheikh Anta, Point-E",
@@ -767,7 +716,6 @@ export const pharmacies = [
     {
         "id": 52,
         "name": "Pharmacie Sedami",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Amitié III, VDN",
@@ -782,7 +730,6 @@ export const pharmacies = [
     {
         "id": 53,
         "name": "Pharmacie le Parcours",
-        "pharmacist": "",
         "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
         "address": "Sicap Amitié I, villa n°3037",
@@ -797,7 +744,6 @@ export const pharmacies = [
     {
         "id": 54,
         "name": "Pharmacie Demba Koita",
-        "pharmacist": "",
         "quartier": "Mermoz",
         "district": "Dakar Ouest",
         "address": "Immeuble Helysee, 1 Rue MZ 83",
@@ -812,7 +758,6 @@ export const pharmacies = [
     {
         "id": 55,
         "name": "Pharmacie Sonatel 1",
-        "pharmacist": "",
         "quartier": "Grand Yoff",
         "district": "Dakar Nord",
         "address": "Derrière l'hôpital SAMU",
@@ -827,7 +772,6 @@ export const pharmacies = [
     {
         "id": 56,
         "name": "Pharmacie Mignel",
-        "pharmacist": "",
         "quartier": "Grand Yoff",
         "district": "Dakar Nord",
         "address": "Marché Grand Yoff",
@@ -842,7 +786,6 @@ export const pharmacies = [
     {
         "id": 57,
         "name": "Pharmacie Incha Allah",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Rue 11, Grand-Dakar",
@@ -857,7 +800,6 @@ export const pharmacies = [
     {
         "id": 58,
         "name": "Pharmacie des Allees",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Zone B",
@@ -872,7 +814,6 @@ export const pharmacies = [
     {
         "id": 59,
         "name": "Pharmacie Borom Daradji",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "143, Grand-Dakar",
@@ -887,7 +828,6 @@ export const pharmacies = [
     {
         "id": 60,
         "name": "Pharmacie Mame Fatou BA",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Zone A, Bd Général De Gaulle",
@@ -902,7 +842,6 @@ export const pharmacies = [
     {
         "id": 61,
         "name": "Pharmacie Dabakh Malick GD",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Rue Abébé bikila n°308",
@@ -917,7 +856,6 @@ export const pharmacies = [
     {
         "id": 62,
         "name": "Pharmacie CAP-SANTE",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Grand-Dakar, rue CL FayeXGD 35, Zone A",
@@ -932,7 +870,6 @@ export const pharmacies = [
     {
         "id": 63,
         "name": "Pharmacie Darabis",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Sicap Darabis",
@@ -947,7 +884,6 @@ export const pharmacies = [
     {
         "id": 64,
         "name": "Pharmacie de L'EMMANUEL",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Grand Dakar, parcelle n°370",
@@ -962,7 +898,6 @@ export const pharmacies = [
     {
         "id": 65,
         "name": "Pharmacie Masaalikul Jinaan",
-        "pharmacist": "",
         "quartier": "Grand Dakar",
         "district": "Dakar Sud",
         "address": "Cerf volant, Grand Dakar",
@@ -977,7 +912,6 @@ export const pharmacies = [
     {
         "id": 66,
         "name": "Pharmacie Diadji Abdou Diodio",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Usine Ben Tally",
@@ -992,7 +926,6 @@ export const pharmacies = [
     {
         "id": 67,
         "name": "Pharmacie Tidjany Mouhamed El Habib",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Niary Tally, Usines, n° 206",
@@ -1007,7 +940,6 @@ export const pharmacies = [
     {
         "id": 68,
         "name": "Pharmacie Macha-allah",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Rue 9, Bopp, villa n° 186",
@@ -1022,7 +954,6 @@ export const pharmacies = [
     {
         "id": 69,
         "name": "Pharmacie Biscuiterie",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Niary Tally face marché guélaw",
@@ -1037,7 +968,6 @@ export const pharmacies = [
     {
         "id": 70,
         "name": "Pharmacie du Grand-Dakar",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Niary Tally, Usines",
@@ -1052,7 +982,6 @@ export const pharmacies = [
     {
         "id": 71,
         "name": "Pharmacie Ouagou-Niayes",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Ouagou-Niayes n° 206",
@@ -1067,7 +996,6 @@ export const pharmacies = [
     {
         "id": 72,
         "name": "Pharmacie Kader DIOP",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Ouagou-Niayes I, Usine Parc",
@@ -1082,7 +1010,6 @@ export const pharmacies = [
     {
         "id": 73,
         "name": "Pharmacie El Hadji Mamadou Seydou BA",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Rue Casamance, villa n°133",
@@ -1097,7 +1024,6 @@ export const pharmacies = [
     {
         "id": 74,
         "name": "Pharmacie ben Tally",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Usine ben Tally N°2050",
@@ -1112,7 +1038,6 @@ export const pharmacies = [
     {
         "id": 75,
         "name": "Pharmacie Mariama Mbacke",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Cité bissap, Usine ben tally",
@@ -1127,7 +1052,6 @@ export const pharmacies = [
     {
         "id": 76,
         "name": "Pharmacie Coopé",
-        "pharmacist": "",
         "quartier": "Biscuiterie/Bopp",
         "district": "Dakar Centre",
         "address": "Usine Ben Tally",
@@ -1142,7 +1066,6 @@ export const pharmacies = [
     {
         "id": 77,
         "name": "Pharmacie Hamet Bathily",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "HLM III n° 880",
@@ -1157,7 +1080,6 @@ export const pharmacies = [
     {
         "id": 78,
         "name": "Pharmacie Espérance HLM Sokhna Rokh",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "HLM III n° 108",
@@ -1172,7 +1094,6 @@ export const pharmacies = [
     {
         "id": 79,
         "name": "Pharmacie Léopold Sédar Senghor",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "Immeuble Vanner, Marché HLM",
@@ -1187,7 +1108,6 @@ export const pharmacies = [
     {
         "id": 80,
         "name": "Pharmacie Corniche des HLM V",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "HLM V villa n° 1918",
@@ -1202,7 +1122,6 @@ export const pharmacies = [
     {
         "id": 81,
         "name": "Pharmacie Giga Santé",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "7 bis, rue 14 Domaine de la SODIDA",
@@ -1217,7 +1136,6 @@ export const pharmacies = [
     {
         "id": 82,
         "name": "Pharmacie Mamadou Racine SY",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "HLM VI, villa n° 2906",
@@ -1232,7 +1150,6 @@ export const pharmacies = [
     {
         "id": 83,
         "name": "Pharmacie Serigne Souhaibou Mbacké",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "Rue 13, Av Cheikh A. Bamba, Cité-Port-Bopp",
@@ -1247,7 +1164,6 @@ export const pharmacies = [
     {
         "id": 84,
         "name": "Pharmacie LA CLEMENCE",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "Hlm II, pelle n°679",
@@ -1262,7 +1178,6 @@ export const pharmacies = [
     {
         "id": 85,
         "name": "Pharmacie Mouhamed",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "HLM, Angle Mouss, villa n°2964",
@@ -1277,7 +1192,6 @@ export const pharmacies = [
     {
         "id": 86,
         "name": "Pharmacie Cite Douane",
-        "pharmacist": "",
         "quartier": "HLM",
         "district": "Dakar Sud",
         "address": "Non disponible",
@@ -1292,7 +1206,6 @@ export const pharmacies = [
     {
         "id": 87,
         "name": "Pharmacie Radja",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Scat-Urbam de Hann-Mariste J 84",
@@ -1307,7 +1220,6 @@ export const pharmacies = [
     {
         "id": 88,
         "name": "Pharmacie de l'étrier",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Hann, km 5",
@@ -1322,7 +1234,6 @@ export const pharmacies = [
     {
         "id": 89,
         "name": "Pharmacie HLM Maristes",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "HLM Maristes",
@@ -1337,7 +1248,6 @@ export const pharmacies = [
     {
         "id": 90,
         "name": "Pharmacie Couro",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Hann-Mariste II n° 197 R",
@@ -1352,7 +1262,6 @@ export const pharmacies = [
     {
         "id": 91,
         "name": "Pharmacie Mouhamadoul Amine",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Yarakh-Kip, Hann",
@@ -1367,7 +1276,6 @@ export const pharmacies = [
     {
         "id": 92,
         "name": "Pharmacie Touba",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Hann-Mariste",
@@ -1382,7 +1290,6 @@ export const pharmacies = [
     {
         "id": 93,
         "name": "Pharmacie Carrosserie",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Carrosserie Marchand",
@@ -1397,7 +1304,6 @@ export const pharmacies = [
     {
         "id": 94,
         "name": "Pharmacie de la Rocade",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Rocade Fann-Bel-air",
@@ -1412,7 +1318,6 @@ export const pharmacies = [
     {
         "id": 95,
         "name": "Pharmacie Hann-Yarakh",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Km 8, Bd du Centenaire, Hann-Yarakh",
@@ -1427,7 +1332,6 @@ export const pharmacies = [
     {
         "id": 96,
         "name": "Pharmacie Marinas",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Hann-Bel-Air, Route des Hydrocarbures",
@@ -1442,7 +1346,6 @@ export const pharmacies = [
     {
         "id": 97,
         "name": "Pharmacie Alliance Maristes",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "km 7, tableau Ferraille, Hann",
@@ -1457,7 +1360,6 @@ export const pharmacies = [
     {
         "id": 98,
         "name": "Pharmacie du Potou",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Nationale, route de Rufisque x rue 6",
@@ -1472,7 +1374,6 @@ export const pharmacies = [
     {
         "id": 99,
         "name": "Pharmacie Abdourahmane",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Scat-Urbam de Hann Mariste B65",
@@ -1487,7 +1388,6 @@ export const pharmacies = [
     {
         "id": 100,
         "name": "Pharmacie Hann-Mariste",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Hann, Route du Service Géographique",
@@ -1502,7 +1402,6 @@ export const pharmacies = [
     {
         "id": 101,
         "name": "Pharmacie Hann-Pecheurs",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Hann-Pécheurs",
@@ -1517,7 +1416,6 @@ export const pharmacies = [
     {
         "id": 102,
         "name": "Pharmacie Zahra",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "HLM de Hann-Mariste",
@@ -1532,7 +1430,6 @@ export const pharmacies = [
     {
         "id": 103,
         "name": "Pharmacie Espace Residence",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Espace Résidence III Hann Mariste",
@@ -1547,7 +1444,6 @@ export const pharmacies = [
     {
         "id": 104,
         "name": "Pharmacie BEL AIR PHARMACY",
-        "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "1292, 2 Av. Felix Eboue",
@@ -1562,7 +1458,6 @@ export const pharmacies = [
     {
         "id": 105,
         "name": "Pharmacie De La Renaissance",
-        "pharmacist": "",
         "quartier": "Ouakam",
         "district": "Dakar Ouest",
         "address": "Av Cheikh Anta Diop",
@@ -1577,7 +1472,6 @@ export const pharmacies = [
     {
         "id": 106,
         "name": "Pharmacie Des Mamelles",
-        "pharmacist": "",
         "quartier": "Ouakam",
         "district": "Dakar Ouest",
         "address": "Rond point des mamelles",
@@ -1592,7 +1486,6 @@ export const pharmacies = [
     {
         "id": 107,
         "name": "Pharmacie City Assembler",
-        "pharmacist": "",
         "quartier": "Ouakam",
         "district": "Dakar Ouest",
         "address": "Non disponible",
@@ -1607,7 +1500,6 @@ export const pharmacies = [
     {
         "id": 108,
         "name": "Pharmacie Al Amine",
-        "pharmacist": "",
         "quartier": "Parcelles Assainies",
         "district": "Dakar Nord",
         "address": "Non disponible",
@@ -1622,7 +1514,6 @@ export const pharmacies = [
     {
         "id": 109,
         "name": "Pharmacie Populaire",
-        "pharmacist": "",
         "quartier": "Parcelles Assainies",
         "district": "Dakar Nord",
         "address": "Unité 13",
@@ -1637,7 +1528,6 @@ export const pharmacies = [
     {
         "id": 110,
         "name": "Pharmacie Yacine",
-        "pharmacist": "",
         "quartier": "Parcelles Assainies",
         "district": "Dakar Nord",
         "address": "Près centre de santé Abdoul Aziz Sy Dabakh",
@@ -1652,7 +1542,6 @@ export const pharmacies = [
     {
         "id": 111,
         "name": "Pharmacie Mame Fama Sy",
-        "pharmacist": "",
         "quartier": "Parcelles Assainies",
         "district": "Dakar Nord",
         "address": "Non disponible",
@@ -1667,7 +1556,6 @@ export const pharmacies = [
     {
         "id": 112,
         "name": "Pharmacie du Royaume Sibuk",
-        "pharmacist": "",
         "quartier": "Parcelles Assainies",
         "district": "Dakar Nord",
         "address": "Parcelles Assainies U 17",
@@ -1682,7 +1570,6 @@ export const pharmacies = [
     {
         "id": 113,
         "name": "Pharmacie Baraka",
-        "pharmacist": "",
         "quartier": "Parcelles Assainies",
         "district": "Dakar Nord",
         "address": "Parcelles Assainies",
@@ -1697,7 +1584,6 @@ export const pharmacies = [
     {
         "id": 114,
         "name": "Pharmacie Bousso Dramé",
-        "pharmacist": "",
         "quartier": "Parcelles Assainies",
         "district": "Dakar Nord",
         "address": "Parcelles Assainies",
@@ -1712,7 +1598,6 @@ export const pharmacies = [
     {
         "id": 115,
         "name": "Pharmacie Cheikh Ibra Fall Yare",
-        "pharmacist": "",
         "quartier": "Yoff",
         "district": "Dakar Nord",
         "address": "Yoff 3",
@@ -1727,7 +1612,6 @@ export const pharmacies = [
     {
         "id": 116,
         "name": "Pharmacie El. H. Abdourahmane Mbengue",
-        "pharmacist": "",
         "quartier": "Yoff",
         "district": "Dakar Nord",
         "address": "Yoff Tonghor",
@@ -1742,7 +1626,6 @@ export const pharmacies = [
     {
         "id": 117,
         "name": "Pharmacie Victoire",
-        "pharmacist": "",
         "quartier": "Yoff",
         "district": "Dakar Nord",
         "address": "Ouest Foire Cité Jean Lefevre",
@@ -1757,7 +1640,6 @@ export const pharmacies = [
     {
         "id": 118,
         "name": "Pharmacie Xandar",
-        "pharmacist": "",
         "quartier": "Yoff",
         "district": "Dakar Nord",
         "address": "Cité Xandar Yoff ex villa 102",
@@ -1772,7 +1654,6 @@ export const pharmacies = [
     {
         "id": 119,
         "name": "Pharmacie Abdoulaye Mbengue",
-        "pharmacist": "",
         "quartier": "Thiaroye",
         "district": "Pikine",
         "address": "Thiaroye sur Mer",
@@ -1787,7 +1668,6 @@ export const pharmacies = [
     {
         "id": 120,
         "name": "Pharmacie S.M. Fadilou Mbacké",
-        "pharmacist": "",
         "quartier": "Patte D'oie",
         "district": "Dakar",
         "address": "Patte D'oie rue 11, derrière le centre de santé Nabil Choucair",
@@ -1802,7 +1682,6 @@ export const pharmacies = [
     {
         "id": 121,
         "name": "Pharmacie Pikinoise",
-        "pharmacist": "",
         "quartier": "Pikine",
         "district": "Pikine",
         "address": "Rte des Niayes, Djeddah 2",
@@ -1817,7 +1696,6 @@ export const pharmacies = [
     {
         "id": 122,
         "name": "Pharmacie El Amin Pikine",
-        "pharmacist": "",
         "quartier": "Pikine",
         "district": "Pikine",
         "address": "Marché central poisson",
@@ -1832,7 +1710,6 @@ export const pharmacies = [
     {
         "id": 123,
         "name": "Pharmacie du Rail / Pikine",
-        "pharmacist": "",
         "quartier": "Pikine",
         "district": "Pikine",
         "address": "Guignaw Rail / Pikine",
@@ -1847,7 +1724,6 @@ export const pharmacies = [
     {
         "id": 124,
         "name": "Pharmacie Aly Maram Wade",
-        "pharmacist": "",
         "quartier": "Pikine",
         "district": "Pikine",
         "address": "Non disponible",
@@ -1862,7 +1738,6 @@ export const pharmacies = [
     {
         "id": 125,
         "name": "Pharmacie Arrazak",
-        "pharmacist": "",
         "quartier": "Mbao",
         "district": "Pikine",
         "address": "Zac Mbao",
@@ -1877,7 +1752,6 @@ export const pharmacies = [
     {
         "id": 126,
         "name": "Pharmacie Grand Mbao",
-        "pharmacist": "",
         "quartier": "Mbao",
         "district": "Pikine",
         "address": "Dr Mohamed Traore",
@@ -1892,7 +1766,6 @@ export const pharmacies = [
     {
         "id": 127,
         "name": "Pharmacie Wassour",
-        "pharmacist": "",
         "quartier": "Grand Mbao",
         "district": "Pikine",
         "address": "Grand Mbao",
@@ -1907,7 +1780,6 @@ export const pharmacies = [
     {
         "id": 128,
         "name": "Pharmacie Marie Esseteine Manga",
-        "pharmacist": "",
         "quartier": "Keur Massar",
         "district": "Keur Massar",
         "address": "Jaxaay 2, près de l'ancien terminus 70",
@@ -1922,7 +1794,6 @@ export const pharmacies = [
     {
         "id": 129,
         "name": "Pharmacie Thierno M.Seydou BA",
-        "pharmacist": "",
         "quartier": "Guédiawaye",
         "district": "Guédiawaye",
         "address": "En face de l'hôpital Roi Baudouin, Guédiawaye",
@@ -1937,7 +1808,6 @@ export const pharmacies = [
     {
         "id": 130,
         "name": "Pharmacie Thiele",
-        "pharmacist": "",
         "quartier": "Guédiawaye",
         "district": "Guédiawaye",
         "address": "Guédiawaye Marché Boubes",
@@ -1952,7 +1822,6 @@ export const pharmacies = [
     {
         "id": 131,
         "name": "Pharmacie Sant Yalla",
-        "pharmacist": "",
         "quartier": "Guédiawaye",
         "district": "Guédiawaye",
         "address": "Guédiawaye",
@@ -1967,7 +1836,6 @@ export const pharmacies = [
     {
         "id": 132,
         "name": "Pharmacie Cheikh Wade Kadia",
-        "pharmacist": "",
         "quartier": "Guédiawaye",
         "district": "Guédiawaye",
         "address": "Non disponible",
@@ -1982,7 +1850,6 @@ export const pharmacies = [
     {
         "id": 133,
         "name": "Pharmacie Birane Ly",
-        "pharmacist": "",
         "quartier": "Keur Massar",
         "district": "Keur Massar",
         "address": "Keur Massar",
@@ -1997,7 +1864,6 @@ export const pharmacies = [
     {
         "id": 134,
         "name": "Pharmacie Tamba",
-        "pharmacist": "",
         "quartier": "Keur Massar",
         "district": "Keur Massar",
         "address": "Keur Massar Nord",

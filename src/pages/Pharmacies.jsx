@@ -121,11 +121,11 @@ const Pharmacies = () => {
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             list = list.filter(p =>
-                p.name.toLowerCase().includes(query) ||
-                p.address.toLowerCase().includes(query) ||
-                p.quartier.toLowerCase().includes(query) ||
-                p.pharmacist.toLowerCase().includes(query) ||
-                p.district.toLowerCase().includes(query)
+                p.name?.toLowerCase().includes(query) ||
+                p.address?.toLowerCase().includes(query) ||
+                p.quartier?.toLowerCase().includes(query) ||
+                (p.pharmacist && p.pharmacist.toLowerCase().includes(query)) ||
+                p.district?.toLowerCase().includes(query)
             );
         }
 
