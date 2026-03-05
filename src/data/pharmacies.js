@@ -1335,8 +1335,8 @@ export const pharmacies = [
         "department": "Dakar",
         "address": "Capa, Hann Bel Air, Dakar",
         "coords": {
-            "lat": 14.7193598,
-            "lng": -17.4323496
+            "lat": 14.7193116,
+            "lng": -17.4324544
         },
         "phone": "+221 33 832 37 77",
         "email": "",
@@ -1403,8 +1403,8 @@ export const pharmacies = [
         "department": "Dakar",
         "address": "Route des Brasseries, Centenaire, Dakar",
         "coords": {
-            "lat": 14.705,
-            "lng": -17.424
+            "lat": 14.6931736,
+            "lng": -17.4369226
         },
         "phone": "+221 33 832 47 62",
         "email": "",
@@ -2423,8 +2423,8 @@ export const pharmacies = [
         "department": "Dakar",
         "address": "PH3F+9C9, Dakar",
         "coords": {
-            "lat": 14.708145,
-            "lng": -17.4294618
+            "lat": 14.7034038,
+            "lng": -17.4263737
         },
         "phone": "+221 33 832 34 98",
         "email": "",
