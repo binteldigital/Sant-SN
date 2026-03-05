@@ -1,2432 +1,1877 @@
 export const pharmacies = [
     {
         "id": 1,
-        "name": "Pharmacie Abdoul Birane Wane",
-        "pharmacist": "Dr Fatou GUEYE OUATTARA",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "N°27 Av. Lamine Guèye x Rue Lapérine, Dakar Plateau",
-        "coords": {
-            "lat": 14.673,
-            "lng": -17.436
-        },
-        "phone": "+221 33 823 96 16",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 2,
-        "name": "Pharmacie Abdoulaye (Sacré-Cœur)",
-        "pharmacist": "Dr TOP N'Dèye Fatou Ndiaye",
-        "quartier": "Sacré-Cœur",
-        "commune": "SICAP",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Sacré-Cœur I, Villa n°8466, Dakar",
-        "coords": {
-            "lat": 14.715,
-            "lng": -17.473
-        },
-        "phone": "+221 33 864 49 26",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 3,
-        "name": "Pharmacie Abou Houreyra",
-        "pharmacist": "Dr SOW Oumar",
-        "quartier": "Sotrac Mermoz",
-        "commune": "Mermoz",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "19, Sotrac Mermoz, Dakar",
-        "coords": {
-            "lat": 14.7093429,
-            "lng": -17.4770379
-        },
-        "phone": "+221 33 860 32 02",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 4,
-        "name": "Pharmacie Adja Sokhna Fall",
-        "pharmacist": "Dr Ndèye Sokhna Amy Ka SANÉ",
-        "quartier": "Liberté 6 Extension",
-        "commune": "SICAP",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "14, Cité des Jeunes Cadres Lébous, Liberté 6 Ext., VDN, Dakar",
-        "coords": {
-            "lat": 14.72,
-            "lng": -17.475
-        },
-        "phone": "+221 33 867 21 98",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 5,
-        "name": "Pharmacie Adji Maguette",
-        "pharmacist": "Dr André Marie François DIEME",
-        "quartier": "Liberté 6 Extension",
-        "commune": "SICAP",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Liberté 6 Extension, Blvd du Camp Pénal, Dakar",
-        "coords": {
-            "lat": 14.7195,
-            "lng": -17.4755
-        },
-        "phone": "+221 33 867 00 68",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 6,
-        "name": "Pharmacie Africaine",
-        "pharmacist": "Dr Mohamed NISSR",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "33, Av. Lamine Guèye x A. Goux, BP 435, Dakar Plateau",
-        "coords": {
-            "lat": 14.6725,
-            "lng": -17.435
-        },
-        "phone": "+221 33 823 44 68",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 7,
-        "name": "Pharmacie Aimé Césaire",
-        "pharmacist": "Dr Sokhna Boye SOUMARÉ",
-        "quartier": "Fann Résidence",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue Aimé Césaire, Fann Résidence, BP 5609, Dakar",
-        "coords": {
-            "lat": 14.694,
-            "lng": -17.464
-        },
-        "phone": "+221 33 825 44 23",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 8,
-        "name": "Pharmacie Al Amin",
-        "pharmacist": "Dr Ndèye Coumba Aw MARA",
-        "quartier": "Sacré-Cœur 3",
-        "commune": "SICAP",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Sacré-Cœur 3, Villa n°84, Dakar",
-        "coords": {
-            "lat": 14.718,
-            "lng": -17.474
-        },
-        "phone": "+221 33 860 14 04",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 9,
-        "name": "Pharmacie Allées Canard",
-        "pharmacist": "Dr Firyalle Ghozayel CHARARA",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "N°7, Allées Robert Delmas, Dakar Plateau",
-        "coords": {
-            "lat": 14.674,
-            "lng": -17.4355
-        },
-        "phone": "+221 33 823 57 65",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 10,
-        "name": "Pharmacie Anarogil",
-        "pharmacist": "Dr Akouman Reine Elise ANANE",
-        "quartier": "Liberté 6 Extension",
-        "commune": "SICAP",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Cité CPI, Parcelle 100, Liberté 6 Extension, Dakar",
-        "coords": {
-            "lat": 14.7205,
-            "lng": -17.476
-        },
-        "phone": "+221 33 867 10 90",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 11,
-        "name": "Pharmacie Apotheke",
-        "pharmacist": "Dr NDAW Djamal Abdoul Ahad",
-        "quartier": "Médina",
-        "commune": "Médina",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "676 bis, Rue 6 x 31, Médina, Dakar",
-        "coords": {
-            "lat": 14.683,
-            "lng": -17.449
-        },
-        "phone": "+221 33 823 85 47",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 12,
-        "name": "Pharmacie Avicennes",
-        "pharmacist": "Dr Fatmé Nazzal GHADBOUNE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Faidherbe x 16bis, Rue Moussé Diop, Dakar Plateau",
-        "coords": {
-            "lat": 14.672,
-            "lng": -17.434
-        },
-        "phone": "+221 33 823 54 93",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 13,
-        "name": "Pharmacie Birago Diop",
-        "pharmacist": "Dr Alioune Badara DIOP",
-        "quartier": "Point E",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue 5, Av. Birago Diop, Point E, Dakar",
-        "coords": {
-            "lat": 14.698,
-            "lng": -17.467
-        },
-        "phone": "+221 33 825 96 96",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 14,
-        "name": "Pharmacie Biscuiterie",
-        "pharmacist": "Dr René Jean François CARVALHO",
-        "quartier": "Niary Tally",
-        "commune": "Biscuiterie",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Niary Tally, face Marché Guélaw, Dakar",
-        "coords": {
-            "lat": 14.702,
-            "lng": -17.472
-        },
-        "phone": "+221 33 864 43 38",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 15,
-        "name": "Pharmacie Blaise Diagne",
-        "pharmacist": "Dr Samba Amady SOW",
-        "quartier": "Médina",
-        "commune": "Médina",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue 15 x Blaise Diagne, Médina, Dakar",
-        "coords": {
-            "lat": 14.684,
-            "lng": -17.45
-        },
-        "phone": "+221 33 821 26 70",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 16,
-        "name": "Pharmacie Boisson",
-        "pharmacist": "Dr Mohamed FARHAT",
-        "quartier": "Plateau – Kermel",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "3, Rue Parent, Place Kermel, Dakar Plateau",
-        "coords": {
-            "lat": 14.671,
-            "lng": -17.438
-        },
-        "phone": "+221 33 821 17 14",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 17,
-        "name": "Pharmacie Borom Daradji",
-        "pharmacist": "Dr Alioune Badara NDIAYE",
-        "quartier": "Grand Dakar",
-        "commune": "Grand Dakar",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Marché Grand Dakar, Dakar",
-        "coords": {
-            "lat": 14.705489,
-            "lng": -17.4568891
-        },
-        "phone": "+221 33 824 66 33",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 18,
-        "name": "Pharmacie Bourguiba",
-        "pharmacist": "Dr Papa Amadou NDIAYE",
-        "quartier": "Fann",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Bourguiba x Rue 12, BP 15166, Dakar Fann",
-        "coords": {
-            "lat": 14.693,
-            "lng": -17.465
-        },
-        "phone": "+221 33 824 59 92",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 19,
-        "name": "Pharmacie Béne Tally",
-        "pharmacist": "Dr Maïmouna SOUMAH",
-        "quartier": "Béne Tally",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Usine Béne Tally, Dakar",
-        "coords": {
-            "lat": 14.713654,
-            "lng": -17.4498777
-        },
-        "phone": "+221 33 825 44 62",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 20,
-        "name": "Pharmacie CO.PHA.SE.",
-        "pharmacist": "Mr Prosper AWUVE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Félix Eboué, BP 7656, Dakar Plateau",
-        "coords": {
-            "lat": 14.67,
-            "lng": -17.439
-        },
-        "phone": "+221 33 849 32 90",
-        "email": "cophase@cophase.sn",
-        "website": ""
-    },
-    {
-        "id": 21,
-        "name": "Pharmacie Camp Leclerc",
-        "pharmacist": "Dr DIALLO Aminata Seck",
-        "quartier": "Liberté 6 Extension",
-        "commune": "SICAP",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Liberté VI Extension n°146, Dakar",
-        "coords": {
-            "lat": 14.7316926,
-            "lng": -17.4614376
-        },
-        "phone": "+221 33 867 26 26",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 22,
-        "name": "Pharmacie Cephas",
-        "pharmacist": "Dr Marie Emilienne TAVARES",
-        "quartier": "Fass Paillote",
-        "commune": "Médina",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Fass Paillote 6C, Dakar",
-        "coords": {
-            "lat": 14.688,
-            "lng": -17.453
-        },
-        "phone": "+221 33 823 26 39",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 23,
-        "name": "Pharmacie Dakar-Gorée",
-        "pharmacist": "Dr Aïta Paye NDIAYE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "8, Rue des Messageries, Mole 2, Dakar Plateau",
-        "coords": {
-            "lat": 14.6715,
-            "lng": -17.44
-        },
-        "phone": "+221 33 823 13 60",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 24,
-        "name": "Pharmacie Dakaroise",
-        "pharmacist": "Mme MBODJI Aïchatou",
-        "quartier": "Plateau – Place Indépendance",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Place de l'Indépendance, Dakar Plateau",
-        "coords": {
-            "lat": 14.6695327,
-            "lng": -17.4320569
-        },
-        "phone": "+221 33 821 10 64",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 25,
-        "name": "Pharmacie Dardanelles",
-        "pharmacist": "Dr Yasmine HACHEM",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue des Dardanelles, en face Ex Service d'Hygiène, Dakar Plateau",
-        "coords": {
-            "lat": 14.673,
-            "lng": -17.433
-        },
-        "phone": "+221 33 821 15 20",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 26,
-        "name": "Pharmacie De l'Islam",
-        "pharmacist": "Dr Ifafe ATTYÉ",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "42, Av. Emile Badiane, Dakar Plateau",
-        "coords": {
-            "lat": 14.6725,
-            "lng": -17.436
-        },
-        "phone": "+221 33 821 05 66",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 27,
-        "name": "Pharmacie De l'Obélisque",
-        "pharmacist": "Dr Boumy SÉNE",
-        "quartier": "Biscuiterie / Gueule Tapée",
-        "commune": "Médina",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Ch. Ah. Bamba, en face Lycée Kennedy, Dakar",
-        "coords": {
-            "lat": 14.686,
-            "lng": -17.4515
-        },
-        "phone": "+221 33 822 02 32",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 28,
-        "name": "Pharmacie De la Mosquée",
-        "pharmacist": "Dr Monique Paris IMBO",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "24, Rue Mohamed V, Dakar Plateau",
-        "coords": {
-            "lat": 14.6665407,
-            "lng": -17.4342353
-        },
-        "phone": "+221 33 822 88 01",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 29,
-        "name": "Pharmacie De la Paix",
-        "pharmacist": "Dr Khadidiatou BODIAN",
-        "quartier": "Liberté 6",
-        "commune": "SICAP",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Immeuble A, Liberté 6, Dakar",
-        "coords": {
-            "lat": 14.722,
-            "lng": -17.477
-        },
-        "phone": "+221 33 827 87 17",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 30,
-        "name": "Pharmacie De la Piste",
-        "pharmacist": "Dr Nancy Seck FALL",
-        "quartier": "Mermoz",
-        "commune": "Mermoz",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Ancienne Piste Mermoz x VDN, Dakar",
-        "coords": {
-            "lat": 14.726,
-            "lng": -17.469
-        },
-        "phone": "+221 33 860 18 65",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 31,
-        "name": "Pharmacie De la Poste",
-        "pharmacist": "Dr André Blaise SECK",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Blaise Diagne x Rue 1, Dakar Plateau",
-        "coords": {
-            "lat": 14.6735,
-            "lng": -17.44
-        },
-        "phone": "+221 33 823 89 70",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 32,
-        "name": "Pharmacie De la Rue 6",
-        "pharmacist": "Dr Bassirou TRAORÉ",
-        "quartier": "Médina",
-        "commune": "Médina",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue 6 x 7, Médina, Dakar",
-        "coords": {
-            "lat": 14.6845535,
-            "lng": -17.4485717
-        },
-        "phone": "+221 33 842 53 12",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 33,
-        "name": "Pharmacie Derklé",
-        "pharmacist": "Dr Jean Pierre D'ALMEIDA",
-        "quartier": "Derklé",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "66, Rue I Derklé, Dakar",
-        "coords": {
-            "lat": 14.7,
-            "lng": -17.471
-        },
-        "phone": "+221 33 824 10 09",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 34,
-        "name": "Pharmacie Des Allées",
-        "pharmacist": "Dr Cheikh Sidy BÉYE",
-        "quartier": "Zone B",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Villa n°8A, Zone B, Dakar",
-        "coords": {
-            "lat": 14.696,
-            "lng": -17.468
-        },
-        "phone": "+221 33 825 23 68",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 35,
-        "name": "Pharmacie Drugstore",
-        "pharmacist": "Dr Solange Diallo DECUPPER",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "60, Av. G. Pompidou, Dakar Plateau",
-        "coords": {
-            "lat": 14.671,
-            "lng": -17.436
-        },
-        "phone": "+221 33 822 22 27",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 36,
-        "name": "Pharmacie Du Boulevard (Médina)",
-        "pharmacist": "Dr NDIAYE Aby Paye",
-        "quartier": "Médina",
-        "commune": "Médina",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue 22 x 45, Médina, Dakar",
-        "coords": {
-            "lat": 14.6847394,
-            "lng": -17.4489344
-        },
-        "phone": "+221 33 842 93 94",
-        "email": "abypaye22@yahoo.fr",
-        "website": ""
-    },
-    {
-        "id": 37,
-        "name": "Pharmacie Du Carrefour (Castors)",
-        "pharmacist": "Mr Médoune THIAM",
-        "quartier": "Castors",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue 13, Castors x Av. Bourguiba, Dakar",
-        "coords": {
-            "lat": 14.697,
-            "lng": -17.466
-        },
-        "phone": "+221 33 825 12 70",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 38,
-        "name": "Pharmacie Du Port",
-        "pharmacist": "Dr Ndèye Fatou DIA",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Blvd de l'Arsenal, face Grande Gare, Dakar Plateau",
-        "coords": {
-            "lat": 14.668,
-            "lng": -17.435
-        },
-        "phone": "+221 33 821 83 99",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 39,
-        "name": "Pharmacie Du Théâtre",
-        "pharmacist": "Dr Mariane NDIAYE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "N°47, Imm. Sorano, Blvd de la République, Dakar Plateau",
-        "coords": {
-            "lat": 14.672,
-            "lng": -17.437
-        },
-        "phone": "+221 33 822 56 66",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 40,
-        "name": "Pharmacie El Hadj Oumar Al Foutiyou Tall",
-        "pharmacist": "Dr Mariame Ibra Sy YOUM",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "N°18 Rue A. Angrand x Reims, BP 7043, Dakar Plateau",
-        "coords": {
-            "lat": 14.674,
-            "lng": -17.438
-        },
-        "phone": "+221 33 823 94 95",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 41,
-        "name": "Pharmacie El Hadj Tamsir Samb",
-        "pharmacist": "Dr Khoudia Sambe GUÉYE",
-        "quartier": "Gueule Tapée",
-        "commune": "Médina",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue 67 x 54, Gueule Tapée, Dakar",
-        "coords": {
-            "lat": 14.687,
-            "lng": -17.452
-        },
-        "phone": "+221 33 823 52 52",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 42,
-        "name": "Pharmacie Fahd",
-        "pharmacist": "Dr Mamadou TOURÉ",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "12, Blvd. Djily Mbaye, Dakar Plateau",
-        "coords": {
-            "lat": 14.6715,
-            "lng": -17.4355
-        },
-        "phone": "+221 33 821 14 48",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 43,
-        "name": "Pharmacie Faidherbe",
-        "pharmacist": "Dr Evelyne NDOYE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Faidherbe x Tolbiac, Dakar Plateau",
-        "coords": {
-            "lat": 14.672,
-            "lng": -17.433
-        },
-        "phone": "+221 33 821 08 39",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 44,
-        "name": "Pharmacie Fatima",
-        "pharmacist": "Dr Khaly SALL",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "9, Av. Pétersen x Escarfait, Dakar Plateau",
-        "coords": {
-            "lat": 14.673,
-            "lng": -17.436
-        },
-        "phone": "+221 33 842 87 88",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 45,
-        "name": "Pharmacie Gallieni",
-        "pharmacist": "Dr Fatou Guèye WADE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Brière de l'Isle x Rue Gallieni, Dakar Plateau",
-        "coords": {
-            "lat": 14.672,
-            "lng": -17.434
-        },
-        "phone": "+221 33 842 69 00",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 46,
-        "name": "Pharmacie Gambetta",
-        "pharmacist": "Dr Georges Khoury",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "114, Av. Pdt Lamine Guèye, Dakar Plateau",
-        "coords": {
-            "lat": 14.6728,
-            "lng": -17.4345
-        },
-        "phone": "+221 33 821 08 18",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 47,
-        "name": "Pharmacie Grand Dakar",
-        "pharmacist": "Dr Mame Anta Mbengue SALL",
-        "quartier": "Grand Dakar",
-        "commune": "Grand Dakar",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Grand Dakar, près de la SDE, Dakar",
-        "coords": {
-            "lat": 14.705,
-            "lng": -17.465
-        },
-        "phone": "+221 33 825 64 84",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 48,
-        "name": "Pharmacie Grande Pharmacie SAHM",
-        "pharmacist": "Dr Khoudia Diokhané TALL",
-        "quartier": "Fass",
-        "commune": "Dakar Fann",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Cheikh A. Diop (Hyper Sahm) x Fass, Dakar",
-        "coords": {
-            "lat": 14.69,
-            "lng": -17.462
-        },
-        "phone": "+221 33 822 14 61",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 49,
-        "name": "Pharmacie Guet",
-        "pharmacist": "Dr Mohamed GHANDOUR",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue Huart x Rue Parchappe, Imm. Fayçal, Dakar Plateau",
-        "coords": {
-            "lat": 14.671,
-            "lng": -17.437
-        },
-        "phone": "+221 33 822 73 72",
-        "email": "pharmaguet@capicom.sn",
-        "website": ""
-    },
-    {
-        "id": 50,
-        "name": "Pharmacie Guigon",
-        "pharmacist": "Dr Bernard Henri GUIGON",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "101, Av. Lamine Guèye, Dakar Plateau",
-        "coords": {
-            "lat": 14.6643802,
-            "lng": -17.4370088
-        },
-        "phone": "+221 33 823 03 33",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 51,
-        "name": "Pharmacie Hamet Bathily",
-        "pharmacist": "Dr Cheikh Tidiane BATHILY",
-        "quartier": "HLM III",
-        "commune": "Grand Dakar",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "HLM III, BP 80083, Dakar",
-        "coords": {
-            "lat": 14.708,
-            "lng": -17.468
-        },
-        "phone": "+221 33 864 16 69",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 52,
-        "name": "Pharmacie Ilot Petersen",
-        "pharmacist": "Dr Astou Mbène MBOUP",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "26, Av. Faidherbe prolongée, face Garage Petersen, Dakar Plateau",
-        "coords": {
-            "lat": 14.6715,
-            "lng": -17.4335
-        },
-        "phone": "+221 33 823 69 74",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 53,
-        "name": "Pharmacie Kermel",
-        "pharmacist": "Dr Aby Kane DIALLO",
-        "quartier": "Plateau – Kermel",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "1, Place Kermel, Dakar Plateau",
-        "coords": {
-            "lat": 14.6708,
-            "lng": -17.4378
-        },
-        "phone": "+221 33 822 43 34",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 54,
-        "name": "Pharmacie Lamine Guèye",
-        "pharmacist": "Dr Seynabou NDOYE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "22, Av. Pdt Lamine Guèye, BP 6053, Dakar Plateau",
-        "coords": {
-            "lat": 14.6728,
-            "lng": -17.436
-        },
-        "phone": "+221 33 822 36 76",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 55,
-        "name": "Pharmacie Lat Dior",
-        "pharmacist": "Dr Awa Guèye DIOP",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Allées Papa G. Fall, face Grande Mosquée, BP 27031, Dakar Plateau",
-        "coords": {
-            "lat": 14.672,
-            "lng": -17.439
-        },
-        "phone": "+221 33 822 41 74",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 56,
-        "name": "Pharmacie Nation",
-        "pharmacist": "Dr Aminata Gassama BALDE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "153, Av. Pdt Lamine Guèye, Dakar Plateau",
-        "coords": {
-            "lat": 14.673,
-            "lng": -17.435
-        },
-        "phone": "+221 33 823 44 01",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 57,
-        "name": "Pharmacie Nelson Mandela",
-        "pharmacist": "—",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "12, Avenue Nelson Mandela, Dakar Plateau",
-        "coords": {
-            "lat": 14.6630235,
-            "lng": -17.4377805
-        },
-        "phone": "+221 33 821 21 72",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 58,
-        "name": "Pharmacie Ngorba",
-        "pharmacist": "Dr GUEYE Ngane",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue Vincens x Rue Amadou L. Ndoye, Dakar Plateau",
-        "coords": {
-            "lat": 14.6718,
-            "lng": -17.4365
-        },
-        "phone": "+221 33 823 23 30",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 59,
         "name": "Pharmacie Pasteur",
-        "pharmacist": "Dr Ndèye Toutane Thiam NGOM",
         "quartier": "Plateau",
-        "commune": "Plateau",
         "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Av. Pasteur, côté Station Shell, Dakar Plateau",
+        "address": "Av Pasteur, Plateau",
         "coords": {
-            "lat": 14.6735,
-            "lng": -17.4345
+            "lat": 0,
+            "lng": 0
         },
         "phone": "+221 33 821 70 35",
         "email": "",
         "website": ""
     },
     {
-        "id": 60,
-        "name": "Pharmacie Ponty",
-        "pharmacist": "Dr Ibrahim Khalil DERWICHE",
+        "id": 2,
+        "name": "Pharmacie Anna Kadet",
         "quartier": "Plateau",
-        "commune": "Plateau",
         "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "9, Rue de Thiong x W. Diouf, Dakar Plateau",
+        "address": "En face Hopital Le Dantec, Corniche Est",
         "coords": {
-            "lat": 14.6722,
-            "lng": -17.436
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 849 50 90",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 3,
+        "name": "Pharmacie Cheikh Ahmadou Bamba",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "95 Avenue Place 116, Plateau",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 848 35 75",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 4,
+        "name": "Pharmacie Du Plateau",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "70, Rue Carnot x Lamine Gueye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 10 68",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 5,
+        "name": "Pharmacie Lamine Guèye",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "22, Ave. Pdt Lamine Gueye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 36 76",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 6,
+        "name": "Pharmacie Wagane Diouf",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "rue Wagane Diouf X Abdou K. Bourgi",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 842 92 32",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 7,
+        "name": "Pharmacie Guigon",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "101, Ave. Lamine Guèye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 03 33",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 8,
+        "name": "Pharmacie Abdoul Birane Wane",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "N°27 Av. L. Guèye x rue Laperine",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 96 16",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 9,
+        "name": "Pharmacie Africaine",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "33, Av Lamine Guèye X A. Goux",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 44 68",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 10,
+        "name": "Pharmacie Allées Canard",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "N° 7, Allées Robert Delmas",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 57 65",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 11,
+        "name": "Pharmacie Avicennes",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Av. Faidherbe X 16bis, rue Moussé Diop",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 54 93",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 12,
+        "name": "Pharmacie Boisson",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "3, Rue Parent",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 17 14",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 13,
+        "name": "Pharmacie Co.Pha.Se.",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Av Félix Eboué",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 849 32 90",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 14,
+        "name": "Pharmacie Dardanelles",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Rue des Dardanelles",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 15 20",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 15,
+        "name": "Pharmacie de l'Islam",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "42, ave. Emile Badiane",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 05 66",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 16,
+        "name": "Pharmacie de la Mosquée",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "24, Rue Mohamed V",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 88 01",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 17,
+        "name": "Pharmacie de la Poste",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Blaise Diagne x Rue 1",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 89 70",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 18,
+        "name": "Pharmacie Drugstore",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "60, Ave. G. Pompidou",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 22 27",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 19,
+        "name": "Pharmacie du Cap Vert",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "139, Ave. Pdt Lamine Gueye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 74 06",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 20,
+        "name": "Pharmacie du Port",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Bvld de l'Arsenal",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 83 99",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 21,
+        "name": "Pharmacie du Théâtre",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Imm. Sorano, Blvd. de la République",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 56 66",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 22,
+        "name": "Pharmacie Fahd",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "12, blvd. Djily Mbaye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 14 48",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 23,
+        "name": "Pharmacie Faidherbe",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Ave. Faidherbe x Tolbiac",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 08 39",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 24,
+        "name": "Pharmacie Fatima",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "9, Ave. Pétersen x Escarfait",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 842 87 88",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 25,
+        "name": "Pharmacie Gallieni",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Ave. Brière de l'Isle x Rue Gallieni",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 842 69 00",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 26,
+        "name": "Pharmacie Gambetta",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "114, Av. Pdt Lamine Guèye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 08 18",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 27,
+        "name": "Pharmacie Gorom",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Av. J. Jaurès X rue A. A. Ndoye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 842 54 64",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 28,
+        "name": "Pharmacie Guet",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Rue Huart X rue Parchappe",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 73 72",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 29,
+        "name": "Pharmacie Kermel",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "1, Place Kermel",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 43 34",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 30,
+        "name": "Pharmacie Lat Dior",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Allées Papa G. Fall, Face Gde Mosquée",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 41 74",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 31,
+        "name": "Pharmacie Nation",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "153, Ave. Pdt Lamine Gueye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 44 01",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 32,
+        "name": "Pharmacie Nelson Mandela",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "12, Avenue Nelson Mandela",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 821 21 72",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 33,
+        "name": "Pharmacie Ngorba",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "rue Vincens x rue Amadou L. Ndoye",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 823 23 30",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 34,
+        "name": "Pharmacie Ponty",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "9, rue de Thiong x W. Diouf",
+        "coords": {
+            "lat": 0,
+            "lng": 0
         },
         "phone": "+221 33 822 47 78",
         "email": "",
         "website": ""
     },
     {
-        "id": 61,
-        "name": "Pharmacie Rolland",
-        "pharmacist": "Dr Francesca Viera Dasylva SARR",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "37, Rue Abdou Karim Bourgi, Dakar Plateau",
-        "coords": {
-            "lat": 14.6716301,
-            "lng": -17.436109
-        },
-        "phone": "+221 33 821 78 10",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 62,
-        "name": "Pharmacie Rond Point",
-        "pharmacist": "Dr Fary NDIAYE",
-        "quartier": "Plateau",
-        "commune": "Plateau",
-        "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "55, Av. Albert Sarraut, Dakar Plateau",
-        "coords": {
-            "lat": 14.669681,
-            "lng": -17.4294523
-        },
-        "phone": "+221 33 822 55 07",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 63,
+        "id": 35,
         "name": "Pharmacie République",
-        "pharmacist": "Dr Sokhna Diagne NDIAYE",
         "quartier": "Plateau",
-        "commune": "Plateau",
         "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "15, Blvd de la République, Dakar Plateau",
+        "address": "15, blvd. de la République",
         "coords": {
-            "lat": 14.6715,
-            "lng": -17.4365
+            "lat": 0,
+            "lng": 0
         },
         "phone": "+221 33 821 16 63",
         "email": "",
         "website": ""
     },
     {
-        "id": 64,
-        "name": "Pharmacie Sacré Cœur",
-        "pharmacist": "—",
-        "quartier": "Sicap Dieupeul",
-        "commune": "SICAP",
+        "id": 36,
+        "name": "Pharmacie Rolland",
+        "quartier": "Plateau",
         "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Sicap Dieupeul, en face Chez Iba, Dakar",
+        "address": "37, rue Abdou Karim Bourgi",
         "coords": {
-            "lat": 14.71,
-            "lng": -17.472
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 825 65 94",
+        "phone": "+221 33 821 78 10",
         "email": "",
         "website": ""
     },
     {
-        "id": 65,
-        "name": "Pharmacie Sainte Anne",
-        "pharmacist": "Dr HUCHARD Clarisse Monet",
+        "id": 37,
+        "name": "Pharmacie Rond Point",
         "quartier": "Plateau",
-        "commune": "Plateau",
         "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rue Ambroise Mendy x Mangin, Dakar Plateau",
+        "address": "55, ave. Albert Sarraut",
         "coords": {
-            "lat": 14.6732,
-            "lng": -17.4372
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 55 07",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 38,
+        "name": "Pharmacie Sainte Anne",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "Rue Ambroise Mendy X Mangin",
+        "coords": {
+            "lat": 0,
+            "lng": 0
         },
         "phone": "+221 33 842 88 17",
         "email": "",
         "website": ""
     },
     {
-        "id": 66,
-        "name": "Pharmacie Teranga",
-        "pharmacist": "—",
+        "id": 39,
+        "name": "Pharmacie Sandaga",
         "quartier": "Plateau",
-        "commune": "Plateau",
         "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "69, Rue Dr Thèze, Dakar Plateau",
+        "address": "15, ave. J. Jaurès X Ave. A. Peytavin",
         "coords": {
-            "lat": 14.6697054,
-            "lng": -17.4333448
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 822 88 83",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 40,
+        "name": "Pharmacie Téranga",
+        "quartier": "Plateau",
+        "district": "Dakar Centre",
+        "address": "68, rue Dr Théze X F. Faure",
+        "coords": {
+            "lat": 0,
+            "lng": 0
         },
         "phone": "+221 33 822 13 17",
         "email": "",
         "website": ""
     },
     {
-        "id": 67,
-        "name": "Pharmacie Touba Mbacké",
-        "pharmacist": "—",
-        "quartier": "Colobane",
-        "commune": "Médina",
+        "id": 41,
+        "name": "Pharmacie Vital",
+        "quartier": "Plateau",
         "district": "Dakar Centre",
-        "department": "Dakar",
-        "address": "Rond Point Colobane, Dakar",
+        "address": "36, rue M. Diop X Grasland",
         "coords": {
-            "lat": 14.6977511,
-            "lng": -17.4439387
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 824 68 12",
+        "phone": "+221 33 821 08 89",
         "email": "",
         "website": ""
     },
     {
-        "id": 68,
-        "name": "Pharmacie Abdou Mbengue (Yoff)",
-        "pharmacist": "Dr Arame Mbengue SECK",
-        "quartier": "Yoff Layène",
-        "commune": "Yoff",
+        "id": 42,
+        "name": "Pharmacie Aimé Césaire",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Yoff Layène, Route du Cimetière, Dakar",
+        "address": "Rue FN 20, Fann",
         "coords": {
-            "lat": 14.745,
-            "lng": -17.504
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 820 27 31",
+        "phone": "+221 33 825 44 23",
         "email": "",
         "website": ""
     },
     {
-        "id": 69,
-        "name": "Pharmacie Adja Marieme Fall (Cambérène)",
-        "pharmacist": "Dr NDIAYE El Hadji Cheikh",
-        "quartier": "Cambérène I",
-        "commune": "Cambérène",
+        "id": 43,
+        "name": "Pharmacie Point-E",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Cambérène I, Quartier Badou Seck, face Stade Municipal, Dakar",
+        "address": "Boulevard de l'est, Point-E",
         "coords": {
-            "lat": 14.758,
-            "lng": -17.48
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 835 38 29",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 70,
-        "name": "Pharmacie Aéroport",
-        "pharmacist": "Mme SAHELI Attye SOUHAM",
-        "quartier": "Yoff – Aéroport",
-        "commune": "Yoff",
+        "id": 44,
+        "name": "Pharmacie Résidence Serigne Malick Diéye",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Aéroport Léopold Sédar Senghor, Yoff, Dakar",
+        "address": "Point-E à la rue Axrue 3 et 4",
         "coords": {
-            "lat": 14.7397,
-            "lng": -17.4902
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 820 01 01",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 71,
-        "name": "Pharmacie Fana",
-        "pharmacist": "Mme Geneviève DIOUF",
-        "quartier": "Almadies",
-        "commune": "Almadies",
+        "id": 45,
+        "name": "Pharmacie Birago Diop",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Route du Méridien Almadies, Dakar",
+        "address": "Avenue Birago Diop, Point-E",
         "coords": {
-            "lat": 14.752,
-            "lng": -17.513
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 72,
-        "name": "Pharmacie L'Acacia (Ngor)",
-        "pharmacist": "—",
-        "quartier": "Ngor Diarama",
-        "commune": "Ngor",
+        "id": 46,
+        "name": "Pharmacie Fann-Hock",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Ngor Diarama, BP 8878, Dakar",
+        "address": "Rue 55 x 70, Fann-Hock",
         "coords": {
-            "lat": 14.746,
-            "lng": -17.5115
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 820 58 68",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 73,
-        "name": "Pharmacie Mamelles Cité Magistrats",
-        "pharmacist": "Dr Maguerite M. Ferreira Crato CISSE",
-        "quartier": "Mamelles",
-        "commune": "Ouakam",
+        "id": 47,
+        "name": "Pharmacie Signara",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Mamelles, Cité Magistrats, Dakar",
+        "address": "Km 4,5 avenue Cheikh Anta Diop",
         "coords": {
-            "lat": 14.739,
-            "lng": -17.5
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 860 24 24",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 74,
-        "name": "Pharmacie Ngor Oasis",
-        "pharmacist": "Mme NDIAYE Fatou Kiné",
-        "quartier": "Ngor",
-        "commune": "Ngor",
+        "id": 48,
+        "name": "Pharmacie Keur Jaraff",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Route de Ngor, Dakar",
+        "address": "Allées Seydou Nourou Tall",
         "coords": {
-            "lat": 14.7464058,
-            "lng": -17.5130403
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 75,
-        "name": "Pharmacie Patricia Thiaw (Yoff)",
-        "pharmacist": "Dr Patricia A.J. Puruenhnce THIAW",
-        "quartier": "Yoff Mbenguène",
-        "commune": "Yoff",
+        "id": 49,
+        "name": "Pharmacie Besse",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Yoff Mbenguène, près Frigo, Dakar",
+        "address": "Av. Bourguiba face Ecole de Police",
         "coords": {
-            "lat": 14.7465,
-            "lng": -17.506
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 820 92 86",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 76,
-        "name": "Pharmacie Serigne Habib Fall (Yoff)",
-        "pharmacist": "Dr Serigne Habib FALL",
-        "quartier": "Yoff Ndeugane",
-        "commune": "Yoff",
+        "id": 50,
+        "name": "Pharmacie Selma",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Yoff Ndeugane, près Complexe BCEAO, Villa n°482, Dakar",
+        "address": "Amitié III n° 4418",
         "coords": {
-            "lat": 14.747,
-            "lng": -17.5045
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 820 86 12",
+        "phone": "+221 33 864 73 10",
         "email": "",
         "website": ""
     },
     {
-        "id": 77,
-        "name": "Pharmacie Yoff Layène",
-        "pharmacist": "Dr NDIAYE Papa Mamadou",
-        "quartier": "Yoff Layène",
-        "commune": "Yoff",
+        "id": 51,
+        "name": "Pharmacie Ndoss",
+        "quartier": "Fann Point-E",
         "district": "Dakar Ouest",
-        "department": "Dakar",
-        "address": "Yoff Layène, Rue Seydi Thiaw Laye x Sokhna Oumy Laye, Dakar",
+        "address": "Avenue Cheikh Anta, Point-E",
         "coords": {
-            "lat": 14.7455,
-            "lng": -17.505
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 820 94 30",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 78,
-        "name": "Pharmacie Bel Air",
-        "pharmacist": "Dr Salimatou Barry BAH",
-        "quartier": "Hann Bel Air",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Rue Félix Eboué, Hann Bel Air, Dakar",
+        "id": 52,
+        "name": "Pharmacie Sedami",
+        "quartier": "Fann Point-E",
+        "district": "Dakar Ouest",
+        "address": "Amitié III, VDN",
         "coords": {
-            "lat": 14.712,
-            "lng": -17.422
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 832 77 93",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 79,
-        "name": "Pharmacie Capa",
-        "pharmacist": "Dr Fatimata TALLA",
-        "quartier": "Km 6 Capa",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Capa, Hann Bel Air, Dakar",
+        "id": 53,
+        "name": "Pharmacie le Parcours",
+        "quartier": "Fann Point-E",
+        "district": "Dakar Ouest",
+        "address": "Sicap Amitié I, villa n°3037",
         "coords": {
-            "lat": 14.7193116,
-            "lng": -17.4324544
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 832 37 77",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
-        "id": 80,
-        "name": "Pharmacie De l'Étrier",
-        "pharmacist": "Dr Arifa Caddoura BAALBAKI",
-        "quartier": "Hann Bel Air",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Blvd. C.C.Dakar, Hann Bel Air, Dakar",
+        "id": 54,
+        "name": "Pharmacie Demba Koita",
+        "quartier": "Mermoz",
+        "district": "Dakar Ouest",
+        "address": "Immeuble Helysee, 1 Rue MZ 83",
         "coords": {
-            "lat": 14.7095,
-            "lng": -17.419
-        },
-        "phone": "+221 33 832 34 98",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 81,
-        "name": "Pharmacie De la Cité (Dalifort)",
-        "pharmacist": "Dr Mariama Ndiaye SONKO",
-        "quartier": "Cité Hilal Hann Dalifort",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Cité Hilal Hann Dalifort, Dakar",
-        "coords": {
-            "lat": 14.715,
-            "lng": -17.413
-        },
-        "phone": "+221 33 832 36 68",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 82,
-        "name": "Pharmacie De la Famille (Front de Terre)",
-        "pharmacist": "Dr KONE Adiouma",
-        "quartier": "Front de Terre",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Cité Front de Terre, face Ministère de la Famille, Dakar",
-        "coords": {
-            "lat": 14.72,
-            "lng": -17.419
-        },
-        "phone": "+221 33 867 64 97",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 83,
-        "name": "Pharmacie Djadine (Centenaire)",
-        "pharmacist": "Dr Ababacar NIANG",
-        "quartier": "Centenaire",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Route des Brasseries, Centenaire, Dakar",
-        "coords": {
-            "lat": 14.6931736,
-            "lng": -17.4369226
-        },
-        "phone": "+221 33 832 47 62",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 84,
-        "name": "Pharmacie Du Boulevard / Tableau Ferraille",
-        "pharmacist": "Dr Arfand FAYE",
-        "quartier": "Hann Bel Air",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Blvd. C.C.Dakar, Hann Bel Air, Dakar",
-        "coords": {
-            "lat": 14.6874843,
-            "lng": -17.4517718
-        },
-        "phone": "+221 33 832 13 07",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 85,
-        "name": "Pharmacie Du Potou (Sodefitex)",
-        "pharmacist": "Dr Chadia Kassem KANSAO",
-        "quartier": "Centenaire",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "face SODEFITEX, Centenaire, Dakar",
-        "coords": {
-            "lat": 14.7074035,
-            "lng": -17.4351911
-        },
-        "phone": "+221 33 832 14 99",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 86,
-        "name": "Pharmacie Espace Résidence (Hann Mariste)",
-        "pharmacist": "—",
-        "quartier": "Hann Mariste",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Autoroute, Hann Mariste, Espace Résidence, Dakar",
-        "coords": {
-            "lat": 14.7405295,
-            "lng": -17.4367038
-        },
-        "phone": "+221 33 832 75 97",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 87,
-        "name": "Pharmacie HLM Mariste",
-        "pharmacist": "Dr Bineta BALLE",
-        "quartier": "HLM Mariste",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "310 HLM Mariste, Dakar",
-        "coords": {
-            "lat": 14.718,
-            "lng": -17.42
-        },
-        "phone": "+221 33 832 54 83",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 88,
-        "name": "Pharmacie Hann Mariste",
-        "pharmacist": "Dr Aïssatou Marie Ndao LO",
-        "quartier": "Hann Mariste",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Route Front de Terre prolongé, Hann Mariste, Dakar",
-        "coords": {
-            "lat": 14.7245108,
-            "lng": -17.4392276
-        },
-        "phone": "+221 33 832 18 44",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 89,
-        "name": "Pharmacie Hann Plage",
-        "pharmacist": "Dr Ibrahima Birama DIOUF",
-        "quartier": "Hann Plage",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Blvd. C.C.Dakar, Hann, Dakar",
-        "coords": {
-            "lat": 14.709,
-            "lng": -17.418
-        },
-        "phone": "+221 33 832 04 96",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 90,
-        "name": "Pharmacie Hann Pêcheur",
-        "pharmacist": "Dr Aïchatou Niang NDIAYE",
-        "quartier": "Hann",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Blvd. C.C.Dakar, Hann, Dakar",
-        "coords": {
-            "lat": 14.71,
-            "lng": -17.415
-        },
-        "phone": "+221 33 832 55 99",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 91,
-        "name": "Pharmacie Hann Yarakh",
-        "pharmacist": "Dr Adnan ALLAOUI",
-        "quartier": "Hann Yarakh",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Blvd. C.C.Dakar, Hann Yarakh, Dakar",
-        "coords": {
-            "lat": 14.708,
-            "lng": -17.412
-        },
-        "phone": "+221 33 832 65 59",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 92,
-        "name": "Pharmacie Touba (Hann Mariste)",
-        "pharmacist": "—",
-        "quartier": "Hann Mariste",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "Route des Maristes, Dakar",
-        "coords": {
-            "lat": 14.727522,
-            "lng": -17.4367697
-        },
-        "phone": "+221 33 832 59 51",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 93,
-        "name": "Pharmacie Abdou Aziz Sy",
-        "pharmacist": "Mr DIAW Souleymane",
-        "quartier": "Parcelles Assainies – Unité 22",
-        "commune": "Parcelles Assainies",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Parcelles Assainies, Unité 22, N°535, Dakar",
-        "coords": {
-            "lat": 14.762,
-            "lng": -17.426
-        },
-        "phone": "+221 33 835 00 35",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 94,
-        "name": "Pharmacie Adja Mame Khady Thiam",
-        "pharmacist": "Dr FATY Sadia",
-        "quartier": "Grand Médine",
-        "commune": "Parcelles Assainies",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Grand Médine, Villa n°54, Dakar",
-        "coords": {
-            "lat": 14.765,
-            "lng": -17.427
-        },
-        "phone": "+221 33 835 91 88",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 95,
-        "name": "Pharmacie Al Amal (Patte d'Oie)",
-        "pharmacist": "Dr Pape Diène DIOUF",
-        "quartier": "Patte d'Oie Builders",
-        "commune": "Parcelles Assainies",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Lot N°08, Cité El Amal, Patte d'Oies Builders, Dakar",
-        "coords": {
-            "lat": 14.75,
-            "lng": -17.435
-        },
-        "phone": "+221 33 855 17 07",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 96,
-        "name": "Pharmacie Alhadia",
-        "pharmacist": "Dr Ndèye Bineta PAYE",
-        "quartier": "Parcelles Assainies – Unité 6",
-        "commune": "Parcelles Assainies",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "N°98, Cité Fadia, face Parc. Ass. Unité 6, Dakar",
-        "coords": {
-            "lat": 14.758,
-            "lng": -17.431
-        },
-        "phone": "+221 33 835 94 02",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 97,
-        "name": "Pharmacie Allah (Parcelles U5)",
-        "pharmacist": "Dr Boubacar Niane",
-        "quartier": "Parcelles Assainies – Unité 5",
-        "commune": "Parcelles Assainies",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Unité 5, N°114, Route de Cambérène, Dakar",
-        "coords": {
-            "lat": 14.757,
-            "lng": -17.43
-        },
-        "phone": "+221 33 835 78 47",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 98,
-        "name": "Pharmacie Bagdad Khar Yalla",
-        "pharmacist": "Dr NDIAYE Ndiaga",
-        "quartier": "Khar Yalla",
-        "commune": "Grand Yoff",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Khar Yalla, Quartier Bagdad, Villa n°39, Dakar",
-        "coords": {
-            "lat": 14.741,
-            "lng": -17.454
-        },
-        "phone": "+221 33 854 65 51",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 99,
-        "name": "Pharmacie Djiddah",
-        "pharmacist": "Dr Yankhoba FAYE",
-        "quartier": "Grand Yoff / Khar Yalla",
-        "commune": "Grand Yoff",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "203, Khar Yalla 2, Quartier Ndiaga Guèye, BP 13056, Grand Yoff, Dakar",
-        "coords": {
-            "lat": 14.74,
-            "lng": -17.453
-        },
-        "phone": "+221 33 827 36 31 / +221 77 648 60 25",
-        "email": "yankhobafaye@hotmail.com",
-        "website": ""
-    },
-    {
-        "id": 100,
-        "name": "Pharmacie Du Stade Leopold Sédar Senghor",
-        "pharmacist": "Dr Hélène d'Almeida AKINDES",
-        "quartier": "Parcelles Assainies – Unité 25",
-        "commune": "Parcelles Assainies",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Unité 25, N°89, Parcelles Assainies, Dakar",
-        "coords": {
-            "lat": 14.7511933,
-            "lng": -17.4485022
-        },
-        "phone": "+221 33 835 41 11",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 101,
-        "name": "Pharmacie HLM Grand Yoff",
-        "pharmacist": "Dr DIOUF Amath",
-        "quartier": "HLM Grand Yoff",
-        "commune": "Grand Yoff",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "170 HLM Grand Yoff, Shelter Zone Commerciale, Dakar",
-        "coords": {
-            "lat": 14.738,
-            "lng": -17.452
-        },
-        "phone": "+221 33 827 43 29",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 102,
-        "name": "Pharmacie Habi Sidiki",
-        "pharmacist": "—",
-        "quartier": "Parcelles Assainies – Unité 13",
-        "commune": "Parcelles Assainies",
-        "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Parcelles Assainies, Unité 13 (en face marché), Dakar",
-        "coords": {
-            "lat": 14.76,
-            "lng": -17.428
+            "lat": 0,
+            "lng": 0
         },
         "phone": "+221 33 825 79 79",
         "email": "",
         "website": ""
     },
     {
-        "id": 103,
-        "name": "Pharmacie Wassila",
-        "pharmacist": "—",
-        "quartier": "Parcelles Assainies – Unité 4",
-        "commune": "Parcelles Assainies",
+        "id": 55,
+        "name": "Pharmacie Sonatel 1",
+        "quartier": "Grand Yoff",
         "district": "Dakar Nord",
-        "department": "Dakar",
-        "address": "Unité 4, en face Agence Impôts et Domaine Fadja, Dakar",
+        "address": "Derrière l'hôpital SAMU",
         "coords": {
-            "lat": 14.756,
-            "lng": -17.432
-        },
-        "phone": "+221 33 835 03 70",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 104,
-        "name": "Pharmacie Abalaye Gadiaga",
-        "pharmacist": "Dr GADIAGA N'Dèye Fatou Ndiaye",
-        "quartier": "Pikine",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Route des Niayes, Villa n°7271, Pikine, Dakar",
-        "coords": {
-            "lat": 14.75,
-            "lng": -17.392
-        },
-        "phone": "+221 33 877 31 31",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 105,
-        "name": "Pharmacie Adja Jaal Fall",
-        "pharmacist": "Dr DIENG Mbaye",
-        "quartier": "Thiaroye / Batal",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Cité Sepco I, Villa n°121, Village de Batal, Thiaroye, Pikine, Dakar",
-        "coords": {
-            "lat": 14.745,
-            "lng": -17.385
-        },
-        "phone": "+221 33 853 07 05",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 106,
-        "name": "Pharmacie Adja Kumba Kane",
-        "pharmacist": "Dr NDIAYE Cheikh Mbacké",
-        "quartier": "Touba Pikine",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Touba Pikine, Pikine, Dakar",
-        "coords": {
-            "lat": 14.7398581,
-            "lng": -17.4100652
-        },
-        "phone": "+221 33 877 88 45",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 107,
-        "name": "Pharmacie Adja Rokhaya Seck",
-        "pharmacist": "Dr SARR N'Dèye Dioucke Diaw",
-        "quartier": "Pikine Guinaw Rails Sud",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Quartier Ciré Ly, Pikine Guinaw Rails Sud, face Poste de Santé, Pikine, Dakar",
-        "coords": {
-            "lat": 14.749,
-            "lng": -17.395
-        },
-        "phone": "",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 108,
-        "name": "Pharmacie Afia 5 (Thiaroye)",
-        "pharmacist": "Dr Mère Marie DIAKHATÉ",
-        "quartier": "Thiaroye / Yeumbeul",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Route de Boune-Yeumbeul, BP 20988, Thiaroye, Dakar",
-        "coords": {
-            "lat": 14.743,
-            "lng": -17.383
-        },
-        "phone": "+221 33 837 95 64 / +221 77 631 62 70",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 109,
-        "name": "Pharmacie Aicha (Diamaguène)",
-        "pharmacist": "Dr GUEYE Aïssatou",
-        "quartier": "Diamaguène",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Route de Rufisque, Diamaguène, Pikine, Dakar",
-        "coords": {
-            "lat": 14.746,
-            "lng": -17.378
-        },
-        "phone": "+221 33 834 31 00",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 110,
-        "name": "Pharmacie Al Hamdoulilah (Tivaouane)",
-        "pharmacist": "Dr Singane BA",
-        "quartier": "Tivaouane Diack Sao",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Quartier Tivaouane Diack Sao, Route de Rufisque, Pikine, Dakar",
-        "coords": {
-            "lat": 14.744,
-            "lng": -17.375
-        },
-        "phone": "+221 33 853 13 97",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 111,
-        "name": "Pharmacie Du Rail",
-        "pharmacist": "Dr Aïssatou Ndao LÈYE",
-        "quartier": "Guinaw Rail",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Guinaw Rail, Pikine, Dakar",
-        "coords": {
-            "lat": 14.7453998,
-            "lng": -17.3777328
-        },
-        "phone": "+221 33 834 84 64",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 112,
-        "name": "Pharmacie Joseph Emmanuel Séne",
-        "pharmacist": "Dr Joseph Emmanuel SÉNE",
-        "quartier": "Thiaroye Guinaw Rail",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Thiaroye Guinaw Rail, près Camp Militaire, Pikine, Dakar",
-        "coords": {
-            "lat": 14.744,
-            "lng": -17.387
-        },
-        "phone": "+221 33 854 31 20",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 113,
-        "name": "Pharmacie Khadimou Rassoul",
-        "pharmacist": "Dr Fatou Sarr KHOULE",
-        "quartier": "Pikine Tally Icotaf",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Pikine Tally Icotaf, Pikine, Dakar",
-        "coords": {
-            "lat": 14.7614588,
-            "lng": -17.3861076
-        },
-        "phone": "+221 33 834 37 21",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 114,
-        "name": "Pharmacie Sonatel 1 (SAMU)",
-        "pharmacist": "—",
-        "quartier": "Cité Sonatel 1",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Cité Sonatel 1, près Hôpital SAMU, Pikine, Dakar",
-        "coords": {
-            "lat": 14.753,
-            "lng": -17.393
+            "lat": 0,
+            "lng": 0
         },
         "phone": "+221 33 827 21 22",
         "email": "",
         "website": ""
     },
     {
-        "id": 115,
-        "name": "Pharmacie Tawfeex",
-        "pharmacist": "—",
-        "quartier": "Thiaroye Gare",
-        "commune": "Pikine",
-        "district": "Pikine",
-        "department": "Pikine",
-        "address": "Thiaroye Gare, BP 20156, Pikine, Dakar",
+        "id": 56,
+        "name": "Pharmacie Mignel",
+        "quartier": "Grand Yoff",
+        "district": "Dakar Nord",
+        "address": "Marché Grand Yoff",
         "coords": {
-            "lat": 14.742,
-            "lng": -17.381
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 77 648 52 49",
+        "phone": "+221 33 827 54 76",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 57,
+        "name": "Pharmacie Incha Allah",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Rue 11, Grand-Dakar",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 58,
+        "name": "Pharmacie des Allees",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Zone B",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 59,
+        "name": "Pharmacie Borom Daradji",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "143, Grand-Dakar",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 60,
+        "name": "Pharmacie Mame Fatou BA",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Zone A, Bd Général De Gaulle",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 61,
+        "name": "Pharmacie Dabakh Malick GD",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Rue Abébé bikila n°308",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 62,
+        "name": "Pharmacie CAP-SANTE",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Grand-Dakar, rue CL FayeXGD 35, Zone A",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 63,
+        "name": "Pharmacie Darabis",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Sicap Darabis",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 64,
+        "name": "Pharmacie de L'EMMANUEL",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Grand Dakar, parcelle n°370",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 864 44 03",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 65,
+        "name": "Pharmacie Masaalikul Jinaan",
+        "quartier": "Grand Dakar",
+        "district": "Dakar Sud",
+        "address": "Cerf volant, Grand Dakar",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 66,
+        "name": "Pharmacie Diadji Abdou Diodio",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Usine Ben Tally",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 67,
+        "name": "Pharmacie Tidjany Mouhamed El Habib",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Niary Tally, Usines, n° 206",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 68,
+        "name": "Pharmacie Macha-allah",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Rue 9, Bopp, villa n° 186",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 69,
+        "name": "Pharmacie Biscuiterie",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Niary Tally face marché guélaw",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 70,
+        "name": "Pharmacie du Grand-Dakar",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Niary Tally, Usines",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 71,
+        "name": "Pharmacie Ouagou-Niayes",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Ouagou-Niayes n° 206",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 72,
+        "name": "Pharmacie Kader DIOP",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Ouagou-Niayes I, Usine Parc",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 73,
+        "name": "Pharmacie El Hadji Mamadou Seydou BA",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Rue Casamance, villa n°133",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 864 19 95",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 74,
+        "name": "Pharmacie ben Tally",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Usine ben Tally N°2050",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 77 554 48 77",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 75,
+        "name": "Pharmacie Mariama Mbacke",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Cité bissap, Usine ben tally",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 76,
+        "name": "Pharmacie Coopé",
+        "quartier": "Biscuiterie/Bopp",
+        "district": "Dakar Centre",
+        "address": "Usine Ben Tally",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 77,
+        "name": "Pharmacie Hamet Bathily",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "HLM III n° 880",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 78,
+        "name": "Pharmacie Espérance HLM Sokhna Rokh",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "HLM III n° 108",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 79,
+        "name": "Pharmacie Léopold Sédar Senghor",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "Immeuble Vanner, Marché HLM",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 835 41 11",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 80,
+        "name": "Pharmacie Corniche des HLM V",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "HLM V villa n° 1918",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 81,
+        "name": "Pharmacie Giga Santé",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "7 bis, rue 14 Domaine de la SODIDA",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 82,
+        "name": "Pharmacie Mamadou Racine SY",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "HLM VI, villa n° 2906",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 83,
+        "name": "Pharmacie Serigne Souhaibou Mbacké",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "Rue 13, Av Cheikh A. Bamba, Cité-Port-Bopp",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 84,
+        "name": "Pharmacie LA CLEMENCE",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "Hlm II, pelle n°679",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 85,
+        "name": "Pharmacie Mouhamed",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "HLM, Angle Mouss, villa n°2964",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 86,
+        "name": "Pharmacie Cite Douane",
+        "quartier": "HLM",
+        "district": "Dakar Sud",
+        "address": "Non disponible",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 87,
+        "name": "Pharmacie Radja",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Scat-Urbam de Hann-Mariste J 84",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 832 43 05",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 88,
+        "name": "Pharmacie de l'étrier",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Hann, km 5",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 89,
+        "name": "Pharmacie HLM Maristes",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "HLM Maristes",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 90,
+        "name": "Pharmacie Couro",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Hann-Mariste II n° 197 R",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 91,
+        "name": "Pharmacie Mouhamadoul Amine",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Yarakh-Kip, Hann",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 92,
+        "name": "Pharmacie Touba",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Hann-Mariste",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 93,
+        "name": "Pharmacie Carrosserie",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Carrosserie Marchand",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 94,
+        "name": "Pharmacie de la Rocade",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Rocade Fann-Bel-air",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 95,
+        "name": "Pharmacie Hann-Yarakh",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Km 8, Bd du Centenaire, Hann-Yarakh",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 96,
+        "name": "Pharmacie Marinas",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Hann-Bel-Air, Route des Hydrocarbures",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 97,
+        "name": "Pharmacie Alliance Maristes",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "km 7, tableau Ferraille, Hann",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 98,
+        "name": "Pharmacie du Potou",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Nationale, route de Rufisque x rue 6",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 99,
+        "name": "Pharmacie Abdourahmane",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Scat-Urbam de Hann Mariste B65",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 100,
+        "name": "Pharmacie Hann-Mariste",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Hann, Route du Service Géographique",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 101,
+        "name": "Pharmacie Hann-Pecheurs",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Hann-Pécheurs",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 102,
+        "name": "Pharmacie Zahra",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "HLM de Hann-Mariste",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 103,
+        "name": "Pharmacie Espace Residence",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "Espace Résidence III Hann Mariste",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 104,
+        "name": "Pharmacie BEL AIR PHARMACY",
+        "quartier": "Hann, Bel-Air",
+        "district": "Dakar Sud",
+        "address": "1292, 2 Av. Felix Eboue",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 105,
+        "name": "Pharmacie De La Renaissance",
+        "quartier": "Ouakam",
+        "district": "Dakar Ouest",
+        "address": "Av Cheikh Anta Diop",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 860 24 82",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 106,
+        "name": "Pharmacie Des Mamelles",
+        "quartier": "Ouakam",
+        "district": "Dakar Ouest",
+        "address": "Rond point des mamelles",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 820 56 65",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 107,
+        "name": "Pharmacie City Assembler",
+        "quartier": "Ouakam",
+        "district": "Dakar Ouest",
+        "address": "Non disponible",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 108,
+        "name": "Pharmacie Al Amine",
+        "quartier": "Parcelles Assainies",
+        "district": "Dakar Nord",
+        "address": "Non disponible",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 860 84 84",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 109,
+        "name": "Pharmacie Populaire",
+        "quartier": "Parcelles Assainies",
+        "district": "Dakar Nord",
+        "address": "Unité 13",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 835 09 13",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 110,
+        "name": "Pharmacie Yacine",
+        "quartier": "Parcelles Assainies",
+        "district": "Dakar Nord",
+        "address": "Près centre de santé Abdoul Aziz Sy Dabakh",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 835 78 58",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 111,
+        "name": "Pharmacie Mame Fama Sy",
+        "quartier": "Parcelles Assainies",
+        "district": "Dakar Nord",
+        "address": "Non disponible",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 112,
+        "name": "Pharmacie du Royaume Sibuk",
+        "quartier": "Parcelles Assainies",
+        "district": "Dakar Nord",
+        "address": "Parcelles Assainies U 17",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "+221 33 855 06 60",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 113,
+        "name": "Pharmacie Baraka",
+        "quartier": "Parcelles Assainies",
+        "district": "Dakar Nord",
+        "address": "Parcelles Assainies",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 114,
+        "name": "Pharmacie Bousso Dramé",
+        "quartier": "Parcelles Assainies",
+        "district": "Dakar Nord",
+        "address": "Parcelles Assainies",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 115,
+        "name": "Pharmacie Cheikh Ibra Fall Yare",
+        "quartier": "Yoff",
+        "district": "Dakar Nord",
+        "address": "Yoff 3",
+        "coords": {
+            "lat": 0,
+            "lng": 0
+        },
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
         "id": 116,
-        "name": "Pharmacie Coumba Aby Sakho (Guédiawaye)",
-        "pharmacist": "Dr Coumba Aby SAKHO",
-        "quartier": "Guédiawaye",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "Immeuble Mar FAYE, ex Domaine, N°487, BP 19040, Guédiawaye, Dakar",
+        "name": "Pharmacie El. H. Abdourahmane Mbengue",
+        "quartier": "Yoff",
+        "district": "Dakar Nord",
+        "address": "Yoff Tonghor",
         "coords": {
-            "lat": 14.7715,
-            "lng": -17.3975
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 837 02 74",
+        "phone": "+221 33 820 50 80",
         "email": "",
         "website": ""
     },
     {
         "id": 117,
-        "name": "Pharmacie Darou Rahmane (Guédiawaye)",
-        "pharmacist": "Dr DIOP Mame Fota",
-        "quartier": "Darou Rahmane",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "Guédiawaye, Quartier Darou Rahmane n°1981, Dakar",
+        "name": "Pharmacie Victoire",
+        "quartier": "Yoff",
+        "district": "Dakar Nord",
+        "address": "Ouest Foire Cité Jean Lefevre",
         "coords": {
-            "lat": 14.772,
-            "lng": -17.397
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 877 32 28",
+        "phone": "+221 33 820 84 38",
         "email": "",
         "website": ""
     },
     {
         "id": 118,
-        "name": "Pharmacie Doro Aw (Guédiawaye)",
-        "pharmacist": "Dr Déguène Dieng CAMARA",
-        "quartier": "Quartier Doro Aw",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "Quartier Doro Aw, Villa n°704, Guédiawaye, Dakar",
+        "name": "Pharmacie Xandar",
+        "quartier": "Yoff",
+        "district": "Dakar Nord",
+        "address": "Cité Xandar Yoff ex villa 102",
         "coords": {
-            "lat": 14.7705,
-            "lng": -17.3985
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 877 77 11",
+        "phone": "+221 33 820 28 01",
         "email": "",
         "website": ""
     },
     {
         "id": 119,
-        "name": "Pharmacie Du Lys (Golf Nord)",
-        "pharmacist": "Dr Rosalie Adédiran AMOUSSOU",
-        "quartier": "Golf Nord",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "Cité des Nations Unies, Golf Nord, Guédiawaye, Dakar",
+        "name": "Pharmacie Abdoulaye Mbengue",
+        "quartier": "Thiaroye",
+        "district": "Pikine",
+        "address": "Thiaroye sur Mer",
         "coords": {
-            "lat": 14.7682,
-            "lng": -17.4055
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 835 51 11",
+        "phone": "+221 77 578 91 41",
         "email": "",
         "website": ""
     },
     {
         "id": 120,
-        "name": "Pharmacie Golf Nord",
-        "pharmacist": "Mme Tidjani Constance FAYE",
-        "quartier": "Golf Nord – Cité Nations Unies",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "133, Cité Nations Unies, Golf Nord, Guédiawaye, Dakar",
+        "name": "Pharmacie S.M. Fadilou Mbacké",
+        "quartier": "Patte D'oie",
+        "district": "Dakar",
+        "address": "Patte D'oie rue 11, derrière le centre de santé Nabil Choucair",
         "coords": {
-            "lat": 14.768,
-            "lng": -17.406
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "",
+        "phone": "+221 33 835 78 00",
         "email": "",
         "website": ""
     },
     {
         "id": 121,
-        "name": "Pharmacie HLM Aïssatou Aw (Grand Médine)",
-        "pharmacist": "Dr Aïssatou AW",
-        "quartier": "HLM Grand Médine",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "N°601, HLM Grand Médine, face École Dior, Guédiawaye, Dakar",
+        "name": "Pharmacie Pikinoise",
+        "quartier": "Pikine",
+        "district": "Pikine",
+        "address": "Rte des Niayes, Djeddah 2",
         "coords": {
-            "lat": 14.773,
-            "lng": -17.396
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 835 09 52",
+        "phone": "+221 33 854 28 40",
         "email": "",
         "website": ""
     },
     {
         "id": 122,
-        "name": "Pharmacie Ndèye Aminata Mané Ndaw (Fith Mith)",
-        "pharmacist": "Dr Ndèye Aminata Mané NDAW",
-        "quartier": "Fith Mith",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "N°277, Quartier Fith Mith, Guédiawaye, Dakar",
+        "name": "Pharmacie El Amin Pikine",
+        "quartier": "Pikine",
+        "district": "Pikine",
+        "address": "Marché central poisson",
         "coords": {
-            "lat": 14.771,
-            "lng": -17.398
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 837 26 56",
+        "phone": "+221 33 854 17 10",
         "email": "",
         "website": ""
     },
     {
         "id": 123,
-        "name": "Pharmacie Nimzatt",
-        "pharmacist": "Dr Aïssatou Ba DIAGNE",
-        "quartier": "Wakhinane Nimzatt 1",
-        "commune": "Guédiawaye",
-        "district": "Guédiawaye",
-        "department": "Guédiawaye",
-        "address": "Wakhinane Nimzatt 1, Guédiawaye, Dakar",
+        "name": "Pharmacie du Rail / Pikine",
+        "quartier": "Pikine",
+        "district": "Pikine",
+        "address": "Guignaw Rail / Pikine",
         "coords": {
-            "lat": 14.7916142,
-            "lng": -17.3778803
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 837 47 42",
+        "phone": "+221 33 850 33 86",
         "email": "",
         "website": ""
     },
     {
         "id": 124,
-        "name": "Pharmacie Adji Mohamed (Keur Massar)",
-        "pharmacist": "Dr Aminata Tandiang NGOM",
-        "quartier": "Keur Massar",
-        "commune": "Keur Massar",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Croisement Aïnoumady, Route des Niayes, Keur Massar, Dakar",
+        "name": "Pharmacie Aly Maram Wade",
+        "quartier": "Pikine",
+        "district": "Pikine",
+        "address": "Non disponible",
         "coords": {
-            "lat": 14.775,
-            "lng": -17.37
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 837 75 26",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
         "id": 125,
-        "name": "Pharmacie Afia 5 – Béne Baraque (Yeumbeul)",
-        "pharmacist": "Dr GAYE Ndèye Oumy Diop",
-        "quartier": "Yeumbeul – Aly Sène",
-        "commune": "Keur Massar",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Béne Baraque, Route de Malika, Yeumbeul, Quartier Aly Sène, Dakar",
+        "name": "Pharmacie Arrazak",
+        "quartier": "Mbao",
+        "district": "Pikine",
+        "address": "Zac Mbao",
         "coords": {
-            "lat": 14.778,
-            "lng": -17.364
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 837 80 20",
+        "phone": "+221 77 360 63 72",
         "email": "",
         "website": ""
     },
     {
         "id": 126,
-        "name": "Pharmacie Birane Ly (Keur Massar)",
-        "pharmacist": "—",
-        "quartier": "Aïnoumady – Keur Massar",
-        "commune": "Keur Massar",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Aïnoumady, Keur Massar, Dakar",
+        "name": "Pharmacie Grand Mbao",
+        "quartier": "Mbao",
+        "district": "Pikine",
+        "address": "Dr Mohamed Traore",
         "coords": {
-            "lat": 14.7751449,
-            "lng": -17.3143797
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 878 05 78",
+        "phone": "+221 33 836 56 44",
         "email": "",
         "website": ""
     },
     {
         "id": 127,
-        "name": "Pharmacie Cap des Biches – Grand Mbao",
-        "pharmacist": "Dr LAM François Abdoulaye",
-        "quartier": "Cap des Biches / Grand Mbao",
-        "commune": "Mbao",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "24, Sipres V, Cap des Biches, Grand Mbao, Dakar",
+        "name": "Pharmacie Wassour",
+        "quartier": "Grand Mbao",
+        "district": "Pikine",
+        "address": "Grand Mbao",
         "coords": {
-            "lat": 14.726,
-            "lng": -17.32
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 870 07 70",
+        "phone": "+221 33 833 52 19",
         "email": "",
         "website": ""
     },
     {
         "id": 128,
-        "name": "Pharmacie Darou Salam 5 (Yeumbeul)",
-        "pharmacist": "Dr Henriette Daba DIOH",
-        "quartier": "Darou Salam 5 – Yeumbeul",
-        "commune": "Keur Massar",
+        "name": "Pharmacie Marie Esseteine Manga",
+        "quartier": "Keur Massar",
         "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Darou Salam 5, face CEDEPS, Yeumbeul, Dakar",
+        "address": "Jaxaay 2, près de l'ancien terminus 70",
         "coords": {
-            "lat": 14.7785,
-            "lng": -17.3635
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 878 92 95",
-        "email": "ddioh5@hotmail.com",
+        "phone": "+221 77 397 11 11",
+        "email": "",
         "website": ""
     },
     {
         "id": 129,
-        "name": "Pharmacie Fass Mbao",
-        "pharmacist": "Dr El Hadji Amadou DIOUF",
-        "quartier": "Fass Mbao",
-        "commune": "Mbao",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Cité Nelson Mandela, Villa n°7, Route de Fass Mbao, Dakar",
+        "name": "Pharmacie Thierno M.Seydou BA",
+        "quartier": "Guédiawaye",
+        "district": "Guédiawaye",
+        "address": "En face de l'hôpital Roi Baudouin, Guédiawaye",
         "coords": {
-            "lat": 14.727,
-            "lng": -17.326
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 834 27 91",
+        "phone": "+221 33 837 38 37",
         "email": "",
         "website": ""
     },
     {
         "id": 130,
-        "name": "Pharmacie Mame Anta Gueye (Keur Massar–Malika)",
-        "pharmacist": "Dr Mame Anta GUEYE",
-        "quartier": "Keur Massar / Malika",
-        "commune": "Keur Massar",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Parcelles Ass. U.5, Keur Massar-Malika, Dakar",
+        "name": "Pharmacie Thiele",
+        "quartier": "Guédiawaye",
+        "district": "Guédiawaye",
+        "address": "Guédiawaye Marché Boubes",
         "coords": {
-            "lat": 14.776,
-            "lng": -17.368
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 878 71 83",
+        "phone": "+221 33 837 68 81",
         "email": "",
         "website": ""
     },
     {
         "id": 131,
-        "name": "Pharmacie Mngue (Keur Massar Village)",
-        "pharmacist": "Dr Mamadou DIOP",
-        "quartier": "Keur Massar Village",
-        "commune": "Keur Massar",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Keur Massar Village, Dakar",
+        "name": "Pharmacie Sant Yalla",
+        "quartier": "Guédiawaye",
+        "district": "Guédiawaye",
+        "address": "Guédiawaye",
         "coords": {
-            "lat": 14.7844422,
-            "lng": -17.3060995
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "",
+        "phone": "+221 77 650 85 51",
         "email": "",
         "website": ""
     },
     {
         "id": 132,
-        "name": "Pharmacie Sicap Mbao",
-        "pharmacist": "—",
-        "quartier": "Sicap Mbao",
-        "commune": "Mbao",
-        "district": "Keur Massar",
-        "department": "Pikine",
-        "address": "Sicap Mbao N°315 TS, Mbao, Dakar",
+        "name": "Pharmacie Cheikh Wade Kadia",
+        "quartier": "Guédiawaye",
+        "district": "Guédiawaye",
+        "address": "Non disponible",
         "coords": {
-            "lat": 14.728,
-            "lng": -17.325
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 834 52 46",
+        "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
         "id": 133,
-        "name": "Pharmacie Abdou Karim Gueye (Rufisque)",
-        "pharmacist": "Dr GUEYE Mouhamadou",
-        "quartier": "Keur Ndiaye Lô",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Keur Ndiaye Lô, Route de Sangalkam, Rufisque, Dakar",
+        "name": "Pharmacie Birane Ly",
+        "quartier": "Keur Massar",
+        "district": "Keur Massar",
+        "address": "Keur Massar",
         "coords": {
-            "lat": 14.7869977,
-            "lng": -17.2118249
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 836 12 92",
+        "phone": "+221 77 645 81 95",
         "email": "",
         "website": ""
     },
     {
         "id": 134,
-        "name": "Pharmacie Abdoul Aziz Dabakh (Rufisque)",
-        "pharmacist": "Dr EL Hadji Abdoul Aziz NDIAYE",
-        "quartier": "Rufisque – Colobane",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Route Nationale Colobane, Rufisque, Dakar",
+        "name": "Pharmacie Tamba",
+        "quartier": "Keur Massar",
+        "district": "Keur Massar",
+        "address": "Keur Massar Nord",
         "coords": {
-            "lat": 14.719,
-            "lng": -17.275
+            "lat": 0,
+            "lng": 0
         },
-        "phone": "+221 33 836 57 60",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 135,
-        "name": "Pharmacie Abdoulaye Barry (Rufisque)",
-        "pharmacist": "Dr BARRY Mamadou Farba",
-        "quartier": "Gouye Aldiana",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Quartier Gouye Aldiana, Rufisque, Dakar",
-        "coords": {
-            "lat": 14.7165,
-            "lng": -17.28
-        },
-        "phone": "",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 136,
-        "name": "Pharmacie Acore (Rufisque)",
-        "pharmacist": "Dr SARR Alima",
-        "quartier": "Diokoul Khër",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Diokoul Khër, Villa n°17, Rufisque, Dakar",
-        "coords": {
-            "lat": 14.718,
-            "lng": -17.277
-        },
-        "phone": "+221 33 836 13 93",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 137,
-        "name": "Pharmacie Adja Marietou Diagne",
-        "pharmacist": "—",
-        "quartier": "Cité ORSTOM",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Cité ORSTOM Rufisque Ouest, N°78, Rufisque, Dakar",
-        "coords": {
-            "lat": 14.7162,
-            "lng": -17.2815
-        },
-        "phone": "+221 33 897 91 28",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 138,
-        "name": "Pharmacie Adji Gnagna Diagne (Rufisque)",
-        "pharmacist": "Dr EL Hadji Moustapha DIAW",
-        "quartier": "Gouye Mouride",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Gouye Mouride, Rufisque, Dakar",
-        "coords": {
-            "lat": 14.7175,
-            "lng": -17.278
-        },
-        "phone": "+221 33 836 07 89 / +221 76 699 97 38",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 139,
-        "name": "Pharmacie Adji Mame Khady (Rufisque)",
-        "pharmacist": "Dr Aïta NDIR DIANÉ",
-        "quartier": "Arafat II",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Arafat II, face Keur Serigne Mansour SY, Rufisque, Dakar",
-        "coords": {
-            "lat": 14.717,
-            "lng": -17.279
-        },
-        "phone": "+221 33 836 30 01",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 140,
-        "name": "Pharmacie Fass Rufisque",
-        "pharmacist": "Mr Abdoulaye GUEYE",
-        "quartier": "Quartier Fass",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Quartier Fass, Rufisque, Dakar",
-        "coords": {
-            "lat": 14.7155,
-            "lng": -17.275
-        },
-        "phone": "",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 141,
-        "name": "Pharmacie Mohamed Ba (Rufisque)",
-        "pharmacist": "Dr Mohamed BA",
-        "quartier": "HLM Rufisque",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "17, Route des HLM, face Stade Galandou Diouf, Rufisque, Dakar",
-        "coords": {
-            "lat": 14.716,
-            "lng": -17.276
-        },
-        "phone": "+221 33 836 78 65",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 142,
-        "name": "Pharmacie Serigne Abdoul Khadre Mbacke",
-        "pharmacist": "Mr Mbaye NIANG",
-        "quartier": "Rufisque",
-        "commune": "Rufisque",
-        "district": "Rufisque",
-        "department": "Rufisque",
-        "address": "Rufisque, Dakar",
-        "coords": {
-            "lat": 14.716417,
-            "lng": -17.273844
-        },
-        "phone": "",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 143,
-        "name": "Pharmacie de l'Etrier",
-        "pharmacist": "",
-        "quartier": "Hann Bel Air",
-        "commune": "Hann Bel Air",
-        "district": "Dakar Sud",
-        "department": "Dakar",
-        "address": "PH3F+9C9, Dakar",
-        "coords": {
-            "lat": 14.7034038,
-            "lng": -17.4263737
-        },
-        "phone": "+221 33 832 34 98",
+        "phone": "+221 33 892 60 56",
         "email": "",
         "website": ""
     }
