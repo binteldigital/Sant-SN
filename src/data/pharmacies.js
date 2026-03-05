@@ -1420,8 +1420,8 @@ export const pharmacies = [
         "department": "Dakar",
         "address": "Blvd. C.C.Dakar, Hann Bel Air, Dakar",
         "coords": {
-            "lat": 14.711,
-            "lng": -17.416
+            "lat": 14.6874843,
+            "lng": -17.4517718
         },
         "phone": "+221 33 832 13 07",
         "email": "",
@@ -1454,8 +1454,8 @@ export const pharmacies = [
         "department": "Dakar",
         "address": "Autoroute, Hann Mariste, Espace Résidence, Dakar",
         "coords": {
-            "lat": 14.7175,
-            "lng": -17.4205
+            "lat": 14.7405295,
+            "lng": -17.4367038
         },
         "phone": "+221 33 832 75 97",
         "email": "",
@@ -1488,8 +1488,8 @@ export const pharmacies = [
         "department": "Dakar",
         "address": "Route Front de Terre prolongé, Hann Mariste, Dakar",
         "coords": {
-            "lat": 14.717,
-            "lng": -17.421
+            "lat": 14.7245108,
+            "lng": -17.4392276
         },
         "phone": "+221 33 832 18 44",
         "email": "",
