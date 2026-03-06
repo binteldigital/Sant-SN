@@ -171,7 +171,7 @@ const AdminPharmacies = () => {
                                 <tr key={pharmacy.id} className="hover:bg-gray-50">
                                     <td className="px-6 py-4">
                                         <div>
-                                            <p className="font-medium text-gray-900">Pharmacie {pharmacy.name}</p>
+                                            <p className="font-medium text-gray-900">{pharmacy.name}</p>
                                             <p className="text-sm text-gray-500">{pharmacy.pharmacist}</p>
                                         </div>
                                     </td>
