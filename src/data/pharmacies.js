@@ -345,9 +345,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Ave. Brière de l'Isle x Rue Gallieni",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6616984,
+            "lng": -17.4379881},
         "phone": "+221 33 842 69 00",
         "email": "",
         "website": ""
@@ -360,9 +359,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "114, Av. Pdt Lamine Guèye",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6715446,
+            "lng": -17.4374755},
         "phone": "+221 33 821 08 18",
         "email": "",
         "website": ""
@@ -375,9 +373,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Av. J. Jaurès X rue A. A. Ndoye",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6681657,
+            "lng": -17.4392088},
         "phone": "+221 33 842 54 64",
         "email": "",
         "website": ""
@@ -390,9 +387,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Rue Huart X rue Parchappe",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6689944,
+            "lng": -17.4300215},
         "phone": "+221 33 822 73 72",
         "email": "",
         "website": ""
@@ -405,9 +401,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "1, Place Kermel",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.66956,
+            "lng": -17.4299504},
         "phone": "+221 33 822 43 34",
         "email": "",
         "website": ""
@@ -420,9 +415,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Allées Papa G. Fall, Face Gde Mosquée",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6789493,
+            "lng": -17.4421976},
         "phone": "+221 33 822 41 74",
         "email": "",
         "website": ""
@@ -435,9 +429,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "153, Ave. Pdt Lamine Gueye",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7194758,
+            "lng": -17.4383883},
         "phone": "+221 33 823 44 01",
         "email": "",
         "website": ""
@@ -450,9 +443,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "12, Avenue Nelson Mandela",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6626178,
+            "lng": -17.4351599},
         "phone": "+221 33 821 21 72",
         "email": "",
         "website": ""
@@ -465,9 +457,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "rue Vincens x rue Amadou L. Ndoye",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6734296,
+            "lng": -17.4344583},
         "phone": "+221 33 823 23 30",
         "email": "",
         "website": ""
@@ -480,9 +471,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "9, rue de Thiong x W. Diouf",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.66998,
+            "lng": -17.4338243},
         "phone": "+221 33 822 47 78",
         "email": "",
         "website": ""
@@ -495,9 +485,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "15, blvd. de la République",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6651124,
+            "lng": -17.4352582},
         "phone": "+221 33 821 16 63",
         "email": "",
         "website": ""
@@ -510,9 +499,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "37, rue Abdou Karim Bourgi",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6717092,
+            "lng": -17.4356966},
         "phone": "+221 33 821 78 10",
         "email": "",
         "website": ""
@@ -525,9 +513,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "55, ave. Albert Sarraut",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7547387,
+            "lng": -17.4756519},
         "phone": "+221 33 822 55 07",
         "email": "",
         "website": ""
@@ -540,9 +527,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Rue Ambroise Mendy X Mangin",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6737574,
+            "lng": -17.4453997},
         "phone": "+221 33 842 88 17",
         "email": "",
         "website": ""
@@ -555,9 +541,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "15, ave. J. Jaurès X Ave. A. Peytavin",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6699265,
+            "lng": -17.4396151},
         "phone": "+221 33 822 88 83",
         "email": "",
         "website": ""
@@ -570,9 +555,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "68, rue Dr Théze X F. Faure",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6671033,
+            "lng": -17.4334834},
         "phone": "+221 33 822 13 17",
         "email": "",
         "website": ""
@@ -585,9 +569,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "36, rue M. Diop X Grasland",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6673342,
+            "lng": -17.4314301},
         "phone": "+221 33 821 08 89",
         "email": "",
         "website": ""
@@ -600,9 +583,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Rue FN 20, Fann",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6954975,
+            "lng": -17.4667661},
         "phone": "+221 33 825 44 23",
         "email": "",
         "website": ""
@@ -615,9 +597,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Boulevard de l'est, Point-E",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6950057,
+            "lng": -17.4580234},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -630,9 +611,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Point-E à la rue Axrue 3 et 4",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.698938,
+            "lng": -17.4642816},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -645,9 +625,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Avenue Birago Diop, Point-E",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6989718,
+            "lng": -17.4620041},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -660,9 +639,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Rue 55 x 70, Fann-Hock",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6798667,
+            "lng": -17.4617765},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -675,9 +653,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Km 4,5 avenue Cheikh Anta Diop",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6946923,
+            "lng": -17.463708},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -690,9 +667,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Allées Seydou Nourou Tall",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7002645,
+            "lng": -17.4597926},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -705,9 +681,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Av. Bourguiba face Ecole de Police",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7020434,
+            "lng": -17.4625977},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -720,9 +695,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Amitié III n° 4418",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7037294,
+            "lng": -17.4678474},
         "phone": "+221 33 864 73 10",
         "email": "",
         "website": ""
@@ -735,9 +709,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Avenue Cheikh Anta, Point-E",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6923819,
+            "lng": -17.4608271},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -765,9 +738,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Sicap Amitié I, villa n°3037",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7042519,
+            "lng": -17.4603706},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -780,9 +752,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Immeuble Helysee, 1 Rue MZ 83",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7107821,
+            "lng": -17.4700906},
         "phone": "+221 33 825 79 79",
         "email": "",
         "website": ""
@@ -795,9 +766,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Derrière l'hôpital SAMU",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7392959,
+            "lng": -17.4654599},
         "phone": "+221 33 827 21 22",
         "email": "",
         "website": ""
@@ -810,9 +780,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Marché Grand Yoff",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7377401,
+            "lng": -17.4487408},
         "phone": "+221 33 827 54 76",
         "email": "",
         "website": ""
@@ -825,9 +794,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Rue 11, Grand-Dakar",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7089633,
+            "lng": -17.4576992},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -840,9 +808,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Zone B",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6975147,
+            "lng": -17.4563674},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -855,9 +822,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "143, Grand-Dakar",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7064285,
+            "lng": -17.4573236},
         "phone": "Non disponible",
         "email": "",
         "website": ""

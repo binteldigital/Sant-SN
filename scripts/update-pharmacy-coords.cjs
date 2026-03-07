@@ -10,6 +10,7 @@ const path = require('path');
 
 // Coordonnées extraites des liens Google Maps
 const coordsUpdates = {
+    // Plateau (déjà fait)
     'Pharmacie Pasteur': { lat: 14.658911, lng: -17.4358933 },
     'Pharmacie Anna Kadet': { lat: 14.6572777, lng: -17.4347729 },
     'Pharmacie Cheikh Ahmadou Bamba': { lat: 14.6753389, lng: -17.4437703 },
@@ -31,7 +32,42 @@ const coordsUpdates = {
     'Pharmacie du Théâtre': { lat: 14.666642, lng: -17.4398365 },
     'Pharmacie Fahd': { lat: 14.6713578, lng: -17.4280958 },
     'Pharmacie Faidherbe': { lat: 14.6756187, lng: -17.4384339 },
-    'Pharmacie Fatima': { lat: 14.6744812, lng: -17.4402488 }
+    'Pharmacie Fatima': { lat: 14.6744812, lng: -17.4402488 },
+    // Nouvelles pharmacies
+    'Pharmacie Gallieni': { lat: 14.6616984, lng: -17.4379881 },
+    'Pharmacie Gambetta': { lat: 14.6715446, lng: -17.4374755 },
+    'Pharmacie Gorom': { lat: 14.6681657, lng: -17.4392088 },
+    'Pharmacie Guet': { lat: 14.6689944, lng: -17.4300215 },
+    'Pharmacie Kermel': { lat: 14.66956, lng: -17.4299504 },
+    'Pharmacie Lat Dior': { lat: 14.6789493, lng: -17.4421976 },
+    'Pharmacie Nation': { lat: 14.7194758, lng: -17.4383883 },
+    'Pharmacie Nelson Mandela': { lat: 14.6626178, lng: -17.4351599 },
+    'Pharmacie Ngorba': { lat: 14.6734296, lng: -17.4344583 },
+    'Pharmacie Ponty': { lat: 14.66998, lng: -17.4338243 },
+    'Pharmacie République': { lat: 14.6651124, lng: -17.4352582 },
+    'Pharmacie Rolland': { lat: 14.6717092, lng: -17.4356966 },
+    'Pharmacie Rond Point': { lat: 14.7547387, lng: -17.4756519 },
+    'Pharmacie Sainte Anne': { lat: 14.6737574, lng: -17.4453997 },
+    'Pharmacie Sandaga': { lat: 14.6699265, lng: -17.4396151 },
+    'Pharmacie Téranga': { lat: 14.6671033, lng: -17.4334834 },
+    'Pharmacie Vital': { lat: 14.6673342, lng: -17.4314301 },
+    'Pharmacie Aimé Césaire': { lat: 14.6954975, lng: -17.4667661 },
+    'Pharmacie Point-E': { lat: 14.6950057, lng: -17.4580234 },
+    'Pharmacie Résidence Serigne Malick Diéye': { lat: 14.698938, lng: -17.4642816 },
+    'Pharmacie Birago Diop': { lat: 14.6989718, lng: -17.4620041 },
+    'Pharmacie Fann-Hock': { lat: 14.6798667, lng: -17.4617765 },
+    'Pharmacie Signara': { lat: 14.6946923, lng: -17.463708 },
+    'Pharmacie Keur Jaraff': { lat: 14.7002645, lng: -17.4597926 },
+    'Pharmacie Besse': { lat: 14.7020434, lng: -17.4625977 },
+    'Pharmacie Selma': { lat: 14.7037294, lng: -17.4678474 },
+    'Pharmacie Ndoss': { lat: 14.6923819, lng: -17.4608271 },
+    'Pharmacie le Parcours': { lat: 14.7042519, lng: -17.4603706 },
+    'Pharmacie Demba Koita': { lat: 14.7107821, lng: -17.4700906 },
+    'Pharmacie Sonatel 1': { lat: 14.7392959, lng: -17.4654599 },
+    'Pharmacie Mignel': { lat: 14.7377401, lng: -17.4487408 },
+    'Pharmacie Incha Allah': { lat: 14.7089633, lng: -17.4576992 },
+    'Pharmacie des Allees': { lat: 14.6975147, lng: -17.4563674 },
+    'Pharmacie Borom Daradji': { lat: 14.7064285, lng: -17.4573236 }
 };
 
 // Lire le fichier pharmacies.js
