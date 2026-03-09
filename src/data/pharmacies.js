@@ -168,21 +168,6 @@ export const pharmacies = [
         "website": ""
     },
     {
-        "id": 13,
-        "name": "Pharmacie Co.Pha.Se.",
-        "pharmacist": "",
-        "quartier": "Plateau",
-        "district": "Dakar Centre",
-        "address": "Av Félix Eboué",
-        "coords": {
-            "lat": 0,
-            "lng": 0
-        },
-        "phone": "+221 33 849 32 90",
-        "email": "",
-        "website": ""
-    },
-    {
         "id": 14,
         "name": "Pharmacie Dardanelles",
         "pharmacist": "",
@@ -221,21 +206,6 @@ export const pharmacies = [
             "lat": 14.6678653,
             "lng": -17.4343349},
         "phone": "+221 33 822 88 01",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 17,
-        "name": "Pharmacie de la Poste",
-        "pharmacist": "",
-        "quartier": "Plateau",
-        "district": "Dakar Centre",
-        "address": "Blaise Diagne x Rue 1",
-        "coords": {
-            "lat": 0,
-            "lng": 0
-        },
-        "phone": "+221 33 823 89 70",
         "email": "",
         "website": ""
     },
