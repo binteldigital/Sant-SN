@@ -723,9 +723,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Amitié III, VDN",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7053673,
+            "lng": -17.4698235},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -836,9 +835,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Zone A, Bd Général De Gaulle",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7002616,
+            "lng": -17.4538222},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -851,9 +849,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Rue Abébé bikila n°308",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6941966,
+            "lng": -17.4442293},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -866,9 +863,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Grand-Dakar, rue CL FayeXGD 35, Zone A",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7023286,
+            "lng": -17.4524629},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -881,9 +877,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Sicap Darabis",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7071875,
+            "lng": -17.4597567},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -896,9 +891,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Grand Dakar, parcelle n°370",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7074257,
+            "lng": -17.4556795},
         "phone": "+221 33 864 44 03",
         "email": "",
         "website": ""
@@ -911,9 +905,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Cerf volant, Grand Dakar",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7020424,
+            "lng": -17.4495397},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -926,9 +919,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Usine Ben Tally",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7088551,
+            "lng": -17.4517361},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -941,9 +933,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Niary Tally, Usines, n° 206",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7095473,
+            "lng": -17.4531777},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -956,9 +947,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Rue 9, Bopp, villa n° 186",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7046663,
+            "lng": -17.4473319},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -971,9 +961,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Niary Tally face marché guélaw",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7122385,
+            "lng": -17.4516224},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -986,9 +975,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Niary Tally, Usines",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7053288,
+            "lng": -17.4517589},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1001,9 +989,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Ouagou-Niayes n° 206",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7074499,
+            "lng": -17.4470088},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1016,9 +1003,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Ouagou-Niayes I, Usine Parc",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7107322,
+            "lng": -17.4467883},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1031,9 +1017,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Rue Casamance, villa n°133",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7049116,
+            "lng": -17.4496492},
         "phone": "+221 33 864 19 95",
         "email": "",
         "website": ""
@@ -1046,9 +1031,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Usine ben Tally N°2050",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.71374,
+            "lng": -17.4496097},
         "phone": "+221 77 554 48 77",
         "email": "",
         "website": ""
@@ -1061,9 +1045,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Cité bissap, Usine ben tally",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7144538,
+            "lng": -17.4531022},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1076,9 +1059,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "Usine Ben Tally",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7094473,
+            "lng": -17.4495369},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1091,9 +1073,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "HLM III n° 880",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7118383,
+            "lng": -17.4432777},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1106,9 +1087,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "HLM III n° 108",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7157003,
+            "lng": -17.4442196},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1121,9 +1101,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Immeuble Vanner, Marché HLM",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7064528,
+            "lng": -17.4450651},
         "phone": "+221 33 835 41 11",
         "email": "",
         "website": ""
@@ -1136,9 +1115,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "HLM V villa n° 1918",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7142783,
+            "lng": -17.4415334},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1151,9 +1129,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "7 bis, rue 14 Domaine de la SODIDA",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7181788,
+            "lng": -17.4428204},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1166,9 +1143,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "HLM VI, villa n° 2906",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7463822,
+            "lng": -17.4255543},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1181,9 +1157,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Rue 13, Av Cheikh A. Bamba, Cité-Port-Bopp",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7019289,
+            "lng": -17.4468828},
         "phone": "Non disponible",
         "email": "",
         "website": ""

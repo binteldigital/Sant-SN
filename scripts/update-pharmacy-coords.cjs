@@ -67,7 +67,33 @@ const coordsUpdates = {
     'Pharmacie Mignel': { lat: 14.7377401, lng: -17.4487408 },
     'Pharmacie Incha Allah': { lat: 14.7089633, lng: -17.4576992 },
     'Pharmacie des Allees': { lat: 14.6975147, lng: -17.4563674 },
-    'Pharmacie Borom Daradji': { lat: 14.7064285, lng: -17.4573236 }
+    'Pharmacie Borom Daradji': { lat: 14.7064285, lng: -17.4573236 },
+    // Grand Dakar / Biscuiterie / HLM
+    'Pharmacie Sedami': { lat: 14.7053673, lng: -17.4698235 },
+    'Pharmacie Mame Fatou BA': { lat: 14.7002616, lng: -17.4538222 },
+    'Pharmacie Dabakh Malick GD': { lat: 14.6941966, lng: -17.4442293 },
+    'Pharmacie CAP-SANTE': { lat: 14.7023286, lng: -17.4524629 },
+    'Pharmacie Darabis': { lat: 14.7071875, lng: -17.4597567 },
+    "Pharmacie de L'EMMANUEL": { lat: 14.7074257, lng: -17.4556795 },
+    'Pharmacie Masaalikul Jinaan': { lat: 14.7020424, lng: -17.4495397 },
+    'Pharmacie Diadji Abdou Diodio': { lat: 14.7088551, lng: -17.4517361 },
+    'Pharmacie Tidjany Mouhamed El Habib': { lat: 14.7095473, lng: -17.4531777 },
+    'Pharmacie Macha-allah': { lat: 14.7046663, lng: -17.4473319 },
+    'Pharmacie Biscuiterie': { lat: 14.7122385, lng: -17.4516224 },
+    'Pharmacie du Grand-Dakar': { lat: 14.7053288, lng: -17.4517589 },
+    'Pharmacie Ouagou-Niayes': { lat: 14.7074499, lng: -17.4470088 },
+    'Pharmacie Kader DIOP': { lat: 14.7107322, lng: -17.4467883 },
+    'Pharmacie El Hadji Mamadou Seydou BA': { lat: 14.7049116, lng: -17.4496492 },
+    'Pharmacie ben Tally': { lat: 14.71374, lng: -17.4496097 },
+    'Pharmacie Mariama Mbacke': { lat: 14.7144538, lng: -17.4531022 },
+    'Pharmacie Coopé': { lat: 14.7094473, lng: -17.4495369 },
+    'Pharmacie Hamet Bathily': { lat: 14.7118383, lng: -17.4432777 },
+    'Pharmacie Espérance HLM Sokhna Rokh': { lat: 14.7157003, lng: -17.4442196 },
+    'Pharmacie Léopold Sédar Senghor': { lat: 14.7064528, lng: -17.4450651 },
+    'Pharmacie Corniche des HLM V': { lat: 14.7142783, lng: -17.4415334 },
+    'Pharmacie Giga Santé': { lat: 14.7181788, lng: -17.4428204 },
+    'Pharmacie Mamadou Racine SY': { lat: 14.7463822, lng: -17.4255543 },
+    'Pharmacie Serigne Souhaibou Mbacké': { lat: 14.7019289, lng: -17.4468828 }
 };
 
 // Lire le fichier pharmacies.js
