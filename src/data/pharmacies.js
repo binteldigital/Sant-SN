@@ -1171,9 +1171,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Hlm II, pelle n°679",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7135194,
+            "lng": -17.4459801},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1186,9 +1185,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "HLM, Angle Mouss, villa n°2964",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7012139,
+            "lng": -17.4437233},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1201,9 +1199,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Non disponible",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6995407,
+            "lng": -17.4440558},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1216,9 +1213,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Scat-Urbam de Hann-Mariste J 84",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7340823,
+            "lng": -17.4269149},
         "phone": "+221 33 832 43 05",
         "email": "",
         "website": ""
@@ -1231,9 +1227,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Hann, km 5",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7034038,
+            "lng": -17.4263737},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1246,9 +1241,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "HLM Maristes",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7403112,
+            "lng": -17.425198},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1261,9 +1255,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Hann-Mariste II n° 197 R",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7389651,
+            "lng": -17.4314887},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1276,9 +1269,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Yarakh-Kip, Hann",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7401726,
+            "lng": -17.4045944},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1291,9 +1283,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Hann-Mariste",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7369835,
+            "lng": -17.4340606},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1321,39 +1312,22 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Rocade Fann-Bel-air",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6978377,
+            "lng": -17.4380842},
         "phone": "Non disponible",
         "email": "",
         "website": ""
     },
     {
         "id": 95,
-        "name": "Pharmacie Hann-Yarakh",
+        "name": "Pharmacie Capa",
         "pharmacist": "",
         "quartier": "Hann, Bel-Air",
         "district": "Dakar Sud",
         "address": "Km 8, Bd du Centenaire, Hann-Yarakh",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
-        "phone": "Non disponible",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 96,
-        "name": "Pharmacie Marinas",
-        "pharmacist": "",
-        "quartier": "Hann, Bel-Air",
-        "district": "Dakar Sud",
-        "address": "Hann-Bel-Air, Route des Hydrocarbures",
-        "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7193282,
+            "lng": -17.4324471},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1366,9 +1340,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "km 7, tableau Ferraille, Hann",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7347261,
+            "lng": -17.42445},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1411,9 +1384,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Hann, Route du Service Géographique",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7246137,
+            "lng": -17.4390694},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1426,9 +1398,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Hann-Pécheurs",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7290504,
+            "lng": -17.4263719},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1441,24 +1412,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "HLM de Hann-Mariste",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
-        "phone": "Non disponible",
-        "email": "",
-        "website": ""
-    },
-    {
-        "id": 103,
-        "name": "Pharmacie Espace Residence",
-        "pharmacist": "",
-        "quartier": "Hann, Bel-Air",
-        "district": "Dakar Sud",
-        "address": "Espace Résidence III Hann Mariste",
-        "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7412161,
+            "lng": -17.4253591},
         "phone": "Non disponible",
         "email": "",
         "website": ""

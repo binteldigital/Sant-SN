@@ -93,7 +93,23 @@ const coordsUpdates = {
     'Pharmacie Corniche des HLM V': { lat: 14.7142783, lng: -17.4415334 },
     'Pharmacie Giga Santé': { lat: 14.7181788, lng: -17.4428204 },
     'Pharmacie Mamadou Racine SY': { lat: 14.7463822, lng: -17.4255543 },
-    'Pharmacie Serigne Souhaibou Mbacké': { lat: 14.7019289, lng: -17.4468828 }
+    'Pharmacie Serigne Souhaibou Mbacké': { lat: 14.7019289, lng: -17.4468828 },
+    // Hann, Bel-Air
+    'Pharmacie LA CLEMENCE': { lat: 14.7135194, lng: -17.4459801 },
+    'Pharmacie Mouhamed': { lat: 14.7012139, lng: -17.4437233 },
+    'Pharmacie Cite Douane': { lat: 14.6995407, lng: -17.4440558 },
+    'Pharmacie Radja': { lat: 14.7340823, lng: -17.4269149 },
+    "Pharmacie de l'étrier": { lat: 14.7034038, lng: -17.4263737 },
+    'Pharmacie HLM Maristes': { lat: 14.7403112, lng: -17.425198 },
+    'Pharmacie Couro': { lat: 14.7389651, lng: -17.4314887 },
+    'Pharmacie Mouhamadoul Amine': { lat: 14.7401726, lng: -17.4045944 },
+    'Pharmacie Touba': { lat: 14.7369835, lng: -17.4340606 },
+    'Pharmacie de la Rocade': { lat: 14.6978377, lng: -17.4380842 },
+    'Pharmacie Hann-Mariste': { lat: 14.7246137, lng: -17.4390694 },
+    'Pharmacie Alliance Maristes': { lat: 14.7347261, lng: -17.42445 },
+    'Pharmacie Capa': { lat: 14.7193282, lng: -17.4324471 },
+    'Pharmacie Hann-Pecheurs': { lat: 14.7290504, lng: -17.4263719 },
+    'Pharmacie Zahra': { lat: 14.7412161, lng: -17.4253591 }
 };
 
 // Lire le fichier pharmacies.js
