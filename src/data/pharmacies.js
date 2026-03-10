@@ -483,8 +483,8 @@ export const pharmacies = [
         "district": "Dakar Centre",
         "address": "55, ave. Albert Sarraut",
         "coords": {
-            "lat": 14.7547387,
-            "lng": -17.4756519},
+            "lat": 14.6695878,
+            "lng": -17.4314284},
         "phone": "+221 33 822 55 07",
         "email": "",
         "website": ""
@@ -1260,21 +1260,6 @@ export const pharmacies = [
         "website": ""
     },
     {
-        "id": 93,
-        "name": "Pharmacie Carrosserie",
-        "pharmacist": "",
-        "quartier": "Hann, Bel-Air",
-        "district": "Dakar Sud",
-        "address": "Carrosserie Marchand",
-        "coords": {
-            "lat": 0,
-            "lng": 0
-        },
-        "phone": "Non disponible",
-        "email": "",
-        "website": ""
-    },
-    {
         "id": 94,
         "name": "Pharmacie de la Rocade",
         "pharmacist": "",
@@ -1324,9 +1309,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Nationale, route de Rufisque x rue 6",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7074879,
+            "lng": -17.4350637},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1339,9 +1323,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "Scat-Urbam de Hann Mariste B65",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7378041,
+            "lng": -17.4244143},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1396,9 +1379,8 @@ export const pharmacies = [
         "district": "Dakar Sud",
         "address": "1292, 2 Av. Felix Eboue",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.6925127,
+            "lng": -17.4323518},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1411,9 +1393,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Av Cheikh Anta Diop",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7205529,
+            "lng": -17.4909534},
         "phone": "+221 33 860 24 82",
         "email": "",
         "website": ""
@@ -1426,9 +1407,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Rond point des mamelles",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7256192,
+            "lng": -17.5004287},
         "phone": "+221 33 820 56 65",
         "email": "",
         "website": ""
@@ -1441,9 +1421,8 @@ export const pharmacies = [
         "district": "Dakar Ouest",
         "address": "Non disponible",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7237121,
+            "lng": -17.4942333},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1456,9 +1435,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Non disponible",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7519216,
+            "lng": -17.4530542},
         "phone": "+221 33 860 84 84",
         "email": "",
         "website": ""
@@ -1471,9 +1449,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Unité 13",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7571643,
+            "lng": -17.4361394},
         "phone": "+221 33 835 09 13",
         "email": "",
         "website": ""
@@ -1486,9 +1463,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Près centre de santé Abdoul Aziz Sy Dabakh",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.75712,
+            "lng": -17.4392774},
         "phone": "+221 33 835 78 58",
         "email": "",
         "website": ""
@@ -1501,9 +1477,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Non disponible",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7541099,
+            "lng": -17.4621664},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1516,9 +1491,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Parcelles Assainies U 17",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7599445,
+            "lng": -17.4433775},
         "phone": "+221 33 855 06 60",
         "email": "",
         "website": ""
@@ -1531,9 +1505,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Parcelles Assainies",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7591826,
+            "lng": -17.4294315},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1546,9 +1519,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Parcelles Assainies",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7561322,
+            "lng": -17.4441021},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1561,9 +1533,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Yoff 3",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7811073,
+            "lng": -17.3808419},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1576,9 +1547,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Yoff Tonghor",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7623474,
+            "lng": -17.4802676},
         "phone": "+221 33 820 50 80",
         "email": "",
         "website": ""
@@ -1591,9 +1561,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Ouest Foire Cité Jean Lefevre",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7488251,
+            "lng": -17.4712441},
         "phone": "+221 33 820 84 38",
         "email": "",
         "website": ""
@@ -1606,9 +1575,8 @@ export const pharmacies = [
         "district": "Dakar Nord",
         "address": "Cité Xandar Yoff ex villa 102",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7512211,
+            "lng": -17.472527},
         "phone": "+221 33 820 28 01",
         "email": "",
         "website": ""
@@ -1621,9 +1589,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Thiaroye sur Mer",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7416913,
+            "lng": -17.3769597},
         "phone": "+221 77 578 91 41",
         "email": "",
         "website": ""
@@ -1636,9 +1603,8 @@ export const pharmacies = [
         "district": "Dakar",
         "address": "Patte D'oie rue 11, derrière le centre de santé Nabil Choucair",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7441822,
+            "lng": -17.444323},
         "phone": "+221 33 835 78 00",
         "email": "",
         "website": ""
@@ -1651,9 +1617,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Rte des Niayes, Djeddah 2",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.760637,
+            "lng": -17.3838778},
         "phone": "+221 33 854 28 40",
         "email": "",
         "website": ""
@@ -1666,9 +1631,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Marché central poisson",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7401726,
+            "lng": -17.4045944},
         "phone": "+221 33 854 17 10",
         "email": "",
         "website": ""
@@ -1681,9 +1645,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Guignaw Rail / Pikine",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7526927,
+            "lng": -17.4034474},
         "phone": "+221 33 850 33 86",
         "email": "",
         "website": ""
@@ -1696,9 +1659,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Non disponible",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7436044,
+            "lng": -17.3892744},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1711,9 +1673,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Zac Mbao",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.748922,
+            "lng": -17.2982722},
         "phone": "+221 77 360 63 72",
         "email": "",
         "website": ""
@@ -1726,9 +1687,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Dr Mohamed Traore",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7327392,
+            "lng": -17.3242828},
         "phone": "+221 33 836 56 44",
         "email": "",
         "website": ""
@@ -1741,9 +1701,8 @@ export const pharmacies = [
         "district": "Pikine",
         "address": "Grand Mbao",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7351923,
+            "lng": -17.3172016},
         "phone": "+221 33 833 52 19",
         "email": "",
         "website": ""
@@ -1756,9 +1715,8 @@ export const pharmacies = [
         "district": "Keur Massar",
         "address": "Jaxaay 2, près de l'ancien terminus 70",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7696499,
+            "lng": -17.2790029},
         "phone": "+221 77 397 11 11",
         "email": "",
         "website": ""
@@ -1771,9 +1729,8 @@ export const pharmacies = [
         "district": "Guédiawaye",
         "address": "En face de l'hôpital Roi Baudouin, Guédiawaye",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7732061,
+            "lng": -17.3838817},
         "phone": "+221 33 837 38 37",
         "email": "",
         "website": ""
@@ -1786,9 +1743,8 @@ export const pharmacies = [
         "district": "Guédiawaye",
         "address": "Guédiawaye Marché Boubes",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7764362,
+            "lng": -17.3727905},
         "phone": "+221 33 837 68 81",
         "email": "",
         "website": ""
@@ -1801,9 +1757,8 @@ export const pharmacies = [
         "district": "Guédiawaye",
         "address": "Guédiawaye",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7766066,
+            "lng": -17.3975626},
         "phone": "+221 77 650 85 51",
         "email": "",
         "website": ""
@@ -1816,9 +1771,8 @@ export const pharmacies = [
         "district": "Guédiawaye",
         "address": "Non disponible",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7749432,
+            "lng": -17.4038755},
         "phone": "Non disponible",
         "email": "",
         "website": ""
@@ -1831,9 +1785,8 @@ export const pharmacies = [
         "district": "Keur Massar",
         "address": "Keur Massar",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7695327,
+            "lng": -17.3138602},
         "phone": "+221 77 645 81 95",
         "email": "",
         "website": ""
@@ -1846,9 +1799,8 @@ export const pharmacies = [
         "district": "Keur Massar",
         "address": "Keur Massar Nord",
         "coords": {
-            "lat": 0,
-            "lng": 0
-        },
+            "lat": 14.7893345,
+            "lng": -17.3197245},
         "phone": "+221 33 892 60 56",
         "email": "",
         "website": ""
