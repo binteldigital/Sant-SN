@@ -142,8 +142,8 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
         try {
             setLoading(true);
             
-            // Nettoyer le texte scanné
-            const token = decodedText.trim().toUpperCase();
+            // Nettoyer le texte scanné (conserver la casse originale pour qr_code_token)
+            const token = decodedText.trim();
             console.log('🔍 Token scanné:', token);
             
             // Chercher par short_id (6 caractères) ou par qr_code_token
@@ -151,7 +151,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
             let recordError = null;
             
             if (token.length === 6) {
-                // Recherche par short_id
+                // Recherche par short_id (insensible à la casse)
                 console.log('🔍 Recherche par short_id...');
                 const result = await supabase
                     .from('health_records')
@@ -160,12 +160,12 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                         vaccinations(*),
                         users:user_id(full_name, email)
                     `)
-                    .eq('short_id', token)
+                    .ilike('short_id', token)
                     .single();
                 healthRecord = result.data;
                 recordError = result.error;
             } else {
-                // Recherche par qr_code_token
+                // Recherche par qr_code_token (insensible à la casse)
                 console.log('🔍 Recherche par qr_code_token...');
                 const result = await supabase
                     .from('health_records')
@@ -174,7 +174,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                         vaccinations(*),
                         users:user_id(full_name, email)
                     `)
-                    .eq('qr_code_token', token)
+                    .ilike('qr_code_token', token)
                     .single();
                 healthRecord = result.data;
                 recordError = result.error;
