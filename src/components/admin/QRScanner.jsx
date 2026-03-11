@@ -12,6 +12,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
     const [selectedCamera, setSelectedCamera] = useState(null);
     const [manualCode, setManualCode] = useState('');
     const [activeTab, setActiveTab] = useState('manual'); // 'manual' ou 'scan'
+    const [cameraError, setCameraError] = useState(false);
     const videoRef = useRef(null);
     const codeReaderRef = useRef(null);
     const controlsRef = useRef(null);
@@ -27,19 +28,49 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
 
     const listCameras = async () => {
         try {
+            // Vérifier d'abord si l'API média est disponible
+            if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+                console.warn('⚠️ API média non supportée');
+                setError('Votre navigateur ne supporte pas l\'accès à la caméra');
+                return;
+            }
+            
+            // Demander la permission d'abord
+            await navigator.mediaDevices.getUserMedia({ video: true });
+            
             const devices = await BrowserQRCodeReader.listVideoInputDevices();
             console.log('📷 Caméras disponibles:', devices);
+            
+            if (!devices || devices.length === 0) {
+                setCameraError(true);
+                console.warn('⚠️ Aucune caméra détectée');
+                return;
+            }
+            
             setCameras(devices);
             
             // Sélectionner la caméra arrière par défaut (mobile) ou la première dispo
             const backCamera = devices.find(d => 
                 d.label.toLowerCase().includes('back') || 
                 d.label.toLowerCase().includes('arrière') ||
-                d.label.toLowerCase().includes('environment')
+                d.label.toLowerCase().includes('environment') ||
+                d.label.toLowerCase().includes('rear')
             );
-            setSelectedCamera(backCamera?.deviceId || devices[0]?.deviceId);
+            
+            const selected = backCamera?.deviceId || devices[0]?.deviceId;
+            setSelectedCamera(selected);
+            console.log('✅ Caméra sélectionnée:', selected);
+            
         } catch (err) {
             console.error('❌ Erreur liste caméras:', err);
+            setCameraError(true);
+            if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+                setError('Permission caméra refusée. Veuillez autoriser l\'accès à la caméra dans les paramètres de votre navigateur.');
+            } else if (err.name === 'NotFoundError') {
+                console.warn('⚠️ Aucune caméra trouvée');
+            } else {
+                console.warn('⚠️ Erreur caméra:', err.message);
+            }
         }
     };
 
@@ -48,11 +79,24 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
             setScanning(true);
             setError(null);
 
-            if (!selectedCamera) {
-                setError('Aucune caméra disponible');
+            // Vérifier la permission caméra
+            try {
+                await navigator.mediaDevices.getUserMedia({ video: true });
+            } catch (permErr) {
+                console.error('❌ Permission caméra refusée:', permErr);
+                setError('Permission caméra refusée. Cliquez sur l\'icône 🔒 dans la barre d\'adresse pour autoriser.');
                 setScanning(false);
                 return;
             }
+
+            if (!selectedCamera) {
+                setError('Aucune caméra disponible. Essayez la saisie manuelle.');
+                setScanning(false);
+                return;
+            }
+
+            // Attendre que la vidéo soit prête
+            await new Promise(resolve => setTimeout(resolve, 500));
 
             const codeReader = new BrowserQRCodeReader();
             codeReaderRef.current = codeReader;
@@ -77,7 +121,7 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
 
         } catch (err) {
             console.error('❌ Erreur démarrage scanner:', err);
-            setError('Impossible d\'accéder à la caméra. Vérifiez les permissions.');
+            setError('Impossible d\'accéder à la caméra: ' + (err.message || 'Erreur inconnue'));
             setScanning(false);
         }
     };
@@ -206,8 +250,8 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
 
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto p-6">
-                    {/* Onglets */}
-                    {!scannedData && (
+                    {/* Onglets - Masquer scan si caméra non dispo */}
+                    {!scannedData && !cameraError && (
                         <div className="flex gap-2 mb-6">
                             <button
                                 onClick={() => setActiveTab('manual')}
@@ -229,6 +273,15 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                             >
                                 Scan QR
                             </button>
+                        </div>
+                    )}
+                    
+                    {/* Message si caméra non disponible */}
+                    {cameraError && (
+                        <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                            <p className="text-sm text-amber-800">
+                                <strong>Caméra non disponible</strong> - Utilisez le code manuel à 6 caractères affiché sur le carnet du patient.
+                            </p>
                         </div>
                     )}
 
@@ -350,11 +403,19 @@ const QRScanner = ({ onClose, onScanSuccess }) => {
                             </div>
                             <p className="text-red-600 font-medium mb-4">{error}</p>
                             <div className="flex flex-col gap-3">
+                                {activeTab === 'scan' && (
+                                    <button
+                                        onClick={() => { setError(null); startScanner(); }}
+                                        className="px-6 py-3 bg-dakar-emerald text-white rounded-xl font-bold"
+                                    >
+                                        Réessayer
+                                    </button>
+                                )}
                                 <button
-                                    onClick={() => { setError(null); startScanner(); }}
-                                    className="px-6 py-3 bg-dakar-emerald text-white rounded-xl font-bold"
+                                    onClick={() => { setError(null); setActiveTab('manual'); }}
+                                    className="px-6 py-3 bg-blue-50 text-blue-600 rounded-xl font-bold"
                                 >
-                                    Réessayer
+                                    Utiliser le code manuel
                                 </button>
                                 <button
                                     onClick={() => { setError(null); listCameras(); }}
