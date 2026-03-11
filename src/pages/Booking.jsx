@@ -106,13 +106,17 @@ const Booking = () => {
                 <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mb-6">
                     <CheckCircle2 className="w-12 h-12 text-dakar-emerald" />
                 </div>
-                <h1 className="text-2xl font-bold text-deep-charcoal mb-2">Rendez-vous Confirmé !</h1>
+                <h1 className="text-2xl font-bold text-deep-charcoal mb-2">Demande Envoyée !</h1>
                 <p className="text-gray-500 mb-8 max-w-xs">
-                    Votre consultation en {selectedService?.name} a été enregistrée pour le {selectedDate?.full} à {selectedTime}.
+                    Votre demande de consultation en <strong>{selectedService?.name}</strong> a été envoyée à {hospital?.name}. 
+                    Vous recevrez une notification dès que l'hôpital aura fixé votre rendez-vous.
                 </p>
-                <div className="w-full bg-soft-gray p-4 rounded-2xl mb-8 border border-gray-100 italic">
-                    <p className="text-xs text-gray-500 mb-1">Un SMS de confirmation a été envoyé au :</p>
-                    <p className="text-sm font-bold text-deep-charcoal">+221 77 ••• •• 45</p>
+                <div className="w-full bg-soft-gray p-4 rounded-2xl mb-8 border border-gray-100">
+                    <p className="text-xs text-gray-500 mb-2">Statut de votre demande :</p>
+                    <span className="inline-flex items-center gap-2 px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
+                        <Clock className="w-4 h-4" />
+                        En attente de confirmation
+                    </span>
                 </div>
                 <button
                     onClick={() => navigate('/dashboard')}
@@ -187,35 +191,41 @@ const Booking = () => {
                         exit={{ opacity: 0, x: -20 }}
                         className="px-6 py-4"
                     >
-                        <h2 className="text-lg font-bold text-deep-charcoal mb-6">Date et Heure</h2>
+                        <h2 className="text-lg font-bold text-deep-charcoal mb-6">Confirmer votre demande</h2>
 
-                        {/* Calendar */}
-                        <div className="flex gap-3 overflow-x-auto no-scrollbar pb-4 mb-8">
-                            {dates.map((d, i) => (
-                                <div
-                                    key={i}
-                                    onClick={() => setSelectedDate(d)}
-                                    className={`flex flex-col items-center gap-2 min-w-[64px] py-4 rounded-3xl border-2 transition-all cursor-pointer ${selectedDate?.day === d.day ? 'border-dakar-emerald bg-dakar-emerald text-white shadow-lg shadow-emerald-100' : 'border-gray-50 bg-white text-gray-500'}`}
-                                >
-                                    <span className={`text-[10px] font-bold uppercase ${selectedDate?.day === d.day ? 'text-white/80' : 'text-gray-400'}`}>{d.label}</span>
-                                    <span className="text-lg font-bold">{d.day}</span>
+                        {/* Récapitulatif */}
+                        <div className="bg-soft-gray rounded-2xl p-6 mb-6">
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl border border-gray-50">
+                                    {selectedService?.icon}
                                 </div>
-                            ))}
+                                <div>
+                                    <p className="text-xs text-gray-400 font-medium uppercase">Service demandé</p>
+                                    <h3 className="font-bold text-deep-charcoal text-lg">{selectedService?.name}</h3>
+                                </div>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                                <p className="text-xs text-gray-400 font-medium uppercase mb-2">Hôpital</p>
+                                <p className="font-medium text-deep-charcoal">{hospital?.name || 'Hôpital'}</p>
+                                <p className="text-sm text-gray-500">{hospital?.address}</p>
+                            </div>
                         </div>
 
-                        {/* Time Grid */}
-                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Créneaux disponibles</h3>
-                        <div className="grid grid-cols-3 gap-3 mb-8">
-                            {times.map((t, i) => (
-                                <button
-                                    key={i}
-                                    disabled={i > 5} // Mock some unavailable slots
-                                    onClick={() => setSelectedTime(t)}
-                                    className={`py-3 rounded-2xl text-sm font-bold transition-all ${i > 5 ? 'bg-gray-50 text-gray-300 border border-gray-100 line-through' : selectedTime === t ? 'bg-deep-charcoal text-white shadow-lg' : 'bg-soft-gray text-deep-charcoal border border-transparent active:scale-95'}`}
-                                >
-                                    {t}
-                                </button>
-                            ))}
+                        {/* Info message */}
+                        <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 mb-6">
+                            <div className="flex items-start gap-3">
+                                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <Clock className="w-4 h-4 text-blue-600" />
+                                </div>
+                                <div>
+                                    <p className="font-medium text-blue-900 text-sm">Comment ça marche ?</p>
+                                    <p className="text-xs text-blue-700 mt-1">
+                                        L'hôpital recevra votre demande et vous proposera une date et un créneau horaire. 
+                                        Vous recevrez une notification dès que votre rendez-vous sera confirmé.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 )}
@@ -229,24 +239,12 @@ const Booking = () => {
                         onClick={() => setStep(2)}
                         className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${selectedService ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
                     >
-                        Choisir Heure
+                        Continuer
                     </button>
                 ) : (
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center px-2">
-                            <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-soft-gray flex items-center justify-center text-[10px] font-bold">
-                                    {selectedService?.icon}
-                                </div>
-                                <div className="text-xs">
-                                    <p className="font-bold text-deep-charcoal">{selectedService?.name}</p>
-                                    <p className="text-gray-400">{selectedDate?.full || 'Non choisi'} à {selectedTime || '--:--'}</p>
-                                </div>
-                            </div>
-                            <button onClick={() => setStep(1)} className="text-[10px] font-bold text-dakar-emerald underline uppercase">Modifier</button>
-                        </div>
+                    <div className="space-y-3">
                         <button
-                            disabled={!selectedDate || !selectedTime || isSubmitting}
+                            disabled={isSubmitting}
                             onClick={async () => {
                                 if (!user) {
                                     alert('Veuillez vous connecter pour prendre un rendez-vous');
@@ -265,9 +263,7 @@ const Booking = () => {
                                             user_name: user?.full_name || user?.email || 'Patient',
                                             doctor_name: `Service ${selectedService.name}`,
                                             specialty: selectedService.name,
-                                            appointment_date: selectedDate.isoDate,
-                                            appointment_time: selectedTime,
-                                            status: 'pending', // Reset status to pending for modified appointments
+                                            status: 'pending',
                                             updated_at: new Date().toISOString()
                                         };
 
@@ -293,8 +289,6 @@ const Booking = () => {
                                                             hospital: hospital?.name || 'Hôpital',
                                                             doctor: updatedAppointment.doctor_name,
                                                             specialty: updatedAppointment.specialty,
-                                                            date: selectedDate.full,
-                                                            time: selectedTime,
                                                             status: 'pending'
                                                         };
                                                         localStorage.setItem('sunu_sante_appointments', JSON.stringify(appointments));
@@ -305,9 +299,9 @@ const Booking = () => {
                                             }
                                         }
 
-                                        alert('Rendez-vous modifié avec succès!');
+                                        alert('Demande modifiée avec succès!');
                                     } else {
-                                        // Create new appointment
+                                        // Create new appointment request (without date/time - hospital will assign)
                                         const newAppointment = {
                                             user_id: user.id,
                                             hospital_id: hospitalId,
@@ -315,8 +309,6 @@ const Booking = () => {
                                             user_name: user?.full_name || user?.email || 'Patient',
                                             doctor_name: `Service ${selectedService.name}`,
                                             specialty: selectedService.name,
-                                            appointment_date: selectedDate.isoDate,
-                                            appointment_time: selectedTime,
                                             status: 'pending',
                                             notes: ''
                                         };
@@ -335,8 +327,6 @@ const Booking = () => {
                                             hospital: hospital?.name || 'Hôpital',
                                             doctor: newAppointment.doctor_name,
                                             specialty: newAppointment.specialty,
-                                            date: selectedDate.full,
-                                            time: selectedTime,
                                             status: 'pending'
                                         };
                                         
@@ -356,15 +346,21 @@ const Booking = () => {
 
                                     setStep(3);
                                 } catch (err) {
-                                    console.error('Error processing appointment:', err);
-                                    alert('Erreur lors de la modification du rendez-vous. Veuillez réessayer.');
+                                    console.error('Error saving appointment:', err);
+                                    alert('Erreur lors de l\'enregistrement de la demande. Veuillez réessayer.');
                                 } finally {
                                     setIsSubmitting(false);
                                 }
                             }}
-                            className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${selectedDate && selectedTime && !isSubmitting ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
+                            className={`w-full h-14 rounded-2xl flex items-center justify-center gap-2 font-bold transition-all ${!isSubmitting ? 'bg-dakar-emerald text-white shadow-lg shadow-emerald-100 active:scale-95' : 'bg-gray-100 text-gray-400'}`}
                         >
-                            {isSubmitting ? 'Création...' : 'Confirmer rendez-vous'}
+                            {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
+                        </button>
+                        <button
+                            onClick={() => setStep(1)}
+                            className="w-full h-12 rounded-2xl border border-gray-200 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
+                        >
+                            Modifier le service
                         </button>
                     </div>
                 )}

@@ -9,15 +9,67 @@ const FlashDashboard = () => {
     const { user: authUser } = useAuth();
     const [user, setUser] = React.useState(authUser);
     const [appointments, setAppointments] = React.useState([]);
+    const [notifications, setNotifications] = React.useState([]);
+    const [unreadCount, setUnreadCount] = React.useState(0);
+    const [showNotifications, setShowNotifications] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 
-    // Fetch fresh user profile and appointments from Supabase
+    // Fetch fresh user profile, appointments and notifications from Supabase
     React.useEffect(() => {
         if (authUser?.id) {
             fetchUserProfile();
             fetchAppointments();
+            fetchNotifications();
         }
     }, [authUser?.id]);
+    
+    const fetchNotifications = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('notifications')
+                .select('*')
+                .eq('user_id', authUser.id)
+                .order('created_at', { ascending: false })
+                .limit(10);
+            
+            if (error) throw error;
+            setNotifications(data || []);
+            setUnreadCount(data?.filter(n => !n.read).length || 0);
+        } catch (err) {
+            console.error('Failed to fetch notifications:', err);
+        }
+    };
+    
+    const markNotificationAsRead = async (notificationId) => {
+        try {
+            await supabase
+                .from('notifications')
+                .update({ read: true })
+                .eq('id', notificationId);
+            
+            setNotifications(prev => 
+                prev.map(n => n.id === notificationId ? { ...n, read: true } : n)
+            );
+            setUnreadCount(prev => Math.max(0, prev - 1));
+        } catch (err) {
+            console.error('Failed to mark notification as read:', err);
+        }
+    };
+    
+    const markAllAsRead = async () => {
+        try {
+            await supabase
+                .from('notifications')
+                .update({ read: true })
+                .eq('user_id', authUser.id)
+                .eq('read', false);
+            
+            setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+            setUnreadCount(0);
+        } catch (err) {
+            console.error('Failed to mark all as read:', err);
+        }
+    };
 
     const fetchUserProfile = async () => {
         try {
@@ -231,10 +283,74 @@ const FlashDashboard = () => {
                         Vous avez {appointments.length} rendez-vous {appointments.length > 1 ? 'prévus' : 'prévu'}
                     </p>
                 </div>
-                <div className="w-12 h-12 rounded-2xl bg-dakar-emerald flex items-center justify-center text-white font-bold text-lg border-4 border-emerald-50 shadow-sm">
-                    {initial}
+                <div className="flex items-center gap-3">
+                    {/* Notification Bell */}
+                    <button 
+                        onClick={() => setShowNotifications(!showNotifications)}
+                        className="relative w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                    >
+                        <Bell className="w-5 h-5 text-gray-600" />
+                        {unreadCount > 0 && (
+                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
+                                {unreadCount > 9 ? '9+' : unreadCount}
+                            </span>
+                        )}
+                    </button>
+                    <div className="w-12 h-12 rounded-2xl bg-dakar-emerald flex items-center justify-center text-white font-bold text-lg border-4 border-emerald-50 shadow-sm">
+                        {initial}
+                    </div>
                 </div>
             </header>
+            
+            {/* Notifications Panel */}
+            {showNotifications && (
+                <div className="mx-6 mb-4 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+                        <h3 className="font-bold text-gray-900">Notifications</h3>
+                        {unreadCount > 0 && (
+                            <button 
+                                onClick={markAllAsRead}
+                                className="text-xs text-dakar-emerald font-medium hover:underline"
+                            >
+                                Tout marquer comme lu
+                            </button>
+                        )}
+                    </div>
+                    <div className="max-h-64 overflow-y-auto">
+                        {notifications.length === 0 ? (
+                            <p className="p-4 text-center text-sm text-gray-400">Aucune notification</p>
+                        ) : (
+                            notifications.map((notification) => (
+                                <div 
+                                    key={notification.id}
+                                    onClick={() => markNotificationAsRead(notification.id)}
+                                    className={`p-4 border-b border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors ${
+                                        !notification.read ? 'bg-emerald-50/30' : ''
+                                    }`}
+                                >
+                                    <div className="flex items-start gap-3">
+                                        <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                                            !notification.read ? 'bg-dakar-emerald' : 'bg-gray-300'
+                                        }`} />
+                                        <div className="flex-1">
+                                            <p className="font-medium text-sm text-gray-900">{notification.title}</p>
+                                            <p className="text-xs text-gray-500 mt-1">{notification.message}</p>
+                                            <p className="text-[10px] text-gray-400 mt-2">
+                                                {new Date(notification.created_at).toLocaleDateString('fr-FR', {
+                                                    day: 'numeric',
+                                                    month: 'short',
+                                                    hour: '2-digit',
+                                                    minute: '2-digit'
+                                                })}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
+            )}
 
             {/* Shortcuts */}
             <div className="px-6 py-4 grid grid-cols-4 gap-4">
@@ -333,20 +449,36 @@ const FlashDashboard = () => {
                                     <div className={`backdrop-blur-md rounded-2xl p-4 flex justify-between items-center relative z-10 border border-white/10 ${
                                         isCancelled ? 'bg-white/5' : 'bg-white/15'
                                     }`}>
-                                        <div className="flex items-center gap-2">
-                                            <Calendar className="w-4 h-4 text-emerald-100" />
-                                            <span className="text-sm font-bold">
-                                                {new Date(rdv.appointment_date).toLocaleDateString('fr-FR', { 
-                                                    weekday: 'long', 
-                                                    day: 'numeric', 
-                                                    month: 'long' 
-                                                })}
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <Clock className="w-4 h-4 text-emerald-100" />
-                                            <span className="text-sm font-bold">{rdv.appointment_time || rdv.time}</span>
-                                        </div>
+                                        {rdv.status === 'pending' && !rdv.appointment_date ? (
+                                            // Demande en attente - pas encore de date assignée
+                                            <div className="flex items-center gap-2 flex-1">
+                                                <Clock className="w-4 h-4 text-amber-200" />
+                                                <span className="text-sm font-bold text-amber-100">
+                                                    En attente de confirmation
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            // Rendez-vous confirmé avec date
+                                            <>
+                                                <div className="flex items-center gap-2">
+                                                    <Calendar className="w-4 h-4 text-emerald-100" />
+                                                    <span className="text-sm font-bold">
+                                                        {rdv.appointment_date 
+                                                            ? new Date(rdv.appointment_date).toLocaleDateString('fr-FR', { 
+                                                                weekday: 'long', 
+                                                                day: 'numeric', 
+                                                                month: 'long' 
+                                                            })
+                                                            : 'Date non définie'
+                                                        }
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <Clock className="w-4 h-4 text-emerald-100" />
+                                                    <span className="text-sm font-bold">{rdv.appointment_time || rdv.time || '--:--'}</span>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
 
                                     {/* Admin Message */}
