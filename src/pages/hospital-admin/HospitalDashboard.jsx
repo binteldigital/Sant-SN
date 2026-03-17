@@ -231,7 +231,10 @@ const HospitalDashboard = () => {
                         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
                             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
                                 <h2 className="text-lg font-bold text-gray-900">Tous les rendez-vous</h2>
-                                <button className="text-sm text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1">
+                                <button 
+                                    onClick={() => setActiveTab('agenda')}
+                                    className="text-sm text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1"
+                                >
                                     Voir tout →
                                 </button>
                             </div>
