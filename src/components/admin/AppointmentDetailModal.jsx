@@ -66,8 +66,15 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
             if (error) throw error;
 
             // Create notification for patient
-            if (newStatus === 'confirmed') {
-                await createPatientNotification(appointment.user_id, appointment.id, selectedDate, selectedTime);
+            if (newStatus === 'confirmed' || newStatus === 'cancelled') {
+                await createPatientNotification(
+                    appointment.user_id, 
+                    appointment.id, 
+                    selectedDate, 
+                    selectedTime, 
+                    newStatus,
+                    notes
+                );
             }
 
             onUpdate(data);
@@ -81,19 +88,41 @@ const AppointmentDetailModal = ({ appointment, onClose, onUpdate }) => {
     };
     
     // Create notification for patient
-    const createPatientNotification = async (userId, appointmentId, date, time) => {
+    const createPatientNotification = async (userId, appointmentId, date, time, status, notes) => {
         try {
-            await supabase
+            let title, message, type;
+            
+            if (status === 'confirmed') {
+                type = 'appointment_confirmed';
+                title = 'Rendez-vous confirmé';
+                message = `Votre rendez-vous a été confirmé pour le ${new Date(date).toLocaleDateString('fr-FR')} à ${time}`;
+            } else if (status === 'cancelled') {
+                type = 'appointment_cancelled';
+                title = 'Rendez-vous refusé';
+                message = notes 
+                    ? `Votre demande de rendez-vous a été refusée. Motif: ${notes}`
+                    : 'Votre demande de rendez-vous a été refusée par l\'hôpital';
+            } else {
+                return; // Pas de notification pour les autres statuts
+            }
+            
+            const { error } = await supabase
                 .from('notifications')
                 .insert([{
                     user_id: userId,
-                    type: 'appointment_confirmed',
-                    title: 'Rendez-vous confirmé',
-                    message: `Votre rendez-vous a été confirmé pour le ${new Date(date).toLocaleDateString('fr-FR')} à ${time}`,
+                    type: type,
+                    title: title,
+                    message: message,
                     appointment_id: appointmentId,
                     read: false,
                     created_at: new Date().toISOString()
                 }]);
+                
+            if (error) {
+                console.error('Supabase error creating notification:', error);
+            } else {
+                console.log('✅ Notification créée:', title);
+            }
         } catch (err) {
             console.error('Failed to create notification:', err);
         }
