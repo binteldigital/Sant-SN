@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, Bell, MapPin, Heart, ChevronRight, Home as HomeIcon, Calendar, User, Navigation, Building2, HeartPulse } from 'lucide-react';
+import { Search, Bell, MapPin, Heart, ChevronRight, Home as HomeIcon, Calendar, User, Navigation, Building2, HeartPulse, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getHospitals } from '../lib/supabase';
+import { getHospitals, supabase } from '../lib/supabase';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useAuth } from '../context/AuthContext';
 
@@ -30,6 +30,11 @@ const Home = () => {
     const { location, calculateDistance } = useGeolocation();
     const { user } = useAuth();
     const navigate = useNavigate();
+    
+    // Notifications state
+    const [notifications, setNotifications] = useState([]);
+    const [unreadCount, setUnreadCount] = useState(0);
+    const [showNotifications, setShowNotifications] = useState(false);
 
     // Fetch hospitals from Supabase
     useEffect(() => {
@@ -51,6 +56,61 @@ const Home = () => {
         };
         fetchHospitals();
     }, []);
+    
+    // Fetch notifications
+    useEffect(() => {
+        if (user?.id) {
+            fetchNotifications();
+        }
+    }, [user?.id]);
+    
+    const fetchNotifications = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('notifications')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false })
+                .limit(10);
+            
+            if (error) throw error;
+            setNotifications(data || []);
+            setUnreadCount(data?.filter(n => !n.read).length || 0);
+        } catch (err) {
+            console.error('Failed to fetch notifications:', err);
+        }
+    };
+    
+    const markNotificationAsRead = async (notificationId) => {
+        try {
+            await supabase
+                .from('notifications')
+                .update({ read: true })
+                .eq('id', notificationId);
+            
+            setNotifications(prev => 
+                prev.map(n => n.id === notificationId ? { ...n, read: true } : n)
+            );
+            setUnreadCount(prev => Math.max(0, prev - 1));
+        } catch (err) {
+            console.error('Failed to mark notification as read:', err);
+        }
+    };
+    
+    const markAllAsRead = async () => {
+        try {
+            await supabase
+                .from('notifications')
+                .update({ read: true })
+                .eq('user_id', user.id)
+                .eq('read', false);
+            
+            setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+            setUnreadCount(0);
+        } catch (err) {
+            console.error('Failed to mark all as read:', err);
+        }
+    };
 
     // Filtered hospitals based on search
     const filteredHospitals = useMemo(() => {
@@ -86,10 +146,86 @@ const Home = () => {
                     <h1 className="text-xl font-bold text-dakar-emerald">FAJU</h1>
                     <p className="text-[10px] text-gray-400 font-medium">Santé à votre portée</p>
                 </div>
-                <button className="p-2.5 rounded-2xl bg-soft-gray hover:bg-gray-100 transition-colors">
+                <button 
+                    onClick={() => setShowNotifications(!showNotifications)}
+                    className="relative p-2.5 rounded-2xl bg-soft-gray hover:bg-gray-100 transition-colors"
+                >
                     <Bell className="w-5 h-5 text-deep-charcoal" />
+                    {unreadCount > 0 && (
+                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
+                            {unreadCount > 9 ? '9+' : unreadCount}
+                        </span>
+                    )}
                 </button>
             </header>
+            
+            {/* Notifications Panel */}
+            {showNotifications && (
+                <div className="mx-6 mb-4 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden z-50 relative">
+                    <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+                        <h3 className="font-bold text-gray-900">Notifications</h3>
+                        <div className="flex items-center gap-2">
+                            {unreadCount > 0 && (
+                                <button 
+                                    onClick={markAllAsRead}
+                                    className="text-xs text-dakar-emerald font-medium hover:underline"
+                                >
+                                    Tout lire
+                                </button>
+                            )}
+                            <button 
+                                onClick={() => setShowNotifications(false)}
+                                className="p-1 hover:bg-gray-100 rounded-lg"
+                            >
+                                <X className="w-4 h-4 text-gray-400" />
+                            </button>
+                        </div>
+                    </div>
+                    <div className="max-h-64 overflow-y-auto">
+                        {!user ? (
+                            <div className="p-4 text-center">
+                                <p className="text-sm text-gray-500">Connectez-vous pour voir vos notifications</p>
+                                <button 
+                                    onClick={() => navigate('/login')}
+                                    className="mt-2 text-sm text-dakar-emerald font-medium"
+                                >
+                                    Se connecter
+                                </button>
+                            </div>
+                        ) : notifications.length === 0 ? (
+                            <p className="p-4 text-center text-sm text-gray-400">Aucune notification</p>
+                        ) : (
+                            notifications.map((notification) => (
+                                <div 
+                                    key={notification.id}
+                                    onClick={() => markNotificationAsRead(notification.id)}
+                                    className={`p-4 border-b border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors ${
+                                        !notification.read ? 'bg-emerald-50/30' : ''
+                                    }`}
+                                >
+                                    <div className="flex items-start gap-3">
+                                        <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
+                                            !notification.read ? 'bg-dakar-emerald' : 'bg-gray-300'
+                                        }`} />
+                                        <div className="flex-1">
+                                            <p className="font-medium text-sm text-gray-900">{notification.title}</p>
+                                            <p className="text-xs text-gray-500 mt-1">{notification.message}</p>
+                                            <p className="text-[10px] text-gray-400 mt-2">
+                                                {new Date(notification.created_at).toLocaleDateString('fr-FR', {
+                                                    day: 'numeric',
+                                                    month: 'short',
+                                                    hour: '2-digit',
+                                                    minute: '2-digit'
+                                                })}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
+            )}
 
             {/* Search Section */}
             <div className="px-6 py-2">
